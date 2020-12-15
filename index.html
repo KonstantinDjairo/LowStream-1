@@ -5,6 +5,8 @@
 		<title>LowStream</title>
 		<base data-trunk-public-url />
 		<link data-trunk rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+		<link rel="manifest" href="manifest.webmanifest">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!-- Font Awesome icons (free version)-->
 		<script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
 		<!-- Core theme CSS (includes Bootstrap)-->
@@ -14,10 +16,14 @@
 	</head>
 	<body>
 		<div class="position-absolute top-50 start-50 translate-middle">
-			<button class="btn btn-secondary" type="button" disabled>
-			<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-				Carregando...
-			</button>
+			<figure class="image is-128x128">
+				<img class="is-rounded" src="https://thumbs.gfycat.com/AdmiredWeepyHartebeest-max-1mb.gif" alt="ZeroTwo"></>
+			</figure>
+			<div class="d-flex justify-content-center">
+				<div class="spinner-border" role="status">
+					<span class="visually-hidden">Loading...</span>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

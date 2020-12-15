@@ -1,0 +1,15 @@
+{
+  "background_color": "white",
+  "description": "Streaming de qualidade e de alta perfomance",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "https://p.favim.com/orig/2018/09/06/anime-icon-anime-icon-Favim.com-6252961.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "name": "LowStream",
+  "short_name": "LowStream",
+  "start_url": "/"
+}
