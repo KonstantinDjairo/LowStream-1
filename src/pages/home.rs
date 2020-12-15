@@ -6,14 +6,14 @@ impl Component for Home
     type Message = ();
     type Properties = ();
 
-    fn create(_props: Self::Properties, link: ComponentLink<Self>) -> Self
+    fn create(_props: Self::Properties, _link: ComponentLink<Self>) -> Self
     {
         Self
     }
 
-    fn update(&mut self, msg: Self::Message) -> ShouldRender
+    fn update(&mut self, _msg: Self::Message) -> ShouldRender
     {
-        unimplemented!
+        unimplemented!()
     }
 
     fn change(&mut self, _props: Self::Properties) -> ShouldRender
@@ -25,17 +25,18 @@ impl Component for Home
     {
         html!{
             <>
-                <div class="sticky-xl-top">
-                    <header class="masthead">
-                        <div class="container d-flex h-100 align-items-center">
-                            <div class="mx-auto text-center">
-                                <h1 class="mx-auto my-0 text-uppercase">{"LowStream"}</h1>
-                                <h2 class="text-white-50 mx-auto mt-2 mb-5">{"Assista com qualidade e performance no LowStream"}</h2>
-                                <a class="btn btn-primary js-scroll-trigger" href="#about">{"Get Started"}</a>
-                            </div>
+                <section class="hero is-medium is-primary is-bold" style="padding-top: 40px">
+                    <div class="hero-body">
+                        <div class="container">
+                            <h1 class="title">
+                                {"O melhor Streaming de videos uwu"}
+                            </h1>
+                            <h2 class="subtitle">
+                                {"Aproveite as novidades!"}
+                            </h2>
                         </div>
-                    </header>
-                </div>
+                    </div>
+                </section>
             </>
         }
     }
