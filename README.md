@@ -8,7 +8,7 @@
   - [x] Implentação do wasm no projeto; **Concluido :heavy_check_mark:**
   - [x] Implentação do Bulma.io; **Concluido :heavy_check_mark:**
   - [ ] Suporte ao ybc; **Em desenvolvimento :warning:**
-  - [ ] Aplicar dinamismo nas funcionalidades; **Em desenvolvimento :warning:**
+  - [x] Aplicar dinamismo nas funcionalidades; **Concluido :heavy_check_mark:**
   - [ ] Router;
   - [ ] Framework Diesel;
   - [ ] Upload videos;
