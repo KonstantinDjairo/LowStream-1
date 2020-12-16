@@ -1,9 +1,0 @@
-/home/senick/Documentos/Projects/Rust/LowStream/target/debug/deps/yew_router_route_parser-a0dc18c3ed7cacfb.rmeta: /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yew-router-route-parser-0.14.0/src/lib.rs /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yew-router-route-parser-0.14.0/src/core.rs /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yew-router-route-parser-0.14.0/src/error.rs /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yew-router-route-parser-0.14.0/src/parser.rs /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yew-router-route-parser-0.14.0/src/optimizer.rs
-
-/home/senick/Documentos/Projects/Rust/LowStream/target/debug/deps/yew_router_route_parser-a0dc18c3ed7cacfb.d: /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yew-router-route-parser-0.14.0/src/lib.rs /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yew-router-route-parser-0.14.0/src/core.rs /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yew-router-route-parser-0.14.0/src/error.rs /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yew-router-route-parser-0.14.0/src/parser.rs /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yew-router-route-parser-0.14.0/src/optimizer.rs
-
-/home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yew-router-route-parser-0.14.0/src/lib.rs:
-/home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yew-router-route-parser-0.14.0/src/core.rs:
-/home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yew-router-route-parser-0.14.0/src/error.rs:
-/home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yew-router-route-parser-0.14.0/src/parser.rs:
-/home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yew-router-route-parser-0.14.0/src/optimizer.rs:
