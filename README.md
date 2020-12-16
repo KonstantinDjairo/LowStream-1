@@ -9,7 +9,7 @@
   - [x] Implentação do Bulma.io; **Concluido :heavy_check_mark:**
   - [ ] Suporte ao ybc; **Em desenvolvimento :warning:**
   - [x] Aplicar dinamismo nas funcionalidades; **Concluido :heavy_check_mark:**
-  - [ ] Router;
+  - [x] Router; **Concluido :heavy_check_mark:**
   - [ ] Framework Diesel;
   - [ ] Upload videos;
     - [ ] Like e Dislike;
