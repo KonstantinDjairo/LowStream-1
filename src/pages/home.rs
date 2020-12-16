@@ -1,29 +1,24 @@
 use yew::prelude::*;
 
 pub struct Home;
-impl Component for Home
-{
+impl Component for Home {
     type Message = ();
     type Properties = ();
 
-    fn create(_props: Self::Properties, _link: ComponentLink<Self>) -> Self
-    {
+    fn create(_props: Self::Properties, _link: ComponentLink<Self>) -> Self {
         Self
     }
 
-    fn update(&mut self, _msg: Self::Message) -> ShouldRender
-    {
+    fn update(&mut self, _msg: Self::Message) -> ShouldRender {
         unimplemented!()
     }
 
-    fn change(&mut self, _props: Self::Properties) -> ShouldRender
-    {
+    fn change(&mut self, _props: Self::Properties) -> ShouldRender {
         false
     }
 
-    fn view(&self) -> Html
-    {
-        html!{
+    fn view(&self) -> Html {
+        html! {
             <>
                 <section class="hero is-medium is-primary is-bold" style="padding-top: 40px">
                     <div class="hero-body">

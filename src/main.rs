@@ -12,48 +12,40 @@ macro_rules! classes {
 }
 
 mod pages;
-use pages::{
-    home::Home, page_not_found::PageNotFound, register::Register
-};
+use pages::{home::Home, page_not_found::PageNotFound, register::Register};
 
 mod switch;
 use switch::{AppAnchor, AppRoute, AppRouter, PublicUrlSwitch};
 
-pub enum Msg
-{
+pub enum Msg {
     ToggleNav,
-    ActionBottom
+    ActionBottom,
 }
 
-struct Model
-{
+struct Model {
     link: ComponentLink<Self>,
     navbar: bool,
-    notification: bool
+    notification: bool,
 }
 
 impl Component for Model {
     type Message = Msg;
     type Properties = ();
     fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
-        Self
-        {
+        Self {
             link,
             navbar: false,
-            notification: true
+            notification: true,
         }
     }
 
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
-        match msg
-        {
-            Msg::ToggleNav => 
-            {
+        match msg {
+            Msg::ToggleNav => {
                 self.navbar = !self.navbar;
                 true
             }
-            Msg::ActionBottom => 
-            {
+            Msg::ActionBottom => {
                 self.notification = !self.notification;
                 true
             }
@@ -68,7 +60,7 @@ impl Component for Model {
         html! {
             <>
                 {self.nav()}
-                
+
                 <main>
                     <AppRouter
                         render=AppRouter::render(Self::switch)
@@ -99,14 +91,11 @@ impl Component for Model {
 
 impl Model {
     fn nav(&self) -> Html {
-
         let Self {
-            ref link,
-            navbar,
-            ..
+            ref link, navbar, ..
         } = *self;
 
-        let active_class = if navbar {"is-active"} else {""};
+        let active_class = if navbar { "is-active" } else { "" };
 
         html! {
                 <>
@@ -200,22 +189,20 @@ impl Model {
         }
     }
 
-    fn notification(&self) -> Html
-    {
-        if self.notification
-        {
-            return html!{
+    fn notification(&self) -> Html {
+        if self.notification {
+            return html! {
                 <div class="notification is-danger is-light">
                     <button class="delete" onclick=self.link.callback(|_| Msg::ActionBottom)></button>
                         <strong>{"Atenção! "}</strong>
-                        {"A equipe ainda está trabalhando no site, ainda há vários bugs, 
+                        {"A equipe ainda está trabalhando no site, ainda há vários bugs,
                         e não temos ainda uma data de previsão pra entrega do site. "}<a>
-                        {"Porém possivelmente estará pronto para o ano de 2021."}</a> 
+                        {"Porém possivelmente estará pronto para o ano de 2021."}</a>
                         {" Obrigado por sua visita volte outra hora. uwu"}
                     </div>
-            }
+            };
         }
-        html!{}
+        html! {}
     }
 }
 

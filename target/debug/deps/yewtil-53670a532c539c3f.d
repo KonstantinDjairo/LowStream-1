@@ -1,0 +1,14 @@
+/home/senick/Documentos/Projects/Rust/LowStream/target/debug/deps/yewtil-53670a532c539c3f.rmeta: /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/lib.rs /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/not_equal_assign.rs /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/ptr/mod.rs /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/ptr/irc.rs /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/ptr/mrc.rs /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/ptr/rc_box.rs /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/ptr/takeable.rs /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/history.rs /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/future.rs /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/store.rs
+
+/home/senick/Documentos/Projects/Rust/LowStream/target/debug/deps/yewtil-53670a532c539c3f.d: /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/lib.rs /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/not_equal_assign.rs /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/ptr/mod.rs /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/ptr/irc.rs /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/ptr/mrc.rs /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/ptr/rc_box.rs /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/ptr/takeable.rs /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/history.rs /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/future.rs /home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/store.rs
+
+/home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/lib.rs:
+/home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/not_equal_assign.rs:
+/home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/ptr/mod.rs:
+/home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/ptr/irc.rs:
+/home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/ptr/mrc.rs:
+/home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/ptr/rc_box.rs:
+/home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/ptr/takeable.rs:
+/home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/history.rs:
+/home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/future.rs:
+/home/senick/.cargo/registry/src/github.com-1ecc6299db9ec823/yewtil-0.3.2/src/store.rs:
