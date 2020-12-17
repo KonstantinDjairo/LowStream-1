@@ -1,8 +1,5 @@
 #![recursion_limit = "1024"]
 use yew_router::{route::Route, switch::Permissive};
-// use ybc::NavbarFixed::Bottom;
-// use ybc::TileCtx::{Ancestor, Child, Parent};
-// use ybc::TileSize::Four;
 use yew::prelude::*;
 
 macro_rules! classes {
@@ -12,40 +9,48 @@ macro_rules! classes {
 }
 
 mod pages;
-use pages::{home::Home, page_not_found::PageNotFound, register::Register};
+use pages::{
+    home::Home, page_not_found::PageNotFound, register::Register, login::Login, player::Player
+};
 
 mod switch;
 use switch::{AppAnchor, AppRoute, AppRouter, PublicUrlSwitch};
 
-pub enum Msg {
+pub enum Msg
+{
     ToggleNav,
-    ActionBottom,
+    ActionBottom
 }
 
-struct Model {
+struct Model
+{
     link: ComponentLink<Self>,
     navbar: bool,
-    notification: bool,
+    notification: bool
 }
 
 impl Component for Model {
     type Message = Msg;
     type Properties = ();
     fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
-        Self {
+        Self
+        {
             link,
             navbar: false,
-            notification: true,
+            notification: true
         }
     }
 
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
-        match msg {
-            Msg::ToggleNav => {
+        match msg
+        {
+            Msg::ToggleNav => 
+            {
                 self.navbar = !self.navbar;
                 true
             }
-            Msg::ActionBottom => {
+            Msg::ActionBottom => 
+            {
                 self.notification = !self.notification;
                 true
             }
@@ -60,7 +65,7 @@ impl Component for Model {
         html! {
             <>
                 {self.nav()}
-
+                
                 <main>
                     <AppRouter
                         render=AppRouter::render(Self::switch)
@@ -91,16 +96,19 @@ impl Component for Model {
 
 impl Model {
     fn nav(&self) -> Html {
+
         let Self {
-            ref link, navbar, ..
+            ref link,
+            navbar,
+            ..
         } = *self;
 
-        let active_class = if navbar { "is-active" } else { "" };
+        let active_class = if navbar {"is-active"} else {""};
 
         html! {
                 <>
             <nav class="navbar is-transparent is-fixed-top">
-                <div class="navbar-brand">
+                <div class="navbar-brand is-rounded">
                     <AppAnchor classes="navbar-item" route=AppRoute::Home>
                     <span class="spinner-grow spinner-grow-sm badge bg-danger container d-flex h-0 align-items-center">{""}</span>
                     // <img src="https://www.pngkey.com/png/full/308-3085243_logo-rust-programming-language-logo.png" width="28" height="28" alt="LowStream"/>
@@ -113,44 +121,41 @@ impl Model {
                     </div>
                 </div>
 
-                <div id="navbarExampleTransparentExample" class=classes!("navbar-menu", active_class) style="position: absolute; top: 0px; right: 16px;">
+                <div id="navbarExampleTransparentExample" class=classes!("navbar-menu ", active_class) style="position: absolute; top: 0px; right: 16px;">
                     <div class="navbar-start">
-                    <a class="navbar-burger" onclick=link.callback(|_| Msg::ToggleNav)>
+                    <a class=classes!("navbar-burger", active_class) onclick=link.callback(|_| Msg::ToggleNav)>
                         <span></span>
                         <span></span>
                         <span></span>
                     </a>
                     <AppAnchor classes="navbar-item" route=AppRoute::Home>
-                            { "Home" }
+                            <a onclick=link.callback(|_| Msg::ToggleNav)>{ "Home" }</a>
                     </AppAnchor>
                     <AppAnchor classes="navbar-item" route=AppRoute::Home>
-                            { "Animes" }
+                            <a onclick=link.callback(|_| Msg::ToggleNav)>{ "Animes" }</a>
                     </AppAnchor>
                     <AppAnchor classes="navbar-item" route=AppRoute::Home>
-                            { "Filmes" }
+                            <a onclick=link.callback(|_| Msg::ToggleNav)>{ "Filmes" }</a>
                     </AppAnchor>
                     <AppAnchor classes="navbar-item" route=AppRoute::Home>
-                            { "Séries" }
+                            <a onclick=link.callback(|_| Msg::ToggleNav)>{ "Series" }</a>
                     </AppAnchor>
                     <div class="navbar-item has-dropdown is-hoverable">
                         <a class="navbar-link">
                         {"Mais"}
                         </a>
                         <div class="navbar-dropdown is-boxed">
-                        <a class="navbar-item">
-                            {"Profile"}
-                        </a>
-                        <a class="navbar-item">
-                            {"About us"}
-                        </a>
-                        <a class="navbar-item">
+                        <AppAnchor classes="navbar-item" route=AppRoute::Player>
+                            <a onclick=link.callback(|_| Msg::ToggleNav)>{ "Player Teste" }</a>
+                        </AppAnchor>
+                        <a class="navbar-item" onclick=link.callback(|_| Msg::ToggleNav)>
                             {"Contact us"}
                         </a>
-                        <a class="navbar-item">
+                        <a class="navbar-item" href="https://github.com/LowStream-Community/LowStream/issues/new/choose" onclick=link.callback(|_| Msg::ToggleNav)>
                             {"Issues"}
                         </a>
                         <hr class="navbar-divider"/>
-                        <a class="navbar-item">
+                        <a class="navbar-item" href="https://github.com/lowstream-community/LowStream" onclick=link.callback(|_| Msg::ToggleNav)>
                             {"GitHub"}
                         </a>
                         </div>
@@ -159,13 +164,13 @@ impl Model {
 
                     <div class="navbar-end">
                     <div class="navbar-item">
-                        <div class="buttons">
+                        <div class="buttons" onclick=link.callback(|_| Msg::ToggleNav)>
                             <AppAnchor classes="button is-light is-rounded" route=AppRoute::Register>
                                 { "Sign up" }
                             </AppAnchor>
-                            <a class="button is-dark is-rounded">
-                                {"Log in"}
-                            </a>
+                            <AppAnchor classes="button is-dark is-rounded" route=AppRoute::Login>
+                                { "Login" }
+                            </AppAnchor>
                         </div>
                     </div>
                     </div>
@@ -177,6 +182,12 @@ impl Model {
 
     fn switch(switch: PublicUrlSwitch) -> Html {
         match switch.route() {
+            AppRoute::Player => {
+                html! { <Player /> }
+            }
+            AppRoute::Login => {
+                html! { <Login /> }
+            }
             AppRoute::Register => {
                 html! { <Register /> }
             }
@@ -189,20 +200,22 @@ impl Model {
         }
     }
 
-    fn notification(&self) -> Html {
-        if self.notification {
-            return html! {
+    fn notification(&self) -> Html
+    {
+        if self.notification
+        {
+            return html!{
                 <div class="notification is-danger is-light">
                     <button class="delete" onclick=self.link.callback(|_| Msg::ActionBottom)></button>
                         <strong>{"Atenção! "}</strong>
-                        {"A equipe ainda está trabalhando no site, ainda há vários bugs,
+                        {"A equipe ainda está trabalhando no site, ainda há vários bugs, 
                         e não temos ainda uma data de previsão pra entrega do site. "}<a>
-                        {"Porém possivelmente estará pronto para o ano de 2021."}</a>
+                        {"Porém possivelmente estará pronto para o ano de 2021."}</a> 
                         {" Obrigado por sua visita volte outra hora. uwu"}
                     </div>
-            };
+            }
         }
-        html! {}
+        html!{}
     }
 }
 

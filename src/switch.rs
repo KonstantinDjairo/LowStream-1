@@ -6,6 +6,10 @@ use yew_router::{components::RouterAnchor, prelude::*, switch::Permissive};
 
 #[derive(Clone, Debug, Switch)]
 pub enum AppRoute {
+    #[to = "/player/"]
+    Player,
+    #[to = "/login/"]
+    Login,
     #[to = "/register/"]
     Register,
     #[to = "/page-not-found"]
