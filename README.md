@@ -27,6 +27,7 @@
   
   Precisa ter instaldo o compilador *Rust*
   Depois de instalado, agora instale os seguintes ferramentas do rustup.
+  _OBS.: EXECUTE TODOS OS COMANDOS EM LOWSTREAM/, E NÃO EM LOWSTREAM/alguma_pasta_
   
   ```
   rustup target add wasm32-unknown-unknown
@@ -47,28 +48,28 @@
 				  
   <h4>wasm-bindgen-cli</h4>
   
-  Pirmeiro instale o gerador de JavaScript;
+  Pirmeiro instale o gerador de JavaScript.
 
   ```
   cargo install wasm-bindgen-cli
   
   ```
   
-  Ferramenta do Rustup com suporte a WebAssembly
+  Ferramenta do Rustup com suporte a WebAssembly.
 
   ```
   rustup target add wasm32-unknown-unknown
   ```
 
   Trunk é um construtor de aplicativo web em WASM para 
-Rust, é necessária a instalção;
+Rust, é necessária a instalção.
  
   ```
   cargo install trunk && cargo install trunk 
 wasm-bindgen-cli
   ```
   
-  O comando abaixo irá gerar um arquivo .wasm;
+  O comando abaixo irá gerar um arquivo .wasm.
 
   ```
   cargo build --target wasm32-unknown-unknown
@@ -87,7 +88,7 @@ wasm target/wasm32-unknown-unknown/debug/appname.wasm
 
   ```
   O comando abaixo vai tornar o servidor ativo, para 
-que seu acesso possa ser possibilitado;  
+que seu acesso possa ser possibilitado.
 
   ```
   trunk serve
