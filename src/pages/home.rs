@@ -81,7 +81,11 @@ impl Component for Home
                     </div>
                 </section>
 
-                <h1>{"Amostragens de como vai ser o card de video"}</h1>
+                <div class="container has-text-centered">
+                            <h1 class="title">
+                                <strong>{"Example de cards"}</strong>
+                            </h1>
+                        </div>
                 <ul class="card-list">
 	
                 <li class="card is-rounded">
