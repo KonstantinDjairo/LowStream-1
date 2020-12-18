@@ -42,7 +42,7 @@
   trunk build && trunk serve
   ```
 
-  h3>Build para Linux<h3>
+  <h3>Build para Linux<h3>
 
 				  
   <h4>wasm-bindgen-cli<h4>
