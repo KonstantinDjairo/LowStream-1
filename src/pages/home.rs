@@ -1,19 +1,58 @@
 use yew::prelude::*;
+use std::{thread, time};
 
-pub struct Home;
+fn sleep()
+{
+    let ten_millis = time::Duration::from_millis(10);
+    let now = time::Instant::now();
+    thread::sleep(ten_millis);
+}
+
+macro_rules! classes {
+    ($classe:expr, $classe_condition:expr) => {
+        {format!("{} {}", $classe, $classe_condition)}
+    };
+}
+
+pub enum Msg
+{
+    Blur
+}
+
+pub struct Home
+{
+    string: String,
+    iterator: i32,
+    link: ComponentLink<Self>
+}
 impl Component for Home
 {
-    type Message = ();
+    type Message = Msg;
     type Properties = ();
 
-    fn create(_props: Self::Properties, _link: ComponentLink<Self>) -> Self
+    fn create(_props: Self::Properties, link: ComponentLink<Self>) -> Self
     {
         Self
+        {
+            string: String::default(),
+            iterator: 8,
+            link
+        }
     }
 
-    fn update(&mut self, _msg: Self::Message) -> ShouldRender
+    fn update(&mut self, msg: Self::Message) -> ShouldRender
     {
-        unimplemented!()
+        match msg
+        {
+            Msg::Blur => {
+                for i in self.iterator..0
+                {
+                    self.string = format!("filter: blur({}px)", i);
+                    sleep();
+                }
+            }
+        }
+        true
     }
 
     fn change(&mut self, _props: Self::Properties) -> ShouldRender
@@ -25,18 +64,54 @@ impl Component for Home
     {
         html!{
             <>
-                <section class="hero is-medium is-primary is-bold" style="padding-top: 40px">
+                <section class="hero is-medium is-bold has-background" style="padding-top: 40px">
+                    <img src="https://i.pinimg.com/originals/09/24/4c/09244c7f7dd4d17b0484370f32db6641.gif" class="hero-background is-transparent"/>
                     <div class="hero-body">
                         <div class="container">
                             <h1 class="title">
-                                {"O melhor Streaming de videos uwu"}
+                                {"Seja muito Bem-Vindo(a)"}
+                                <span class="tag is-dark">
+                                        {"new"}
+                                </span>
                             </h1>
                             <h2 class="subtitle">
-                                {"Aproveite as novidades!"}
+                                {"Somos uma plataforma de streaming simples, peformática e funcional."}
                             </h2>
                         </div>
                     </div>
                 </section>
+
+                <h1>{"Amostragens de como vai ser o card de video"}</h1>
+                <ul class="card-list">
+	
+                <li class="card is-rounded">
+                    <a class="card-image" style="background-image: url(https://somoskudasai.com/wp-content/uploads/2020/12/sgk_kv3_logo_web.jpg);">
+                    </a>
+                    <a class="card-description" href="/player/" target="_blank">
+                        <strong><h2>{"Shingeki no Kyojin"}</h2></strong>
+                        <p>{"Assista agora"}</p>
+                    </a>
+                </li>
+
+                <li class="card is-rounded">
+                    <a class="card-image" style="background-image: url(https://patrullaroja.cl/wp-content/uploads/2020/05/shingeki-no-kyojin-temporada-final.jpg);">
+                    </a>
+                    <a class="card-description" href="/player/" target="_blank">
+                        <strong><h2>{"Shingeki no Kyojin"}</h2></strong>
+                        <p>{"Assista agora"}</p>
+                    </a>
+                </li>
+                
+                <li class="card is-rounded">
+                    <a class="card-image" style="background-image: url(https://blogs.opovo.com.br/bancadoanime/wp-content/uploads/sites/59/2020/09/Attack-on-Titan-The-Final-Season-anime-image.jpg);">
+                    </a>
+                    <a class="card-description" href="/player/" target="_blank">
+                        <strong><h2>{"Shingeki no Kyojin"}</h2></strong>
+                        <p>{"Assista agora"}</p>
+                    </a>
+                </li>
+                
+            </ul>
             </>
         }
     }
