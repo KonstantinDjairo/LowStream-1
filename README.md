@@ -42,4 +42,55 @@
   trunk build && trunk serve
   ```
 
+  h3>Build para Linux<h3>
+
+				  
+  <h4>wasm-bindgen-cli<h4>
+  
+  Pirmeiro instale o gerador de JavaScript;
+
+  ```
+  cargo install wasm-bindgen-cli
+  
+  ```
+  
+  Ferramenta do Rustup com suporte a WebAssembly
+
+  ```
+  rustup target add wasm32-unknown-unknown
+  ```
+
+  Trunk é um construtor de aplicativo web em WASM para 
+Rust, é necessária a instalção;
+ 
+  ```
+  cargo install trunk && cargo install trunk 
+wasm-bindgen-cli
+  ```
+  
+  O comando abaixo irá gerar um arquivo .wasm;
+
+  ```
+  cargo build --target wasm32-unknown-unknown
+
+  ```
+  Esse comando irá gerar um conjunto de arquivos
+contendo o WebAssembly compilado do seu aplicativo e um
+wrapper JavaScript que carregará o binário Wasm e o
+executará;
+
+
+  ```
+  wasm-bindgen --target web --out-dir static --out-name 
+wasm target/wasm32-unknown-unknown/debug/appname.wasm 
+--no-typescript
+
+  ```
+  O comando abaixo vai tornar o servidor ativo, para 
+que seu acesso possa ser possibilitado;  
+
+  ```
+  trunk serve
+  ```
+
   <img alt="Noooo a imagem n presta T_T" src="https://i.pinimg.com/564x/05/a8/0e/05a80e4c78c3bd767650229f0407e162.jpg"> 
