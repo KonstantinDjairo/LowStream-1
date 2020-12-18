@@ -60,7 +60,6 @@ impl Component for Model {
     fn change(&mut self, _props: Self::Properties) -> ShouldRender {
         false
     }
-
     fn view(&self) -> Html {
         html! {
             <>
@@ -110,8 +109,7 @@ impl Model {
             <nav class="navbar is-transparent is-fixed-top">
                 <div class="navbar-brand is-rounded">
                     <AppAnchor classes="navbar-item" route=AppRoute::Home>
-                    <span class="spinner-grow spinner-grow-sm badge bg-danger container d-flex h-0 align-items-center">{""}</span>
-                    // <img src="https://www.pngkey.com/png/full/308-3085243_logo-rust-programming-language-logo.png" width="28" height="28" alt="LowStream"/>
+                    <img src="https://www.pngkey.com/png/full/308-3085243_logo-rust-programming-language-logo.png" width="28" height="28" alt="LowStream"/>
                     <h3><strong>{"LowStream"}</strong></h3>
                     </AppAnchor>
                     <div class="navbar-burger" data-target="navbarExampleTransparentExample" onclick=link.callback(|_| Msg::ToggleNav) style="position: absolute; top: 8px; right: 16px;">
@@ -145,9 +143,6 @@ impl Model {
                         {"Mais"}
                         </a>
                         <div class="navbar-dropdown is-boxed">
-                        <AppAnchor classes="navbar-item" route=AppRoute::Player>
-                            <a onclick=link.callback(|_| Msg::ToggleNav)>{ "Player Teste" }</a>
-                        </AppAnchor>
                         <a class="navbar-item" onclick=link.callback(|_| Msg::ToggleNav)>
                             {"Contact us"}
                         </a>
@@ -165,11 +160,11 @@ impl Model {
                     <div class="navbar-end">
                     <div class="navbar-item">
                         <div class="buttons" onclick=link.callback(|_| Msg::ToggleNav)>
-                            <AppAnchor classes="button is-light is-rounded" route=AppRoute::Register>
-                                { "Sign up" }
-                            </AppAnchor>
-                            <AppAnchor classes="button is-dark is-rounded" route=AppRoute::Login>
-                                { "Login" }
+                            <a class="button is-ligth is-rounded" href="/page-not-found">
+                                { "Pesquisar" }
+                            </a>
+                            <AppAnchor classes="button is-dark is-rounded" route=AppRoute::Player>
+                                { "Random" }
                             </AppAnchor>
                         </div>
                     </div>
