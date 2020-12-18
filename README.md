@@ -65,8 +65,7 @@
 Rust, é necessária a instalção.
  
   ```
-  cargo install trunk && cargo install trunk 
-wasm-bindgen-cli
+  cargo install trunk && cargo install trunk wasm-bindgen-cli
   ```
   
   O comando abaixo irá gerar um arquivo .wasm.
@@ -82,10 +81,7 @@ executará;
 
 
   ```
-  wasm-bindgen --target web --out-dir static --out-name 
-wasm target/wasm32-unknown-unknown/debug/appname.wasm 
---no-typescript
-
+  wasm-bindgen --target web --out-dir static --out-name wasm target/wasm32-unknown-unknown/debug/appname.wasm --no-typescript
   ```
   O comando abaixo vai tornar o servidor ativo, para 
 que seu acesso possa ser possibilitado.
