@@ -31,8 +31,7 @@ pub struct FetchServiceExample {
     link: ComponentLink<Self>,
     error: Option<String>,
 }
-/// Some of the code to render the UI is split out into smaller functions here to make the code
-/// cleaner and show some useful design patterns.
+
 impl FetchServiceExample {
     fn view_iss_location(&self) -> Html {
         match self.iss {
@@ -89,23 +88,22 @@ impl Component for FetchServiceExample {
 
         match msg {
             GetLocation => {
-                // 1. build the request
+                
                 let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/40acb1ab78cd5d2fd1c594a137635c37/raw/d697f57bd6f4cc581dbcb5b69d517ba33277509c/fetching_links.json")
                     .body(Nothing)
                     .expect("Could not build request.");
-                // 2. construct a callback
+                
                 let callback =
                     self.link
                         .callback(|response: Response<Json<Result<Anime, anyhow::Error>>>| {
                             let Json(data) = response.into_body();
                             Msg::ReceiveResponse(data)
                         });
-                // 3. pass the request and callback to the fetch service
+                
                 let task = FetchService::fetch(request, callback).expect("failed to start request");
-                // 4. store the task so it isn't canceled immediately
+                
                 self.fetch_task = Some(task);
-                // we want to redraw so that the page displays a 'fetching...' message to the user
-                // so return 'true'
+                
                 true
             }
             ReceiveResponse(response) => {
@@ -118,8 +116,7 @@ impl Component for FetchServiceExample {
                     }
                 }
                 self.fetch_task = None;
-                // we want to redraw so that the page displays the location of the Anime instead of
-                // 'fetching...'
+                
                 true
             }
         }
