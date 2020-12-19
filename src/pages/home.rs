@@ -65,7 +65,7 @@ impl Component for Home
         html!{
             <>
                 <section class="hero is-medium is-bold has-background" style="padding-top: 40px">
-                    <img src="https://i.pinimg.com/originals/09/24/4c/09244c7f7dd4d17b0484370f32db6641.gif" class="hero-background is-transparent"/>
+                    <img src="https://i.pinimg.com/originals/30/94/e0/3094e0fd1114787639e8e334a840ca02.jpg" class="hero-background is-transparent"/>
                     <div class="hero-body">
                         <div class="container">
                             <h1 class="title">
@@ -75,7 +75,7 @@ impl Component for Home
                                 </span>
                             </h1>
                             <h2 class="subtitle">
-                                {"Somos uma plataforma de streaming simples, peformática e funcional."}
+                                {"Somos uma plataforma de streaming simples, performática  e funcional."}
                             </h2>
                         </div>
                     </div>
@@ -88,10 +88,10 @@ impl Component for Home
                         </div>
                 <ul class="card-list">
 	
-                <li class="card is-rounded">
+                <li class="card">
                     <a class="card-image" style="background-image: url(https://somoskudasai.com/wp-content/uploads/2020/12/sgk_kv3_logo_web.jpg);">
                     </a>
-                    <a class="card-description" href="/player/" target="_blank">
+                    <a class="card-description" href="/player/">
                         <strong><h2>{"Shingeki no Kyojin"}</h2></strong>
                         <p>{"Assista agora"}</p>
                     </a>
@@ -100,7 +100,7 @@ impl Component for Home
                 <li class="card is-rounded">
                     <a class="card-image" style="background-image: url(https://patrullaroja.cl/wp-content/uploads/2020/05/shingeki-no-kyojin-temporada-final.jpg);">
                     </a>
-                    <a class="card-description" href="/player/" target="_blank">
+                    <a class="card-description" href="/player/">
                         <strong><h2>{"Shingeki no Kyojin"}</h2></strong>
                         <p>{"Assista agora"}</p>
                     </a>
@@ -109,7 +109,7 @@ impl Component for Home
                 <li class="card is-rounded">
                     <a class="card-image" style="background-image: url(https://blogs.opovo.com.br/bancadoanime/wp-content/uploads/sites/59/2020/09/Attack-on-Titan-The-Final-Season-anime-image.jpg);">
                     </a>
-                    <a class="card-description" href="/player/" target="_blank">
+                    <a class="card-description" href="/player/">
                         <strong><h2>{"Shingeki no Kyojin"}</h2></strong>
                         <p>{"Assista agora"}</p>
                     </a>

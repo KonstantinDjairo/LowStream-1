@@ -99,4 +99,3 @@ impl Component for Register {
         }
     }
 }
-
