@@ -21,7 +21,7 @@
   - [ ] transação descentralizada;
   
   <h3>ATENÇÃO!</h3>
-    _OBS.: EXECUTE TODOS OS COMANDOS EM ```LOWSTREAM/```, E NÃO EM ```LOWSTREAM/algum_diretorio```
+    *_OBS.: EXECUTE TODOS OS COMANDOS EM ```LOWSTREAM/```, E NÃO EM ```LOWSTREAM/algum_diretorio```*
   
   
   <h3>Build</h3>
