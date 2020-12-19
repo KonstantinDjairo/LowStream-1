@@ -80,7 +80,7 @@ Rust, é necessária a instalção.
   Esse comando irá gerar um conjunto de arquivos
 contendo o WebAssembly compilado do seu aplicativo e um
 wrapper JavaScript que carregará o binário Wasm e o
-executará;
+executará.
 
 
   ```
@@ -92,7 +92,7 @@ que seu acesso possa ser possibilitado.
   ```
   trunk serve
   ```
-  Sempre que houver alguma modificação, o seu .wasm precisa ser atualizado então execute:
+  Sempre que houver alguma modificação, o seu .wasm precisa ser atualizado, então execute:
   
   ```
   cargo build --target wasm32-unknown-unknown && trunk serve
