@@ -70,3 +70,11 @@ html, body {
 .card-description > p {
 	margin: 0;
 }
+
+body.modal-open .supreme-container{
+    -webkit-filter: blur(1px);
+    -moz-filter: blur(1px);
+    -o-filter: blur(1px);
+    -ms-filter: blur(1px);
+    filter: blur(1px);
+}
