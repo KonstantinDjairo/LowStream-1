@@ -20,8 +20,10 @@
   - [ ] ~~Adcionar acesso de moderador~~ 
   - [ ] transação descentralizada;
   
-    _OBS.: EXECUTE TODOS OS COMANDOS EM LOWSTREAM/, E NÃO EM LOWSTREAM/alguma_pasta_
-    
+  <h3>ATENÇÃO!</h3>
+    _OBS.: EXECUTE TODOS OS COMANDOS EM ```LOWSTREAM/```, E NÃO EM ```LOWSTREAM/algum_diretorio```
+  
+  
   <h3>Build</h3>
   
   <h4>Trunk</h4>
@@ -89,6 +91,12 @@ que seu acesso possa ser possibilitado.
 
   ```
   trunk serve
+  ```
+  Sempre que houver alguma modificação, o seu .wasm precisa ser atualizado então execute:
+  
+  ```
+  cargo build --target wasm32-unknown-unknown && trunk serve
+
   ```
 
   <img alt="Noooo a imagem n presta T_T" src="https://i.pinimg.com/564x/05/a8/0e/05a80e4c78c3bd767650229f0407e162.jpg"> 
