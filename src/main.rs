@@ -10,8 +10,11 @@ macro_rules! classes {
 
 mod pages;
 use pages::{
-    home::Home, page_not_found::PageNotFound, register::Register, login::Login, player::Player
+    home::Home, page_not_found::PageNotFound, register::Register, login::Login, player::Player, search::Search,
 };
+
+mod data;
+use data::FetchServiceExample;
 
 mod switch;
 use switch::{AppAnchor, AppRoute, AppRouter, PublicUrlSwitch};
@@ -74,7 +77,7 @@ impl Component for Model {
                     />
                 </main>
 
-                {self.notification()}
+                // {self.notification()}
 
                  <footer class="footer">
                     <div class="content has-text-centered">
@@ -143,6 +146,9 @@ impl Model {
                         {"Mais"}
                         </a>
                         <div class="navbar-dropdown is-boxed">
+                        <AppAnchor classes="navbar-item" route=AppRoute::Data>
+                            <a onclick=link.callback(|_| Msg::ToggleNav)>{ "Data" }</a>
+                        </AppAnchor>
                         <a class="navbar-item" onclick=link.callback(|_| Msg::ToggleNav)>
                             {"Contact us"}
                         </a>
@@ -160,9 +166,9 @@ impl Model {
                     <div class="navbar-end">
                     <div class="navbar-item">
                         <div class="buttons" onclick=link.callback(|_| Msg::ToggleNav)>
-                            <a class="button is-ligth is-rounded" href="/page-not-found">
+                            <AppAnchor classes="button is-light is-rounded" route=AppRoute::Search>
                                 { "Pesquisar" }
-                            </a>
+                            </AppAnchor>
                             <AppAnchor classes="button is-dark is-rounded" route=AppRoute::Player>
                                 { "Random" }
                             </AppAnchor>
@@ -177,6 +183,12 @@ impl Model {
 
     fn switch(switch: PublicUrlSwitch) -> Html {
         match switch.route() {
+            AppRoute::Data => {
+                html! { <FetchServiceExample /> }
+            }
+            AppRoute::Search => {
+                html! { <Search /> }
+            }
             AppRoute::Player => {
                 html! { <Player /> }
             }
@@ -195,23 +207,23 @@ impl Model {
         }
     }
 
-    fn notification(&self) -> Html
-    {
-        if self.notification
-        {
-            return html!{
-                <div class="notification is-danger is-light">
-                    <button class="delete" onclick=self.link.callback(|_| Msg::ActionBottom)></button>
-                        <strong>{"Atenção! "}</strong>
-                        {"A equipe ainda está trabalhando no site, ainda há vários bugs, 
-                        e não temos ainda uma data de previsão pra entrega do site. "}<a>
-                        {"Porém possivelmente estará pronto para o ano de 2021."}</a> 
-                        {" Obrigado por sua visita volte outra hora. uwu"}
-                    </div>
-            }
-        }
-        html!{}
-    }
+    // fn notification(&self) -> Html
+    // {
+    //     if self.notification
+    //     {
+    //         return html!{
+    //             <div class="notification is-danger is-light">
+    //                 <button class="delete" onclick=self.link.callback(|_| Msg::ActionBottom)></button>
+    //                     <strong>{"Atenção! "}</strong>
+    //                     {"A equipe ainda está trabalhando no site, ainda há vários bugs, 
+    //                     e não temos ainda uma data de previsão pra entrega do site. "}<a>
+    //                     {"Porém possivelmente estará pronto para o ano de 2021."}</a> 
+    //                     {" Obrigado por sua visita volte outra hora. uwu"}
+    //                 </div>
+    //         }
+    //     }
+    //     html!{}
+    // }
 }
 
 fn main() {
