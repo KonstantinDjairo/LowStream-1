@@ -20,14 +20,15 @@
   - [ ] ~~Adcionar acesso de moderador~~ 
   - [ ] transação descentralizada;
   
-  
+    _OBS.: EXECUTE TODOS OS COMANDOS EM LOWSTREAM/, E NÃO EM LOWSTREAM/alguma_pasta_
+    
   <h3>Build</h3>
   
   <h4>Trunk</h4>
   
   Precisa ter instaldo o compilador *Rust*
   Depois de instalado, agora instale os seguintes ferramentas do rustup.
-  _OBS.: EXECUTE TODOS OS COMANDOS EM LOWSTREAM/, E NÃO EM LOWSTREAM/alguma_pasta_
+
   
   ```
   rustup target add wasm32-unknown-unknown
