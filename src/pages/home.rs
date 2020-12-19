@@ -1,5 +1,11 @@
 use yew::prelude::*;
+use crate::{
+    switch::{AppAnchor, AppRoute},
+};
 use std::{thread, time};
+
+// mod components;
+// use components::{card_post::Card};
 
 fn sleep()
 {
@@ -87,32 +93,40 @@ impl Component for Home
                             </h1>
                         </div>
                 <ul class="card-list">
+
+                <li class="card">
+                    <AppAnchor route=AppRoute::Player>
+                        <a class="card-image" style="background-image: url(https://patrullaroja.cl/wp-content/uploads/2020/05/shingeki-no-kyojin-temporada-final.jpg);">
+                        </a>
+                        <a class="card-description">
+                            <strong><h2>{"Shingeki no Kyojin"}</h2></strong>
+                            <p>{"Assista agora"}</p>
+                        </a>
+                    </AppAnchor>
+                </li>
 	
                 <li class="card">
-                    <a class="card-image" style="background-image: url(https://somoskudasai.com/wp-content/uploads/2020/12/sgk_kv3_logo_web.jpg);">
-                    </a>
-                    <a class="card-description" href="/player/">
-                        <strong><h2>{"Shingeki no Kyojin"}</h2></strong>
-                        <p>{"Assista agora"}</p>
-                    </a>
+                    <AppAnchor route=AppRoute::Player>
+                        <a class="card-image" style="background-image: url(https://somoskudasai.com/wp-content/uploads/2020/12/sgk_kv3_logo_web.jpg);">
+                        </a>
+                        <a class="card-description">
+                            <strong><h2>{"Shingeki no Kyojin"}</h2></strong>
+                            <p>{"Assista agora"}</p>
+                        </a>
+                    </AppAnchor>
                 </li>
 
-                <li class="card is-rounded">
-                    <a class="card-image" style="background-image: url(https://patrullaroja.cl/wp-content/uploads/2020/05/shingeki-no-kyojin-temporada-final.jpg);">
-                    </a>
-                    <a class="card-description" href="/player/">
-                        <strong><h2>{"Shingeki no Kyojin"}</h2></strong>
-                        <p>{"Assista agora"}</p>
-                    </a>
-                </li>
+                
                 
                 <li class="card is-rounded">
-                    <a class="card-image" style="background-image: url(https://blogs.opovo.com.br/bancadoanime/wp-content/uploads/sites/59/2020/09/Attack-on-Titan-The-Final-Season-anime-image.jpg);">
-                    </a>
-                    <a class="card-description" href="/player/">
-                        <strong><h2>{"Shingeki no Kyojin"}</h2></strong>
-                        <p>{"Assista agora"}</p>
-                    </a>
+                    <AppAnchor route=AppRoute::Player>
+                        <a class="card-image" style="background-image: url(https://blogs.opovo.com.br/bancadoanime/wp-content/uploads/sites/59/2020/09/Attack-on-Titan-The-Final-Season-anime-image.jpg);">
+                        </a>
+                        <a class="card-description">
+                            <strong><h2>{"Shingeki no Kyojin"}</h2></strong>
+                            <p>{"Assista agora"}</p>
+                        </a>
+                    </AppAnchor>
                 </li>
                 
             </ul>

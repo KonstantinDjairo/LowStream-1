@@ -1,6 +1,10 @@
 use yew::prelude::*;
 use yewtil::NeqAssign;
 
+use crate::{
+    switch::{AppAnchor, AppRoute},
+};
+
 #[derive(Clone, Debug, Eq, PartialEq, Properties)]
 pub struct Props {
     pub route: Option<String>,
@@ -41,9 +45,9 @@ impl Component for PageNotFound {
                                     <img class="is-rounded" src="https://media1.tenor.com/images/288dcf97572a602d2e12e4a7b7f0fc6b/tenor.gif"/>
                                 </figure> <br/>{" "}<br/>{" "}
                                 <div class="buttons">
-                                <a class="button is-dark is-rounded" href="/">
-                                    <strong>{"Back"}</strong>
-                                </a>
+                                <AppAnchor classes="button is-dark is-rounded" route=AppRoute::Home>
+                                    { "Voltar" }
+                                </AppAnchor>
                                 </div>
                             </h2>
                         </div>
