@@ -36,6 +36,7 @@
   <h3>Build</h3>
   
   	os comandos demonstrados aqui sao uma serie de passos,nao pule nenhum.
+	
   
   <h4>Trunk</h4>
  
@@ -50,7 +51,7 @@
   ```
   
   ```
-  cargo install trunk && cargo install trunk wasm-bindgen-cli
+  cargo install trunk wasm-bindgen-cli
   ```
   Depois de tudo instalado nos conformes, execute o comando:
   *Se quiser pode dá só o comando ```trunk serve```, irá funcionar da mesma forma*
@@ -64,7 +65,7 @@
 				  
   <h4>wasm-bindgen-cli</h4>
   
-  Pirmeiro instale o gerador de JavaScript.
+  Primeiro instale o gerador de JavaScript.
 
   ```
   cargo install wasm-bindgen-cli
