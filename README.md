@@ -35,7 +35,7 @@
   
   <h3>Build</h3>
   
-  	
+  	os comandos demonstrados aqui sao uma serie de passos,nao pule nenhum.
   
   <h4>Trunk</h4>
  
