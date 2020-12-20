@@ -28,6 +28,9 @@
   **lembre-se de estar com as suas toolchains na versao: _nighlty_ _(so...don't be a donkey)_** 
   
   <img alt="seu burro" src="https://pbs.twimg.com/profile_images/1024031406685601793/6P8F0RFy.jpg"> 
+  
+  
+  
  	 *links uteis:
   		*[versionamento com rustup](https://doc.rust-lang.org/edition-guide/rust-2018/rustup-for-managing-rust-versions.html)
   		*[sobre arquiteturas](https://raw.githubusercontent.com/wiki/hjl-tools/x86-psABI/x86-64-psABI-1.0.pdf)
