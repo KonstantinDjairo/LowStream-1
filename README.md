@@ -27,7 +27,7 @@
   <h3>Build</h3>
   
   <h4>Trunk</h4>
-  _lembre-se de estar com as suas toolchains na versao: **nighlty** (so...don't be a donkey) _
+  _lembre-se de estar com as suas toolchains na versao: **nighlty** (so...don't be a donkey)_  
   links uteis:
   - https://doc.rust-lang.org/edition-guide/rust-2018/rustup-for-managing-rust-versions.html
   - https://raw.githubusercontent.com/wiki/hjl-tools/x86-psABI/x86-64-psABI-1.0.pdf
