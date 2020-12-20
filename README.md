@@ -82,7 +82,7 @@
 Rust, é necessária a instalção.
  
   ```
-  cargo install trunk && cargo install trunk wasm-bindgen-cli
+  cargo install trunk wasm-bindgen-cli
   ```
   
   O comando abaixo irá gerar um arquivo .wasm.
@@ -91,6 +91,9 @@ Rust, é necessária a instalção.
   cargo build --target wasm32-unknown-unknown
 
   ```
+  Muita atencao aqui,fique atento ao nome do arquivo em wasm que ele vai 
+  gerar pra poder passar como parametro pro proximo comando (appname.wasm substitua por LowStream.wasm).
+  
   Esse comando irá gerar um conjunto de arquivos
 contendo o WebAssembly compilado do seu aplicativo e um
 wrapper JavaScript que carregará o binário Wasm e o
