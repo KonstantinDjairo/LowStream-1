@@ -7,10 +7,9 @@
 
   - [x] Implentação do wasm no projeto; **Concluido :heavy_check_mark:**
   - [x] Implentação do Bulma.io; **Concluido :heavy_check_mark:**
-  - [x] Player de video; **Concluido :heavy_check_mark:**
+  - [x] Player de video **Concluido :heavy_check_mark:**
   - [ ] Suporte ao ybc; **Em desenvolvimento :warning:**
   - [x] Aplicar dinamismo nas funcionalidades; **Concluido :heavy_check_mark:**
-  - [ ] Slides e carouseis; **Em desenvolvimento :warning:**
   - [x] Router; **Concluido :heavy_check_mark:**
   - [ ] Framework Diesel;
   - [ ] Upload videos;
@@ -22,14 +21,18 @@
   - [ ] transação descentralizada;
   
   <h3>ATENÇÃO!</h3>
-    EXECUTE TODOS OS COMANDOS EM "LOWSTREAM/", E NÃO EM "LOWSTREAM/algum_diretorio"
+    EXECUTE TODOS OS COMANDOS NO DIRETORIO RAIZ DO PROJETO
   
   
   <h3>Build</h3>
   
   <h4>Trunk</h4>
+  _lembre-se de estar com as suas toolchains na versao: **nighlty** (so...don't be a donkey) _
+  links uteis:
+  - https://doc.rust-lang.org/edition-guide/rust-2018/rustup-for-managing-rust-versions.html
+  - https://raw.githubusercontent.com/wiki/hjl-tools/x86-psABI/x86-64-psABI-1.0.pdf
   
-  Precisa ter instaldo o compilador *Rust*
+  Precisa ter instaldo o compilador *Rust* 
   Depois de instalado, agora instale os seguintes ferramentas do rustup.
 
   
