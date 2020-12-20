@@ -21,6 +21,9 @@
   - [ ] transação descentralizada;
   
   <h3>ATENÇÃO!</h3>
+  
+  
+  
     EXECUTE TODOS OS COMANDOS NO DIRETORIO RAIZ DO PROJETO
   **lembre-se de estar com as suas toolchains na versao: _nighlty_ (so...don't be a donkey)**  
  	 * links uteis:
