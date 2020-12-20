@@ -18,7 +18,7 @@
     - [ ] ~~Download video~~ 
   - [ ] Database para forms de logins;
   - [ ] ~~Adcionar acesso de moderador~~ 
-  - [ ] transação descentralizada;
+  
   
   <h3>ATENÇÃO!</h3>
   
