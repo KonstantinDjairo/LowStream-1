@@ -29,9 +29,9 @@
     EXECUTE TODOS OS COMANDOS NO DIRETORIO RAIZ DO PROJETO
   **lembre-se de estar com as suas toolchains na versao: _nighlty_ _(so...don't be a donkey)_** 
   
- 	 *links uteis:
-  		*[versionamento com rustup](https://doc.rust-lang.org/edition-guide/rust-2018/rustup-for-managing-rust-versions.html)
-  		*[sobre arquiteturas](https://raw.githubusercontent.com/wiki/hjl-tools/x86-psABI/x86-64-psABI-1.0.pdf)
+ *links uteis:
+    *[versionamento com rustup](https://doc.rust-lang.org/edition-guide/rust-2018/rustup-for-managing-rust-versions.html)
+    *[sobre arquiteturas](https://raw.githubusercontent.com/wiki/hjl-tools/x86-psABI/x86-64-psABI-1.0.pdf)
   
   <h3>Build</h3>
   
