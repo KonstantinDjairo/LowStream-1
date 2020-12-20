@@ -23,7 +23,7 @@
   <h3>ATENÇÃO!</h3>
   
   
- <img alt="seu burro" src="https://pbs.twimg.com/profile_images/1024031406685601793/6P8F0RFy.jpg"> 
+ <img alt="seu burro" src="https://pbs.twimg.com/profile_images/1024031406685601793/6P8F0RFy.jpg" width="130px" height="130px"> 
 
   
     EXECUTE TODOS OS COMANDOS NO DIRETORIO RAIZ DO PROJETO
@@ -112,4 +112,4 @@ que seu acesso possa ser possibilitado.
 
   ```
 
-  <img alt="Noooo a imagem n presta T_T" src="https://i.pinimg.com/564x/05/a8/0e/05a80e4c78c3bd767650229f0407e162.jpg"> 
+  <img align="center" alt="Noooo a imagem n presta T_T" src="https://i.pinimg.com/564x/05/a8/0e/05a80e4c78c3bd767650229f0407e162.jpg"> 
