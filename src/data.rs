@@ -8,26 +8,41 @@ use yew::{
 };
 
 #[derive(Deserialize, Debug, Clone)]
+pub struct Ep {
+    name: String,
+    // thumbnailLink: String,
+    // modifiedTime: String,
+    // size: String
+}
+
+#[derive(Deserialize, Debug, Clone)]
 pub struct Content {
-    name: Map<String, Value>,
-    // link: String,
+    // padrao: bool,
+    // fonte: String,
+    eps: Vec<Ep>
 }
 
 #[derive(Deserialize, Debug, Clone)]
 pub struct Anime {
-    animes:Content,
+    anime: String,
+    dados: Vec<Content>
+}
+
+#[derive(Deserialize, Debug, Clone)]
+pub struct Struture {
+    animes: Vec<Anime>
 }
 
 #[derive(Debug)]
 pub enum Msg {
     GetLocation,
-    ReceiveResponse(Result<Anime, anyhow::Error>),
+    ReceiveResponse(Result<Struture, anyhow::Error>),
 }
 
 #[derive(Debug)]
 pub struct FetchServiceExample {
     fetch_task: Option<FetchTask>,
-    iss: Option<Anime>,
+    iss: Option<Struture>,
     link: ComponentLink<Self>,
     error: Option<String>,
 }
@@ -39,7 +54,7 @@ impl FetchServiceExample {
                 html! {
                     <>
                         <p>{ "Animes:" }</p>
-                        <p>{ format!("Nome: {:?}", content.animes.name) }</p>
+                        <p>{ format!("Nome: {:?}", content.animes) }</p>
                         // <p>{ format!("Link do video: {}", content.animes.link) }</p>
                     </>
                 }
@@ -88,22 +103,23 @@ impl Component for FetchServiceExample {
 
         match msg {
             GetLocation => {
-                
-                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/40acb1ab78cd5d2fd1c594a137635c37/raw/d697f57bd6f4cc581dbcb5b69d517ba33277509c/fetching_links.json")
+                // 1. build the request
+                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/10167657cd80761b14ab629916745b56205843d0/tester.json")
                     .body(Nothing)
                     .expect("Could not build request.");
-                
+                // 2. construct a callback
                 let callback =
                     self.link
-                        .callback(|response: Response<Json<Result<Anime, anyhow::Error>>>| {
+                        .callback(|response: Response<Json<Result<Struture, anyhow::Error>>>| {
                             let Json(data) = response.into_body();
                             Msg::ReceiveResponse(data)
                         });
-                
+                // 3. pass the request and callback to the fetch service
                 let task = FetchService::fetch(request, callback).expect("failed to start request");
-                
+                // 4. store the task so it isn't canceled immediately
                 self.fetch_task = Some(task);
-                
+                // we want to redraw so that the page displays a 'fetching...' message to the user
+                // so return 'true'
                 true
             }
             ReceiveResponse(response) => {
@@ -116,7 +132,8 @@ impl Component for FetchServiceExample {
                     }
                 }
                 self.fetch_task = None;
-                
+                // we want to redraw so that the page displays the location of the Struture instead of
+                // 'fetching...'
                 true
             }
         }
