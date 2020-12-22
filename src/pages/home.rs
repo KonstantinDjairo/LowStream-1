@@ -70,13 +70,13 @@ impl Component for Home
     {
         html!{
             <>
-                <section class="hero is-medium is-bold has-background" style="padding-top: 40px">
+                <section class="hero is-medium is-dark is-bold has-background" style="padding-top: 40px">
                     <img src="https://i.pinimg.com/originals/30/94/e0/3094e0fd1114787639e8e334a840ca02.jpg" class="hero-background is-transparent"/>
                     <div class="hero-body">
                         <div class="container">
                             <h1 class="title">
                                 {"Seja muito Bem-Vindo(a)"}
-                                <span class="tag is-dark">
+                                <span class="tag is-white">
                                         {"new"}
                                 </span>
                             </h1>
@@ -85,51 +85,52 @@ impl Component for Home
                             </h2>
                         </div>
                     </div>
-                </section>
+                </section>                
 
-                <div class="container has-text-centered">
-                            <h1 class="title">
-                                <strong>{"Example de cards"}</strong>
-                            </h1>
-                        </div>
-                <ul class="card-list">
+                 <section style="background-color: #25262F;">
+                 <div class="container has-text-centered" style="padding-top: 10px">
+                        <h1 class="title" style="color: white">
+                            <strong>{"Example de cards"}</strong>
+                        </h1>
+                </div>
+                 <ul class="card-list">
+                            <li class="card" style="background: black">
+                            <AppAnchor route=AppRoute::Player>
+                                <a class="card-image" style="background-image: url(https://patrullaroja.cl/wp-content/uploads/2020/05/shingeki-no-kyojin-temporada-final.jpg);">
+                                </a>
+                                <a class="card-description">
+                                    <strong><h2>{"Shingeki no Kyojin"}</h2></strong>
+                                    <p>{"Assista agora"}</p>
+                                </a>
+                            </AppAnchor>
+                        </li>
+            
+                        <li class="card" style="background: black">
+                            <AppAnchor route=AppRoute::Player>
+                                <a class="card-image" style="background-image: url(https://somoskudasai.com/wp-content/uploads/2020/12/sgk_kv3_logo_web.jpg);">
+                                </a>
+                                <a class="card-description">
+                                    <strong><h2>{"Shingeki no Kyojin"}</h2></strong>
+                                    <p>{"Assista agora"}</p>
+                                </a>
+                            </AppAnchor>
+                        </li>
 
-                <li class="card">
-                    <AppAnchor route=AppRoute::Player>
-                        <a class="card-image" style="background-image: url(https://patrullaroja.cl/wp-content/uploads/2020/05/shingeki-no-kyojin-temporada-final.jpg);">
-                        </a>
-                        <a class="card-description">
-                            <strong><h2>{"Shingeki no Kyojin"}</h2></strong>
-                            <p>{"Assista agora"}</p>
-                        </a>
-                    </AppAnchor>
-                </li>
-	
-                <li class="card">
-                    <AppAnchor route=AppRoute::Player>
-                        <a class="card-image" style="background-image: url(https://somoskudasai.com/wp-content/uploads/2020/12/sgk_kv3_logo_web.jpg);">
-                        </a>
-                        <a class="card-description">
-                            <strong><h2>{"Shingeki no Kyojin"}</h2></strong>
-                            <p>{"Assista agora"}</p>
-                        </a>
-                    </AppAnchor>
-                </li>
-
-                
-                
-                <li class="card is-rounded">
-                    <AppAnchor route=AppRoute::Player>
-                        <a class="card-image" style="background-image: url(https://blogs.opovo.com.br/bancadoanime/wp-content/uploads/sites/59/2020/09/Attack-on-Titan-The-Final-Season-anime-image.jpg);">
-                        </a>
-                        <a class="card-description">
-                            <strong><h2>{"Shingeki no Kyojin"}</h2></strong>
-                            <p>{"Assista agora"}</p>
-                        </a>
-                    </AppAnchor>
-                </li>
-                
-            </ul>
+                        
+                        
+                        <li class="card" style="background: black">
+                            <AppAnchor route=AppRoute::Player>
+                                <a class="card-image" style="background-image: url(https://blogs.opovo.com.br/bancadoanime/wp-content/uploads/sites/59/2020/09/Attack-on-Titan-The-Final-Season-anime-image.jpg);">
+                                </a>
+                                <a class="card-description">
+                                    <strong><h2>{"Shingeki no Kyojin"}</h2></strong>
+                                    <p>{"Assista agora"}</p>
+                                </a>
+                            </AppAnchor>
+                        </li>
+                        
+                    </ul>
+                </section>                
             </>
         }
     }
