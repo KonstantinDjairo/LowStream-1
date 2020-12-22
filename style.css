@@ -2,7 +2,7 @@
 .card-image {
 	display: block;
 	min-height: 20rem; /* layout hack */
-	background: #fff center center no-repeat;
+	background: rgb(0, 0, 0) center center no-repeat;
 	background-size: cover;
 	filter: blur(0px); /* blur the lowres image */
 }
@@ -14,8 +14,8 @@
 }
 
 .card-image.is-loaded {
-	filter: none; /* remove the blur on fullres image */
-	transition: filter 1s;
+	filter: blur(0px); /* remove the blur on fullres image */
+	transition: filter 2s;
 }
 
 
@@ -47,19 +47,20 @@ html, body {
 	font-size: 1rem;
 	text-decoration: none;
 	overflow: hidden;
-	box-shadow: 0 0 3rem -1rem rgba(0,0,0,0.5);
+	box-shadow: 0 0 4rem -1rem rgba(0,0,0,1);
 	transition: transform 0.1s ease-in-out, box-shadow 0.1s;
+	border-radius: 18px;
 }
 
 .card:hover {
-	transform: translateY(-0.5rem) scale(1.0125);
-	box-shadow: 0 0.5em 3rem -1rem rgba(0,0,0,0.5);
+	transform: translateY(-0.5rem) scale(1.0525);
+	box-shadow: 0 0.5em 3rem -1rem rgba(0,0,0,1);
 }
 
 .card-description {
 	display: block;
 	padding: 1em 0.5em;
-	color: #515151;
+	color: #dddddd;
 	text-decoration: none;
 }
 

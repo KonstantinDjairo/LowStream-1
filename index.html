@@ -12,6 +12,12 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"/>
 		<link data-trunk rel="sass" href="index.scss" />
 		<link data-trunk rel="sass" href="style.css" />
+		<style>
+			body
+			{
+				background-color: #201D22;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="position-absolute top-50 start-50 translate-middle">
@@ -19,13 +25,27 @@
 				<img class="is-rounded" src="https://thumbs.gfycat.com/AdmiredWeepyHartebeest-max-1mb.gif" alt="ZeroTwo"></>
 			</figure>
 			<div class="d-flex justify-content-center">
-				<div class="spinner-border" role="status">
+				<div class="spinner-border is-white" role="status">
 					<span class="visually-hidden">Loading...</span>
 				</div>
 			</div>
 		</div>
-		<script src="/__/firebase/8.2.1/firebase-app.js"></script>
-		<script src="/__/firebase/8.2.1/firebase-analytics.js"></script>
-		<script src="/__/firebase/init.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+		<script>
+		var firebaseConfig = {
+			apiKey: "AIzaSyCh6JEVR9QJG190PqqXBbiBnc08CvNJiOg",
+			authDomain: "lowstreamcast.firebaseapp.com",
+			databaseURL: "https://lowstreamcast-default-rtdb.firebaseio.com",
+			projectId: "lowstreamcast",
+			storageBucket: "lowstreamcast.appspot.com",
+			messagingSenderId: "914337143962",
+			appId: "1:914337143962:web:7794e9abd24f05f6a35323",
+			measurementId: "G-F9YRFBLMZ9"
+		};
+		firebase.initializeApp(firebaseConfig);
+		firebase.analytics();
+		</script>
 	</body>
+	<script src="script.js"></script>
 </html>
