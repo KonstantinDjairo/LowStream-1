@@ -1,6 +1,6 @@
 #![recursion_limit = "1024"]
-use yew_router::{route::Route, switch::Permissive};
 use yew::prelude::*;
+use yew_router::{route::Route, switch::Permissive};
 
 macro_rules! classes {
     ($classe:expr, $classe_condition:expr) => {
@@ -10,7 +10,8 @@ macro_rules! classes {
 
 mod pages;
 use pages::{
-    home::Home, page_not_found::PageNotFound, register::Register, login::Login, player::Player, search::Search,
+    home::Home, login::Login, page_not_found::PageNotFound, player::Player, register::Register,
+    search::Search,
 };
 
 mod data;
@@ -19,41 +20,35 @@ use data::FetchServiceExample;
 mod switch;
 use switch::{AppAnchor, AppRoute, AppRouter, PublicUrlSwitch};
 
-pub enum Msg
-{
+pub enum Msg {
     ToggleNav,
-    ActionBottom
+    ActionBottom,
 }
 
-struct Model
-{
+struct Model {
     link: ComponentLink<Self>,
     navbar: bool,
-    notification: bool
+    notification: bool,
 }
 
 impl Component for Model {
     type Message = Msg;
     type Properties = ();
     fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
-        Self
-        {
+        Self {
             link,
             navbar: false,
-            notification: true
+            notification: true,
         }
     }
 
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
-        match msg
-        {
-            Msg::ToggleNav => 
-            {
+        match msg {
+            Msg::ToggleNav => {
                 self.navbar = !self.navbar;
                 true
             }
-            Msg::ActionBottom => 
-            {
+            Msg::ActionBottom => {
                 self.notification = !self.notification;
                 true
             }
@@ -67,7 +62,6 @@ impl Component for Model {
         html! {
             <>
                 {self.nav()}
-                
                 <main>
                     <AppRouter
                         render=AppRouter::render(Self::switch)
@@ -98,31 +92,28 @@ impl Component for Model {
 
 impl Model {
     fn nav(&self) -> Html {
-
         let Self {
-            ref link,
-            navbar,
-            ..
+            ref link, navbar, ..
         } = *self;
 
-        let active_class = if navbar {"is-active"} else {""};
+        let active_class = if navbar { "is-active" } else { "" };
 
         html! {
                 <>
-            <nav class="navbar is-black is-transparent is-fixed-top">
+            <nav class="navbar is-black is-transparent is-fixed-top" style="background-color: rgba(0, 0, 0, 50%); backdrop-filter: blur(10px);">
                 <div class="navbar-brand is-rounded is-dark">
                     <AppAnchor classes="navbar-item" route=AppRoute::Home>
                     <img src="https://www.pngkey.com/png/full/308-3085243_logo-rust-programming-language-logo.png" width="28" height="28" alt="LowStream" style="position: absolute; top: 8px;"/>
                     <h3 style="position: absolute; top: 8px; right: -120px"><strong>{"LowStream"}</strong></h3>
                     </AppAnchor>
-                    <div class="navbar-burger" data-target="navbarExampleTransparentExample" onclick=link.callback(|_| Msg::ToggleNav) style="position: absolute; top: 8px; right: 16px;">
+                    <div class="navbar-burger" data-target="navbarExampleTransparentExample" onclick=link.callback(|_| Msg::ToggleNav) style="position: absolute; top: 8px; right: 16px; background-color: black; border-radius: 100%">
                     <span></span>
                     <span></span>
                     <span></span>
                     </div>
                 </div>
 
-                <div id="navbarExampleTransparentExample" class=classes!("navbar-menu", active_class) style="position: absolute; top: 0px; right: 16px; background-color: black; border-radius: 18px;">
+                <div id="navbarExampleTransparentExample" class=classes!("navbar-menu", active_class) style="position: absolute; top: 5px; right: 16px; background-color: rgb(0, 0, 0, 100%); border-radius: 28px;">
                     <div class="navbar-start">
                     <a class=classes!("navbar-burger", active_class) onclick=link.callback(|_| Msg::ToggleNav)>
                         <span></span>
@@ -141,11 +132,11 @@ impl Model {
                     <AppAnchor classes="navbar-item" route=AppRoute::Home>
                             <a onclick=link.callback(|_| Msg::ToggleNav) style="color: white">{ "Series" }</a>
                     </AppAnchor>
-                    <div class="navbar-item has-dropdown is-hoverable">
+                    <div class="navbar-item has-dropdown is-hoverable" style="background-color: rgba(0, 0, 0, 0%); backdrop-filter: blur(10px);">
                         <a class="navbar-link" style="color: white">
                         {"Mais"}
                         </a>
-                        <div class="navbar-dropdown is-boxed" style="background-color: black">
+                        <div class="navbar-dropdown is-boxed" style="background-color: rgba(0, 0, 0);">
                         <AppAnchor classes="navbar-item" route=AppRoute::Data>
                             <a onclick=link.callback(|_| Msg::ToggleNav) style="color: white">{ "Data" }</a>
                         </AppAnchor>
@@ -221,9 +212,9 @@ impl Model {
     //             <div class="notification is-danger is-dark has-text-centered" style="width: 500px; height: 150px">
     //                 <button class="delete" onclick=self.link.callback(|_| Msg::ActionBottom)></button>
     //                     <strong>{"Atenção! "}</strong>
-    //                     {"A equipe ainda está trabalhando no site, ainda há vários bugs, 
+    //                     {"A equipe ainda está trabalhando no site, ainda há vários bugs,
     //                     e não temos ainda uma data de previsão pra entrega do site. "}<a>
-    //                     {"Porém possivelmente estará pronto para o ano de 2021."}</a> 
+    //                     {"Porém possivelmente estará pronto para o ano de 2021."}</a>
     //                     {" Obrigado por sua visita volte outra hora. uwu"}
     //                 </div>
     //         }
