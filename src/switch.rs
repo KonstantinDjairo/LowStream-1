@@ -6,6 +6,10 @@ use yew_router::{components::RouterAnchor, prelude::*, switch::Permissive};
 
 #[derive(Clone, Debug, Switch)]
 pub enum AppRoute {
+    // #[to = "/posts/{}/?ep={}"]
+    // Ep(u64),
+    // #[to = "/posts/{}/"]
+    // Post(String),
     #[to = "/data/"]
     Data,
     #[to = "/search/"]

@@ -79,18 +79,18 @@ impl Component for Model {
 
                 // {self.notification()}
 
-                 <footer class="footer">
-                    <div class="content has-text-centered">
-                    <strong>{ "Powered by " }</strong>
-                    <a>{ "LowStream Community " }</a>
-                    <a href="https://github.com/lowstream-community/LowStream">
-                            <span class="icon">
-                            <i class="fab fa-github"></i>
-                            </span>
-                            <strong>{"GitHub"}</strong>
-                        </a>
-                    </div>
-                </footer>
+                //  <footer class="footer" style="background-color: black; padding-top: -20px; height: 50px">
+                //     <div class="content has-text-centered">
+                //     <strong style="color: gray">{ "Powered by " }</strong>
+                //     <p style="color: gray">{ "LowStream Community " }</p>
+                //     <a href="https://github.com/lowstream-community/LowStream" style="color: gray">
+                //             <span class="icon">
+                //             <i class="fab fa-github"></i>
+                //             </span>
+                //             <strong>{"GitHub"}</strong>
+                //         </a>
+                //     </div>
+                // </footer>
             </>
         }
     }
@@ -109,11 +109,11 @@ impl Model {
 
         html! {
                 <>
-            <nav class="navbar is-transparent is-fixed-top">
-                <div class="navbar-brand is-rounded">
+            <nav class="navbar is-black is-transparent is-fixed-top">
+                <div class="navbar-brand is-rounded is-dark">
                     <AppAnchor classes="navbar-item" route=AppRoute::Home>
-                    <img src="https://www.pngkey.com/png/full/308-3085243_logo-rust-programming-language-logo.png" width="28" height="28" alt="LowStream"/>
-                    <h3><strong>{"LowStream"}</strong></h3>
+                    <img src="https://www.pngkey.com/png/full/308-3085243_logo-rust-programming-language-logo.png" width="28" height="28" alt="LowStream" style="position: absolute; top: 8px;"/>
+                    <h3 style="position: absolute; top: 8px; right: -120px"><strong>{"LowStream"}</strong></h3>
                     </AppAnchor>
                     <div class="navbar-burger" data-target="navbarExampleTransparentExample" onclick=link.callback(|_| Msg::ToggleNav) style="position: absolute; top: 8px; right: 16px;">
                     <span></span>
@@ -122,7 +122,7 @@ impl Model {
                     </div>
                 </div>
 
-                <div id="navbarExampleTransparentExample" class=classes!("navbar-menu ", active_class) style="position: absolute; top: 0px; right: 16px;">
+                <div id="navbarExampleTransparentExample" class=classes!("navbar-menu", active_class) style="position: absolute; top: 0px; right: 16px; background-color: black; border-radius: 18px;">
                     <div class="navbar-start">
                     <a class=classes!("navbar-burger", active_class) onclick=link.callback(|_| Msg::ToggleNav)>
                         <span></span>
@@ -130,33 +130,33 @@ impl Model {
                         <span></span>
                     </a>
                     <AppAnchor classes="navbar-item" route=AppRoute::Home>
-                            <a onclick=link.callback(|_| Msg::ToggleNav)>{ "Home" }</a>
+                            <a onclick=link.callback(|_| Msg::ToggleNav) style="color: white">{ "Home" }</a>
                     </AppAnchor>
                     <AppAnchor classes="navbar-item" route=AppRoute::Home>
-                            <a onclick=link.callback(|_| Msg::ToggleNav)>{ "Animes" }</a>
+                            <a onclick=link.callback(|_| Msg::ToggleNav) style="color: white">{ "Animes" }</a>
                     </AppAnchor>
                     <AppAnchor classes="navbar-item" route=AppRoute::Home>
-                            <a onclick=link.callback(|_| Msg::ToggleNav)>{ "Filmes" }</a>
+                            <a onclick=link.callback(|_| Msg::ToggleNav) style="color: white">{ "Filmes" }</a>
                     </AppAnchor>
                     <AppAnchor classes="navbar-item" route=AppRoute::Home>
-                            <a onclick=link.callback(|_| Msg::ToggleNav)>{ "Series" }</a>
+                            <a onclick=link.callback(|_| Msg::ToggleNav) style="color: white">{ "Series" }</a>
                     </AppAnchor>
                     <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-link">
+                        <a class="navbar-link" style="color: white">
                         {"Mais"}
                         </a>
-                        <div class="navbar-dropdown is-boxed">
+                        <div class="navbar-dropdown is-boxed" style="background-color: black">
                         <AppAnchor classes="navbar-item" route=AppRoute::Data>
-                            <a onclick=link.callback(|_| Msg::ToggleNav)>{ "Data" }</a>
+                            <a onclick=link.callback(|_| Msg::ToggleNav) style="color: white">{ "Data" }</a>
                         </AppAnchor>
-                        <a class="navbar-item" onclick=link.callback(|_| Msg::ToggleNav)>
+                        <a class="navbar-item" onclick=link.callback(|_| Msg::ToggleNav) style="color: white">
                             {"Contact us"}
                         </a>
-                        <a class="navbar-item" href="https://github.com/LowStream-Community/LowStream/issues/new/choose" onclick=link.callback(|_| Msg::ToggleNav)>
+                        <a class="navbar-item" href="https://github.com/LowStream-Community/LowStream/issues/new/choose" onclick=link.callback(|_| Msg::ToggleNav) style="color: white">
                             {"Issues"}
                         </a>
                         <hr class="navbar-divider"/>
-                        <a class="navbar-item" href="https://github.com/lowstream-community/LowStream" onclick=link.callback(|_| Msg::ToggleNav)>
+                        <a class="navbar-item" href="https://github.com/lowstream-community/LowStream" onclick=link.callback(|_| Msg::ToggleNav) style="color: white">
                             {"GitHub"}
                         </a>
                         </div>
@@ -183,6 +183,12 @@ impl Model {
 
     fn switch(switch: PublicUrlSwitch) -> Html {
         match switch.route() {
+            // AppRoute::Ep => {
+            //     html! { <FetchServiceExample /> }
+            // }
+            // AppRoute::Post => {
+            //     html! { <FetchServiceExample /> }
+            // }
             AppRoute::Data => {
                 html! { <FetchServiceExample /> }
             }
@@ -212,7 +218,7 @@ impl Model {
     //     if self.notification
     //     {
     //         return html!{
-    //             <div class="notification is-danger is-light">
+    //             <div class="notification is-danger is-dark has-text-centered" style="width: 500px; height: 150px">
     //                 <button class="delete" onclick=self.link.callback(|_| Msg::ActionBottom)></button>
     //                     <strong>{"Atenção! "}</strong>
     //                     {"A equipe ainda está trabalhando no site, ainda há vários bugs, 
