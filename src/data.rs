@@ -28,6 +28,7 @@ pub struct Content {
 #[derive(Deserialize, Debug, Clone)]
 pub struct Anime {
     anime: String,
+    background: String,
     dados: Vec<Content>
 }
 
@@ -53,6 +54,7 @@ pub struct FetchServiceExample {
 impl FetchServiceExample {
     fn view_json(&self) -> Html {
         let mut names: Vec<String> = Vec::new();
+        let mut background: Vec<String> = Vec::new();
         let mut eps: Vec<String> = Vec::new();
         let mut cards: Vec<Html> = Vec::new();
         match self.json {
@@ -62,10 +64,11 @@ impl FetchServiceExample {
                     // for j in 0..content.animes[i].anime.len()
                     {
                         names.push(String::from(format!("{}", content.animes[i].anime)));
+                        background.push(String::from(format!("{}", content.animes[i].background)));
                         cards.push(html!{
                             <li class="card" style="background: black">
-                            <AppAnchor route=AppRoute::Player>
-                                <a class="card-image" style="background-image: url(https://scontent.fimp1-1.fna.fbcdn.net/v/t31.0-1/c190.0.720.720a/p720x720/10530506_597753610340284_4786237311158633188_o.png?_nc_cat=100&ccb=2&_nc_sid=dbb9e7&_nc_ohc=7oPqryuXIHQAX9WwyHC&_nc_ht=scontent.fimp1-1.fna&_nc_tp=30&oh=424afc064c3a98d52699f2b5b8c60665&oe=6005074F);">
+                            <AppAnchor route=AppRoute::Post(names[i].clone())>
+                                <a class="card-image" style=format!("background-image: url({});", background[i].clone()) loading="lazy">
                                 </a>
                                 <a class="card-description">
                                     <strong><h2>{names[i].clone()}</h2></strong>
@@ -141,7 +144,7 @@ impl Component for FetchServiceExample {
 
         match msg {
             GetLocation => {
-                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/10167657cd80761b14ab629916745b56205843d0/tester.json")
+                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/d650d792c4d37d8f7f32f6c7be4c175d4075b42c/tester.json")
                     .body(Nothing)
                     .expect("Could not build request.");
                 let callback =
