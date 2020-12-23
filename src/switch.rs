@@ -8,8 +8,8 @@ use yew_router::{components::RouterAnchor, prelude::*, switch::Permissive};
 pub enum AppRoute {
     // #[to = "/posts/{}/?ep={}"]
     // Ep(u64),
-    // #[to = "/posts/{}/"]
-    // Post(String),
+    #[to = "/data/{}"]
+    Post(String),
     #[to = "/data/"]
     Data,
     #[to = "/search/"]

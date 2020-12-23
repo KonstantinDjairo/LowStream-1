@@ -10,7 +10,7 @@ macro_rules! classes {
 
 mod pages;
 use pages::{
-    home::Home, login::Login, page_not_found::PageNotFound, player::Player, register::Register,
+    home::Home, login::Login, page_not_found::PageNotFound, player::Player, register::Register, post::Post,
     search::Search,
 };
 
@@ -24,6 +24,10 @@ pub enum Msg {
     ToggleNav,
     ActionBottom,
 }
+
+// use crate::{
+//     switch::{AppAnchor, AppRoute},
+// };
 
 struct Model {
     link: ComponentLink<Self>,
@@ -177,9 +181,9 @@ impl Model {
             // AppRoute::Ep => {
             //     html! { <FetchServiceExample /> }
             // }
-            // AppRoute::Post => {
-            //     html! { <FetchServiceExample /> }
-            // }
+            AppRoute::Post(id) => {
+                html! { <Post animeName=id /> }
+            }
             AppRoute::Data => {
                 html! { <FetchServiceExample /> }
             }
