@@ -14,11 +14,11 @@ fn sleep()
     thread::sleep(ten_millis);
 }
 
-macro_rules! classes {
-    ($classe:expr, $classe_condition:expr) => {
-        {format!("{} {}", $classe, $classe_condition)}
-    };
-}
+// macro_rules! classes {
+//     ($classe:expr, $classe_condition:expr) => {
+//         {format!("{} {}", $classe, $classe_condition)}
+//     };
+// }
 
 pub enum Msg
 {
