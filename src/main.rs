@@ -10,7 +10,7 @@ macro_rules! classes {
 
 mod pages;
 use pages::{
-    home::Home, login::Login, page_not_found::PageNotFound, player::Player, register::Register, post::Post,
+    home::Home, login::Login, page_not_found::PageNotFound, player::Player, register::Register, post::Post, posts::LoadPosts,
     search::Search,
 };
 
@@ -24,10 +24,6 @@ pub enum Msg {
     ToggleNav,
     ActionBottom,
 }
-
-// use crate::{
-//     switch::{AppAnchor, AppRoute},
-// };
 
 struct Model {
     link: ComponentLink<Self>,
@@ -74,21 +70,6 @@ impl Component for Model {
                         })
                     />
                 </main>
-
-                // {self.notification()}
-
-                //  <footer class="footer" style="background-color: black; padding-top: -20px; height: 50px">
-                //     <div class="content has-text-centered">
-                //     <strong style="color: gray">{ "Powered by " }</strong>
-                //     <p style="color: gray">{ "LowStream Community " }</p>
-                //     <a href="https://github.com/lowstream-community/LowStream" style="color: gray">
-                //             <span class="icon">
-                //             <i class="fab fa-github"></i>
-                //             </span>
-                //             <strong>{"GitHub"}</strong>
-                //         </a>
-                //     </div>
-                // </footer>
             </>
         }
     }
@@ -127,7 +108,7 @@ impl Model {
                     <AppAnchor classes="navbar-item" route=AppRoute::Home>
                             <a onclick=link.callback(|_| Msg::ToggleNav) style="color: white">{ "Home" }</a>
                     </AppAnchor>
-                    <AppAnchor classes="navbar-item" route=AppRoute::Home>
+                    <AppAnchor classes="navbar-item" route=AppRoute::Post>
                             <a onclick=link.callback(|_| Msg::ToggleNav) style="color: white">{ "Animes" }</a>
                     </AppAnchor>
                     <AppAnchor classes="navbar-item" route=AppRoute::Home>
@@ -181,8 +162,11 @@ impl Model {
             // AppRoute::Ep => {
             //     html! { <FetchServiceExample /> }
             // }
-            AppRoute::Post(id) => {
-                html! { <Post animeName=id /> }
+            AppRoute::Post => {
+                html! { <LoadPosts page=1 /> }
+            }
+            AppRoute::PostListPage(page) => {
+                html! { <LoadPosts page=page.max(1) /> }
             }
             AppRoute::Data => {
                 html! { <FetchServiceExample /> }
@@ -207,24 +191,6 @@ impl Model {
             }
         }
     }
-
-    // fn notification(&self) -> Html
-    // {
-    //     if self.notification
-    //     {
-    //         return html!{
-    //             <div class="notification is-danger is-dark has-text-centered" style="width: 500px; height: 150px">
-    //                 <button class="delete" onclick=self.link.callback(|_| Msg::ActionBottom)></button>
-    //                     <strong>{"Atenção! "}</strong>
-    //                     {"A equipe ainda está trabalhando no site, ainda há vários bugs,
-    //                     e não temos ainda uma data de previsão pra entrega do site. "}<a>
-    //                     {"Porém possivelmente estará pronto para o ano de 2021."}</a>
-    //                     {" Obrigado por sua visita volte outra hora. uwu"}
-    //                 </div>
-    //         }
-    //     }
-    //     html!{}
-    // }
 }
 
 fn main() {

@@ -1,5 +1,5 @@
 use serde::Deserialize;
-
+// use yewtil::NeqAssign;
 use yew::{
     format::{Json, Nothing},
     prelude::*,
@@ -37,14 +37,21 @@ pub struct Struture {
     animes: Vec<Anime>
 }
 
+// #[derive(Clone, Debug, PartialEq, Properties)]
+// struct Props
+// {
+//     load: Callback(Result<Struture, anyhow::Error>)
+// }
+
 #[derive(Debug)]
 pub enum Msg {
-    GetLocation,
+    GetInfo,
     ReceiveResponse(Result<Struture, anyhow::Error>),
 }
 
 #[derive(Debug)]
 pub struct FetchServiceExample {
+    // props: Props
     fetch_task: Option<FetchTask>,
     json: Option<Struture>,
     link: ComponentLink<Self>,
@@ -67,7 +74,7 @@ impl FetchServiceExample {
                         background.push(String::from(format!("{}", content.animes[i].background)));
                         cards.push(html!{
                             <li class="card" style="background: black">
-                            <AppAnchor route=AppRoute::Post(names[i].clone())>
+                            <AppAnchor route=AppRoute::Player>
                                 <a class="card-image" style=format!("background-image: url({});", background[i].clone()) loading="lazy">
                                 </a>
                                 <a class="card-description">
@@ -96,7 +103,7 @@ impl FetchServiceExample {
                 html! {
                     <>
                         <div class="has-text-centered" style="padding-top: 10px">
-                            <button class="button is-dark is-rounded" onclick=self.link.callback(|_| Msg::GetLocation)>
+                            <button class="button is-dark is-rounded" onclick=self.link.callback(|_| Msg::GetInfo)>
                                 { "Procurar dados *_*" }
                             </button>
                         </div>
@@ -105,13 +112,16 @@ impl FetchServiceExample {
             }
         }
     }
+
     fn view_fetching(&self) -> Html {
         if self.fetch_task.is_some() {
-            html! { <><div class="d-flex justify-content-center">
-				<div class="spinner-border is-white" role="status">
+            html! { 
+                <>
+				<div class="spinner-border is-white position-absolute top-50 start-50" role="status">
 					<span class="visually-hidden">{"Carregando os dados..."}</span>
-				</div>
-			</div></> }
+                </div>
+                </> 
+            }
         } else {
             html! { <p></p> }
         }
@@ -129,38 +139,41 @@ impl Component for FetchServiceExample {
     type Properties = ();
 
     fn create(_props: Self::Properties, link: ComponentLink<Self>) -> Self {
+        // link.callback(|_| Msg::GetInfo)
         Self {
+            // props,
             fetch_task: None,
             json: None,
             link,
-            error: None,
+            error: None
         }
     }
-    fn change(&mut self, _props: Self::Properties) -> bool {
+    fn change(&mut self, _props: Self::Properties) -> ShouldRender {
+        // self.props.neq_assign(props);
         false
     }
-    fn update(&mut self, msg: Self::Message) -> bool {
+    fn update(&mut self, msg: Self::Message) -> ShouldRender {
         use Msg::*;
 
         match msg {
-            GetLocation => {
-                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/d650d792c4d37d8f7f32f6c7be4c175d4075b42c/tester.json")
+            GetInfo => {
+                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/de9bf85ea15c2211b66d8a80775b2d399dc5e5a9/tester.json")
                     .body(Nothing)
-                    .expect("Could not build request.");
+                    .expect("Não foi possível efetuar o request.");
                 let callback =
                     self.link
                         .callback(|response: Response<Json<Result<Struture, anyhow::Error>>>| {
                             let Json(data) = response.into_body();
                             Msg::ReceiveResponse(data)
                         });
-                let task = FetchService::fetch(request, callback).expect("failed to start request");
+                let task = FetchService::fetch(request, callback).expect("Falha ao iniciar o request");
                 self.fetch_task = Some(task);
                 true
             }
             ReceiveResponse(response) => {
                 match response {
-                    Ok(location) => {
-                        self.json = Some(location);
+                    Ok(dados) => {
+                        self.json = Some(dados);
                     }
                     Err(error) => {
                         self.error = Some(error.to_string())
