@@ -42,6 +42,7 @@ pub enum Msg {
     GetInfo,
     ReceiveResponse(Result<Struture, anyhow::Error>),
     ShowPage(u64),
+    Payload(String),
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, Properties)]
@@ -51,6 +52,8 @@ pub struct Props {
 
 #[derive(Debug)]
 pub struct LoadPosts {
+    payload: String,
+    debugged_payload: String,
     props: Props,
     fetch_task: Option<FetchTask>,
     json: Option<Struture>,
@@ -61,11 +64,31 @@ pub struct LoadPosts {
 
 impl LoadPosts {
     fn view_json(&self) -> Html {
+        fn search(card_name: String, writing: String) -> bool
+        {
+            let chars_name: Vec<char> = card_name.chars().collect();
+            let writing_chars: Vec<char> = writing.chars().collect();
+            let mut word: String = String::default();
+            for (i, c) in writing_chars.iter().enumerate()
+            {
+                if c == &chars_name[i]
+                {
+                    word = chars_name.iter().collect::<String>();
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            true
+        }
         let mut cards: Vec<Html> = Vec::new();
         match self.json {
             Some(ref content) => {
                 for i in 0..content.animes.len()
                 {
+                    if search(content.animes[i].anime.clone().to_lowercase(), self.debugged_payload.clone().to_lowercase())
+                    {
                         cards.push(html!{
                             <li class="card" style="background: black">
                             <AppAnchor route=AppRoute::Player>
@@ -77,13 +100,19 @@ impl LoadPosts {
                                 </a>
                             </AppAnchor>
                             </li>
-                        });
-                        // eps.push(String::from(format!("{}", content.animes[i].dados[0].eps[j].name)));
+                            // <h5>{format!("{}", content.animes[i].dados[0].eps[i].name)}</h5>
+                        })
+                    }
                 }
 
                 html! {
                     <>
                         <section style="background-color: #25262F;">
+                            <div class="level-item" style="padding-top: 80px;">
+                                <div class="field has-addons">
+                                    <input class="input is-rounded is-fixed-top" type="text"  oninput=self.link.callback(|input: InputData| Msg::Payload(input.value)) value=&self.payload placeholder="Encontre seu anime"/>
+                                </div>
+                            </div>
                             <ul class="card-list">
                                 {for cards.clone()}
                             </ul>
@@ -102,9 +131,6 @@ impl LoadPosts {
             html! { 
                 <>
                 <div class="position-absolute top-50 start-50 translate-middle">
-                    <figure class="image is-128x128">
-                        <img class="is-rounded" src="https://thumbs.gfycat.com/AdmiredWeepyHartebeest-max-1mb.gif" alt="ZeroTwo"/>
-                    </figure>
                     <div class="d-flex justify-content-center">
                         <div class="spinner-border is-white" role="status">
                             <span class="visually-hidden">{"Loading..."}</span>
@@ -133,6 +159,8 @@ impl Component for LoadPosts {
         let callback = link.callback(|_msg: Msg| Msg::GetInfo);
         callback.emit(Msg::GetInfo);
         Self {
+            payload: String::default(),
+            debugged_payload: format!("{}", "none"),
             props,
             fetch_task: None,
             json: None,
@@ -148,6 +176,19 @@ impl Component for LoadPosts {
         use Msg::*;
 
         match msg {
+            Msg::Payload(payload) => {
+                if payload != self.payload {
+                    self.debugged_payload = format!("{}", payload);
+                    if self.debugged_payload == ""
+                    {
+                        self.debugged_payload = format!("{}", "none");
+                    }
+                    self.payload = payload;
+                    true
+                } else {
+                    false
+                }
+            }
             Msg::ShowPage(page) => {
                 let route = AppRoute::PostListPage(page);
                 self.route_dispatcher
@@ -155,7 +196,7 @@ impl Component for LoadPosts {
                 false
             }
             GetInfo => {
-                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/de9bf85ea15c2211b66d8a80775b2d399dc5e5a9/tester.json")
+                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/e0b63616f2ff394ca7b75163e23325f83f4a0425/tester.json")
                     .body(Nothing)
                     .expect("Não foi possível efetuar o request.");
                 let callback =
