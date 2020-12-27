@@ -157,7 +157,7 @@ impl Component for FetchServiceExample {
 
         match msg {
             GetInfo => {
-                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/de9bf85ea15c2211b66d8a80775b2d399dc5e5a9/tester.json")
+                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/63126493f4640fb31ccc1cb45c1c571d7cbaa0b1/tester.json")
                     .body(Nothing)
                     .expect("Não foi possível efetuar o request.");
                 let callback =
