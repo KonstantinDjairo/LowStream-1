@@ -1,5 +1,5 @@
 use serde::Deserialize;
-use yewtil::NeqAssign;
+// use yewtil::NeqAssign;
 use yew::{
     format::{Json, Nothing},
     prelude::*,
@@ -7,11 +7,7 @@ use yew::{
 };
 use yew_router::agent::{RouteAgentDispatcher, RouteRequest};
 
-const ITEMS_PER_PAGE: u64 = 10;
-const TOTAL_PAGES: u64 = std::u64::MAX / ITEMS_PER_PAGE;
-
 use crate::{
-    // components::pagination::Pagination,
     switch::{AppAnchor, AppRoute},
 };
 
@@ -83,12 +79,19 @@ impl LoadPosts {
             true
         }
         let mut cards: Vec<Html> = Vec::new();
+        let mut counter = 0;
         match self.json {
             Some(ref content) => {
                 for i in 0..content.animes.len()
                 {
                     if search(content.animes[i].anime.clone().to_lowercase(), self.debugged_payload.clone().to_lowercase())
                     {
+                        counter += 1;
+                        if counter > 10
+                        {
+                            counter = 0;
+                            break;
+                        }
                         cards.push(html!{
                             <li class="card" style="background: black">
                             <AppAnchor route=AppRoute::Player>
@@ -196,7 +199,7 @@ impl Component for LoadPosts {
                 false
             }
             GetInfo => {
-                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/e0b63616f2ff394ca7b75163e23325f83f4a0425/tester.json")
+                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/63126493f4640fb31ccc1cb45c1c571d7cbaa0b1/tester.json")
                     .body(Nothing)
                     .expect("Não foi possível efetuar o request.");
                 let callback =
