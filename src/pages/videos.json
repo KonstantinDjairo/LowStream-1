@@ -31966,13 +31966,9 @@
         },
         {
             "anime": "Re:Zero kara Hajimeru Isekai Seikatsu",
-<<<<<<< HEAD
            "background": "https://avatars.mds.yandex.net/get-zen_doc/3415410/pub_5ebb06e9cbfa886ba5804f5b_5ebb08a6b571c1699f12514c/scale_1200",
 
-		   	"dados": [{
-=======
             "dados": [{
->>>>>>> 5c477145cfda71bdc7a6d4ab43e15c8c35bc5579
                 "eps": [{
                         "name": "HEAD.md"
                     },
@@ -32677,12 +32673,8 @@
         },
         {
             "anime": "Sakura Taisen",
-<<<<<<< HEAD
 			"background": "https://static.zerochan.net/Sakura.Taisen.full.146987.jpg",
 			"dados": [{
-=======
-            "dados": [{
->>>>>>> 5c477145cfda71bdc7a6d4ab43e15c8c35bc5579
                 "eps": [{
                         "name": "[Dream Animes BR] Sakura Taisen - 01 [720p]"
                     },
@@ -37652,7 +37644,7 @@
         },
         {
             "anime": "Touhai Densetsu Akagi: Yami ni Maiorita Tensai",
-			"http://pm1.narvii.com/7258/8afeb9f98e93dd09fd739fd45cc766cb207ce34fr1-1280-720v2_uhq.jpg",
+			"background":"http://pm1.narvii.com/7258/8afeb9f98e93dd09fd739fd45cc766cb207ce34fr1-1280-720v2_uhq.jpg",
 
             "dados": [{
                 "eps": [{
@@ -40523,6 +40515,8 @@
                     }
                 ]
             }]
-        }
-    ]
+        }]
 }
+
+
+
