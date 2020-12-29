@@ -5,7 +5,7 @@ use yew::{
     prelude::*,
     services::fetch::{FetchService, FetchTask, Request, Response},
 };
-use yew_router::agent::{RouteAgentDispatcher, RouteRequest};
+// use yew_router::agent::{RouteAgentDispatcher, RouteRequest};
 
 use crate::{
     switch::{AppAnchor, AppRoute},
@@ -37,28 +37,24 @@ pub struct Struture {
 pub enum Msg {
     GetInfo,
     ReceiveResponse(Result<Struture, anyhow::Error>),
-    ShowPage(u64),
     Payload(String),
-}
-
-#[derive(Clone, Debug, Eq, PartialEq, Properties)]
-pub struct Props {
-    pub page: u64,
 }
 
 #[derive(Debug)]
 pub struct LoadPosts {
     payload: String,
     debugged_payload: String,
-    props: Props,
     fetch_task: Option<FetchTask>,
     json: Option<Struture>,
     link: ComponentLink<Self>,
     error: Option<String>,
-    route_dispatcher: RouteAgentDispatcher,
 }
 
 impl LoadPosts {
+    pub fn export(&self) -> Option<Struture>
+    {
+        self.json.clone()
+    }
     fn view_json(&self) -> Html {
         fn search(card_name: String, writing: String) -> bool
         {
@@ -79,22 +75,15 @@ impl LoadPosts {
             true
         }
         let mut cards: Vec<Html> = Vec::new();
-        let mut counter = 0;
         match self.json {
             Some(ref content) => {
                 for i in 0..content.animes.len()
                 {
                     if search(content.animes[i].anime.clone().to_lowercase(), self.debugged_payload.clone().to_lowercase())
                     {
-                        counter += 1;
-                        if counter > 10
-                        {
-                            counter = 0;
-                            break;
-                        }
                         cards.push(html!{
                             <li class="card" style="background: black">
-                            <AppAnchor route=AppRoute::Player>
+                            <AppAnchor route=AppRoute::Eps(content.animes[i].anime.clone())>
                                 <a class="card-image" style=format!("background-image: url({});", content.animes[i].background.clone()) loading="lazy">
                                 </a>
                                 <a class="card-description">
@@ -103,7 +92,6 @@ impl LoadPosts {
                                 </a>
                             </AppAnchor>
                             </li>
-                            // <h5>{format!("{}", content.animes[i].dados[0].eps[i].name)}</h5>
                         })
                     }
                 }
@@ -156,20 +144,18 @@ impl LoadPosts {
 }
 impl Component for LoadPosts {
     type Message = Msg;
-    type Properties = Props;
+    type Properties = ();
 
-    fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
+    fn create(_props: Self::Properties, link: ComponentLink<Self>) -> Self {
         let callback = link.callback(|_msg: Msg| Msg::GetInfo);
         callback.emit(Msg::GetInfo);
         Self {
             payload: String::default(),
             debugged_payload: format!("{}", "none"),
-            props,
             fetch_task: None,
             json: None,
             link,
             error: None,
-            route_dispatcher: RouteAgentDispatcher::new(),
         }
     }
     fn change(&mut self, _props: Self::Properties) -> ShouldRender {
@@ -191,12 +177,6 @@ impl Component for LoadPosts {
                 } else {
                     false
                 }
-            }
-            Msg::ShowPage(page) => {
-                let route = AppRoute::PostListPage(page);
-                self.route_dispatcher
-                    .send(RouteRequest::ChangeRoute(route.into_route()));
-                false
             }
             GetInfo => {
                 let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/63126493f4640fb31ccc1cb45c1c571d7cbaa0b1/tester.json")
