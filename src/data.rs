@@ -62,7 +62,7 @@ impl FetchServiceExample {
     fn view_json(&self) -> Html {
         let mut names: Vec<String> = Vec::new();
         let mut background: Vec<String> = Vec::new();
-        let mut eps: Vec<String> = Vec::new();
+        let eps: Vec<String> = Vec::new();
         let mut cards: Vec<Html> = Vec::new();
         match self.json {
             Some(ref content) => {
