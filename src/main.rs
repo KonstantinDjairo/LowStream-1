@@ -10,7 +10,7 @@ macro_rules! classes {
 
 mod pages;
 use pages::{
-    home::Home, login::Login, page_not_found::PageNotFound, player::Player, register::Register, post::Post, posts::LoadPosts,
+    home::Home, login::Login, page_not_found::PageNotFound, player::Player, register::Register, post::Eps, posts::LoadPosts,
     search::Search,
 };
 
@@ -108,7 +108,7 @@ impl Model {
                     <AppAnchor classes="navbar-item" route=AppRoute::Home>
                             <a onclick=link.callback(|_| Msg::ToggleNav) style="color: white">{ "Home" }</a>
                     </AppAnchor>
-                    <AppAnchor classes="navbar-item" route=AppRoute::Post>
+                    <AppAnchor classes="navbar-item" route=AppRoute::Animes>
                             <a onclick=link.callback(|_| Msg::ToggleNav) style="color: white">{ "Animes" }</a>
                     </AppAnchor>
                     <AppAnchor classes="navbar-item" route=AppRoute::Home>
@@ -162,11 +162,11 @@ impl Model {
             // AppRoute::Ep => {
             //     html! { <FetchServiceExample /> }
             // }
-            AppRoute::Post => {
-                html! { <LoadPosts page=1 /> }
+            AppRoute::Animes => {
+                html! { <LoadPosts  /> }
             }
-            AppRoute::PostListPage(page) => {
-                html! { <LoadPosts page=page.max(1) /> }
+            AppRoute::Eps(id) => {
+                html! { <Eps animeName=id /> }
             }
             AppRoute::Data => {
                 html! { <FetchServiceExample /> }
