@@ -7,9 +7,9 @@ use yew_router::{components::RouterAnchor, prelude::*, switch::Permissive};
 #[derive(Clone, Debug, Switch)]
 pub enum AppRoute {
     #[to = "/posts/"]
-    Post,
-    #[to = "/posts/?page={}"]
-    PostListPage(u64),
+    Animes,
+    #[to = "/?eps={animeName}"]
+    Eps(String),
     #[to = "/data/"]
     Data,
     #[to = "/search/"]
