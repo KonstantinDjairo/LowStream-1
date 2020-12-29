@@ -3,7 +3,7 @@ use yew::prelude::*;
 
 struct Model {
     link: ComponentLink<Self>,
-    value: i8,
+    value: usize,
     image: Vec<String>,
     conteudo: Html,
 }
@@ -35,21 +35,24 @@ impl Component for Model {
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
         match msg {
             Msg::MoveToRight => {
-                if self.value.clone() == self.image.len() as i8 {
+                if self.value == self.image.len() {
                     self.value = 0;
                 }
-                self.conteudo = html! {
-                    <img src=format!("{}", self.image[self.value as usize].clone())/>
-                };
 
+                self.conteudo = html! {
+                    <img src=format!("{}", self.image[self.value].clone())/>
+                };
                 self.value += 1;
             }
             Msg::MoveToLeft => {
+                if self.value == 0 {
+                    self.value = self.image.len() - 1;
+                } else {
+                    self.value -= 1;
+                }
                 self.conteudo = html! {
-                    <img src=format!("{}", self.image[self.value as usize].clone())/>
+                    <img src=format!("{}", self.image[self.value].clone())/>
                 };
-
-                self.value -= 1;
             }
         }
 
@@ -73,8 +76,11 @@ impl Component for Model {
                     <button onclick = self.link.callback(|_| Msg::MoveToLeft)>{ "Move to left" }</button>
 
                     <button onclick = self.link.callback(|_| Msg::MoveToRight)>{ "Move to right" }</button>
+
                         {self.conteudo.clone()}
                 </div>
+
+
             </>
         }
     }
