@@ -8,6 +8,7 @@ use yew::{
 
 use crate::{
     switch::{AppAnchor, AppRoute},
+    pages::carousel
 };
 
 #[derive(Deserialize, Debug, Clone)]
@@ -67,7 +68,6 @@ impl Eps {
                                 // </a>
                                 <a class="card-description">
                                     <strong><h2>{content.animes[self.name as usize].dados[0].eps[i].name.clone()}</h2></strong>
-                                    <p>{"Assistir agora"}</p>
                                 </a>
                             </AppAnchor>
                             </li>

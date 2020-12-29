@@ -1,33 +1,41 @@
-use wasm_bindgen::prelude::*;
-use yew::prelude::*;
+// use std::time::Duration;
+use yew::{
+    prelude::*,
+    // services::interval::{IntervalService, IntervalTask},
+};
 
-struct Model {
-    link: ComponentLink<Self>,
-    value: usize,
-    image: Vec<String>,
-    conteudo: Html,
+// use std::{thread, time::Instant};
+
+use rand::prelude::*;
+
+pub struct Model {
+    pub link: ComponentLink<Self>,
+    pub value: usize,
+    pub image: Vec<String>,
+    pub conteudo: Html,
+}
+
+#[derive(Clone, Debug, PartialEq, Properties)]
+pub struct Props {
+    pub background: Vec<String>,
 }
 
 #[derive(Debug)]
-enum Msg {
+pub enum Msg {
     MoveToLeft,
     MoveToRight,
 }
 
 impl Component for Model {
     type Message = Msg;
-    type Properties = ();
-    fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
+    type Properties = Props;
+    fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
+        let callback = link.callback(|_msg: Msg| Msg::MoveToRight);
+        callback.emit(Msg::MoveToRight);
         Self {
             link,
             value: 0,
-            image: vec![
-                String::from("https://cdn.wallpapersafari.com/12/0/Af3WOb.jpg"),
-                String::from("https://animekayo.com/wp-content/uploads/2020/07/480-4.jpg"),
-                String::from(
-                    "https://ninotaku.de/wp-content/uploads/2020/05/dxd2-scaled-e1588784140196.jpg",
-                ),
-            ],
+            image: props.background,
             conteudo: html! {},
         }
     }
@@ -35,14 +43,22 @@ impl Component for Model {
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
         match msg {
             Msg::MoveToRight => {
-                if self.value == self.image.len() {
-                    self.value = 0;
-                }
+                let mut rng = rand::thread_rng();
+                self.value = rng.gen_range(0, self.image.len());
+
 
                 self.conteudo = html! {
-                    <img src=format!("{}", self.image[self.value].clone())/>
+                    <section class="hero is-medium is-dark is-bold has-background">
+                        <img src=format!("{}", self.image[self.value].clone()) class="hero-background img-fluid is-transparent" style="filter: blur(8px);"/>
+                        <div class="hero-body">
+                            <div class="container" style="padding-top: 60px">
+                                <h1 class="title">
+                                    {"Animes"}
+                                </h1>
+                            </div>
+                        </div>
+                    </section>
                 };
-                self.value += 1;
             }
             Msg::MoveToLeft => {
                 if self.value == 0 {
@@ -53,6 +69,7 @@ impl Component for Model {
                 self.conteudo = html! {
                     <img src=format!("{}", self.image[self.value].clone())/>
                 };
+                
             }
         }
 
@@ -60,33 +77,19 @@ impl Component for Model {
     }
 
     fn change(&mut self, _props: Self::Properties) -> ShouldRender {
-        // Should only return "true" if new properties are different to
-        // previously received properties.
-        // This component has no properties so we will always return "false".
         false
     }
 
     fn view(&self) -> Html {
+        // let Self { conteudo, link, .. } = self;
         html! {
 
             <>
                 <div>
-
-
-                    <button onclick = self.link.callback(|_| Msg::MoveToLeft)>{ "Move to left" }</button>
-
-                    <button onclick = self.link.callback(|_| Msg::MoveToRight)>{ "Move to right" }</button>
-
-                        {self.conteudo.clone()}
+                    // <button onclick = self.link.callback(|_| Msg::MoveToRight)>{ "random" }</button>
+                    {self.conteudo.clone()}
                 </div>
-
-
             </>
         }
     }
-}
-
-#[wasm_bindgen(start)]
-pub fn run_app() {
-    App::<Model>::new().mount_to_body();
 }

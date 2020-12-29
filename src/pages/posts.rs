@@ -9,6 +9,7 @@ use yew::{
 
 use crate::{
     switch::{AppAnchor, AppRoute},
+    pages::carousel,
 };
 
 #[derive(Deserialize, Debug, Clone)]
@@ -51,10 +52,6 @@ pub struct LoadPosts {
 }
 
 impl LoadPosts {
-    pub fn export(&self) -> Option<Struture>
-    {
-        self.json.clone()
-    }
     fn view_json(&self) -> Html {
         fn search(card_name: String, writing: String) -> bool
         {
@@ -75,15 +72,17 @@ impl LoadPosts {
             true
         }
         let mut cards: Vec<Html> = Vec::new();
+        let mut background: Vec<String> = Vec::new();
         match self.json {
             Some(ref content) => {
                 for i in 0..content.animes.len()
                 {
                     if search(content.animes[i].anime.clone().to_lowercase(), self.debugged_payload.clone().to_lowercase())
                     {
+                        background.push(content.animes[i].background.clone());
                         cards.push(html!{
                             <li class="card" style="background: black">
-                            <AppAnchor route=AppRoute::Eps(content.animes[i].anime.clone())>
+                            <AppAnchor route=AppRoute::Eps(i as u64)>
                                 <a class="card-image" style=format!("background-image: url({});", content.animes[i].background.clone()) loading="lazy">
                                 </a>
                                 <a class="card-description">
@@ -98,10 +97,11 @@ impl LoadPosts {
 
                 html! {
                     <>
+                        <carousel::Model background=self.export_background()  />
                         <section style="background-color: #25262F;">
-                            <div class="level-item" style="padding-top: 80px;">
-                                <div class="field has-addons">
-                                    <input class="input is-rounded is-fixed-top" type="text"  oninput=self.link.callback(|input: InputData| Msg::Payload(input.value)) value=&self.payload placeholder="Encontre seu anime"/>
+                        <div class="mx-auto" style="width: 250px;">
+                                <div class="field has-addons" style="padding-top: 80px;">
+                                    <input class="input is-rounded" type="text" oninput=self.link.callback(|input: InputData| Msg::Payload(input.value)) value=&self.payload placeholder="Encontre seu anime"/>
                                 </div>
                             </div>
                             <ul class="card-list">
@@ -140,6 +140,25 @@ impl LoadPosts {
         } else {
             html! {}
         }
+    }
+
+    fn export_background(&self) -> Vec<String>
+    {
+        let mut background: Vec<String> = Vec::new();
+        match self.json
+        {
+            Some(ref content) => 
+            {
+                for i in 0..content.animes.len()
+                {
+                    background.push(content.animes[i].background.clone());
+                }
+            },
+            None => {
+                background.push("none".to_string())
+            }
+        }
+        background
     }
 }
 impl Component for LoadPosts {
@@ -209,11 +228,10 @@ impl Component for LoadPosts {
     fn view(&self) -> Html {
         html! {
             <>
-                <div style="padding-top: 80px"></div>
+                <div style="padding-top: 0px"></div>
                 { self.view_fetching() }
                 { self.view_json() }
                 { self.view_error() }
-                
             </>
         }
     }
