@@ -76,11 +76,11 @@ impl Eps {
 
                 html! {
                     <>
-                        <section class="hero is-medium is-dark is-bold has-background" style="padding-top: 40px;">
+                        <section class="hero is-medium is-dark is-bold has-background">
                             <img src=content.animes[self.name as usize].background.clone() class="hero-background is-transparent" style=" filter: blur(6px)"/>
                             <div class="hero-body">
                                 <div class="container">
-                                    <h1 class="title">
+                                    <h1 class="title" style="padding-top: 40px;">
                                         {content.animes[self.name as usize].anime.clone()}
                                     </h1>
                                 </div>
