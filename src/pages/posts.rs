@@ -198,7 +198,7 @@ impl Component for LoadPosts {
                 }
             }
             GetInfo => {
-                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/63126493f4640fb31ccc1cb45c1c571d7cbaa0b1/tester.json")
+                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/6e15cea494cf0c0e263f7c1e91740b643e679913/tester.json")
                     .body(Nothing)
                     .expect("Não foi possível efetuar o request.");
                 let callback =
@@ -228,10 +228,136 @@ impl Component for LoadPosts {
     fn view(&self) -> Html {
         html! {
             <>
-                <div style="padding-top: 0px"></div>
                 { self.view_fetching() }
                 { self.view_json() }
                 { self.view_error() }
+                <div class="content">
+                <button id="prev" class="btn">
+                    <i class="bx bxs-chevron-left"></i>
+                </button>
+                <div class="con-cards">
+                    <div class="card">
+                        <h3>{"4.6"}</h3>
+                        <i class="bx bx-heart"></i>
+                        <div class="con-img">
+                            <img src="https://freepngimg.com/thumb/anime/2-2-anime-png-pic.png" alt=""/>
+                            <img class="blur" src="https://jaqorbelize.com/wp-content/uploads/blur-1.png" alt=""/>
+                        </div>
+                        <div class="con-text">
+                            <h2>
+                                {"Chuunibyou Demo Koi Ga Shitai!"}
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>{"4.1"}</h3>
+                        <i class="bx bx-heart"></i>
+                        <div class="con-img">
+                            <img src="https://lh3.googleusercontent.com/proxy/iUGCT61btTRwzqAm3MPiEVXmbwQI667aetNTEjySXHrsld33W3OmqDgcmw5XMEX8PF9vqAeB95cpgiJZztehRCq3JvH8rGlscEvGyUD0iyFQJb9JhXiB15Jt4sPGJYM" alt=""/>
+                            <img class="blur" src="https://jaqorbelize.com/wp-content/uploads/blur-1.png" alt=""/>
+                        </div>
+                        <div class="con-text">
+                            <h2>
+                                {"Nico Nico Nii"}
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>{"4.8"}</h3>
+                        <i class="bx bx-heart"></i>
+                        <div class="con-img">
+                            <img src="https://i.pinimg.com/originals/79/67/fe/7967feedae6a76b044fc407a1a3026cf.png" alt=""/>
+                            <img class="blur" src="https://jaqorbelize.com/wp-content/uploads/blur-1.png" alt=""/>
+                        </div>
+                        <div class="con-text">
+                            <h2>
+                                {"Boku no Hero"}
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>{"3.9"}</h3>
+                        <i class="bx bx-heart"></i>
+                        <div class="con-img">
+                            <img src="https://raw.githubusercontent.com/luisDanielRoviraContreras/img/master/5.png" alt=""/>
+                            <img class="blur" src="https://raw.githubusercontent.com/luisDanielRoviraContreras/img/master/5.png" alt=""/>
+                        </div>
+                        <div class="con-text">
+                            <h2>
+                                {"Angry Birds"}
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>{"4.2"}</h3>
+                        <i class="bx bx-heart"></i>
+                        <div class="con-img">
+                            <img src="https://raw.githubusercontent.com/luisDanielRoviraContreras/img/master/6.png" alt=""/>
+                            <img class="blur" src="https://raw.githubusercontent.com/luisDanielRoviraContreras/img/master/6.png" alt=""/>
+                        </div>
+                        <div class="con-text">
+                            <h2>
+                                {"Clash of Clans"}
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>{"4.9"}</h3>
+                        <i class="bx bx-heart"></i>
+                        <div class="con-img">
+                            <img src="https://raw.githubusercontent.com/luisDanielRoviraContreras/img/master/7.png" alt=""/>
+                            <img class="blur" src="https://raw.githubusercontent.com/luisDanielRoviraContreras/img/master/7.png" alt=""/>
+                        </div>
+                        <div class="con-text">
+                            <h2>
+                                {"Dark Souls"}
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>{"3.6"}</h3>
+                        <i class="bx bx-heart"></i>
+                        <div class="con-img">
+                            <img src="https://raw.githubusercontent.com/luisDanielRoviraContreras/img/master/8.png" alt=""/>
+                            <img class="blur" src="https://raw.githubusercontent.com/luisDanielRoviraContreras/img/master/8.png" alt=""/>
+                        </div>
+                        <div class="con-text">
+                            <h2>
+                                {"Far Cry 4"}
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>{"3.8"}</h3>
+                        <i class="bx bx-heart"></i>
+                        <div class="con-img">
+                            <img src="https://raw.githubusercontent.com/luisDanielRoviraContreras/img/master/9.png" alt=""/>
+                            <img class="blur" src="https://raw.githubusercontent.com/luisDanielRoviraContreras/img/master/9.png" alt=""/>
+                        </div>
+                        <div class="con-text">
+                            <h2>
+                                {"Final Fantasy"}
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>{"4.7"}</h3>
+                        <i class="bx bx-heart"></i>
+                        <div class="con-img">
+                            <img src="https://raw.githubusercontent.com/luisDanielRoviraContreras/img/master/10.png" alt=""/>
+                            <img class="blur" src="https://raw.githubusercontent.com/luisDanielRoviraContreras/img/master/10.png" alt=""/>
+                        </div>
+                        <div class="con-text">
+                            <h2>
+                                {"Gears of War"}
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <button id="next" class="btn">
+                    <i class="bx bxs-chevron-right" ></i>
+                </button>
+            </div>
             </>
         }
     }
