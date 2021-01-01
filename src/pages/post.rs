@@ -14,6 +14,8 @@ use crate::{
 #[derive(Deserialize, Debug, Clone)]
 pub struct Ep {
     name: String,
+    player: String,
+    type_video: String
 }
 
 #[derive(Deserialize, Debug, Clone)]
@@ -37,6 +39,7 @@ pub struct Struture {
 pub enum Msg {
     GetInfo,
     ReceiveResponse(Result<Struture, anyhow::Error>),
+    GetOption(usize)
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, Properties)]
@@ -51,28 +54,46 @@ pub struct Eps
     json: Option<Struture>,
     link: ComponentLink<Self>,
     error: Option<String>,
-
+    number: usize,
 }
 
 impl Eps {
     fn view_json(&self) -> Html {
         let mut cards: Vec<Html> = Vec::new();
+        let mut options: Vec<Html> = Vec::new();
         match self.json {
             Some(ref content) => {
-                for i in 0..content.animes[self.name as usize].dados[0].eps.len()
+                
+                for j in 0..content.animes[self.name as usize].dados.len()
+                {
+                    options.push(html!{
+                        <a class="navbar-item" onclick=self.link.callback(move |_| Msg::GetOption(j)) style="color: white">
+                            {format!("nº {}", j + 1)}
+                        </a>
+                    });
+                }
+                
+                // for j in 0..content.animes[self.name as usize].dados.len()
+                // {
+                for i in 0..content.animes[self.name as usize].dados[self.number].eps.len()
                 {
                         cards.push(html!{
                             <li class="card" style="background: black">
-                            <AppAnchor route=AppRoute::Player>
+                            <AppAnchor route=AppRoute::Player(content.animes[self.name as usize].dados[self.number].eps[i].player.clone(), 
+                                                                content.animes[self.name as usize].background.clone(), 
+                                                                content.animes[self.name as usize].dados[self.number].eps[i].name.clone(), 
+                                                                content.animes[self.name as usize].dados[self.number].eps[i].type_video.clone())>
                                 // <a class="card-image" style=format!("background-image: url({});", content.animes[self.name as usize].background.clone()) loading="lazy">
                                 // </a>
                                 <a class="card-description">
-                                    <strong><h2>{content.animes[self.name as usize].dados[0].eps[i].name.clone()}</h2></strong>
+                                    <strong><h2>{content.animes[self.name as usize].dados[self.number].eps[i].name.clone()}</h2></strong>
                                 </a>
                             </AppAnchor>
                             </li>
-                        })
+                        });
                 }
+                // }
+
 
                 html! {
                     <>
@@ -83,13 +104,26 @@ impl Eps {
                                     <h1 class="title" style="padding-top: 40px;">
                                         {content.animes[self.name as usize].anime.clone()}
                                     </h1>
+                                    <nav>
+                            <div class="navbar-item has-dropdown is-hoverable" style="background-color: rgba(0, 0, 0, 0%); backdrop-filter: blur(10px); border-radius: 8px;">
+                               <a class="navbar-link" style="background-color: rgba(0, 0, 0, 0%); backdrop-filter: blur(10px); border-radius: 18px; color: white">
+                               {"Opções"}
+                               </a>
+                               <div class="navbar-dropdown is-boxed" style="background-color: rgba(0, 0, 0);">
+                               {for options.clone()}
+                            //    <hr class="navbar-divider"/>
+                            //    <a class="navbar-item" href="https://github.com/lowstream-community/LowStream" style="color: white">
+                            //        {"GitHub"}
+                            //    </a>
+                               </div>
+                           </div>
+                           </nav>
                                 </div>
                             </div>
                         </section>
                         <section style="background-color: #25262F;">
                             <ul class="card-list">
                                 {for cards.clone()}
-                                <h1>{content.animes[self.name as usize].dados[0].eps[0].name.clone()}</h1>
                             </ul>
                         </section>
                     </>
@@ -105,7 +139,23 @@ impl Eps {
         if self.fetch_task.is_some() {
             html! { 
                 <>
-                <div class="position-absolute top-50 start-50 translate-middle">
+                <section class="hero is-medium is-dark is-bold ">
+                            // <img src="" class="hero-background is-transparent" style=""/>
+                            <div class="hero-body">
+                                <div class="container">
+                                    <h1 class="title" style="padding-top: 40px;">
+                                        {"Loading..."}
+                                    </h1>
+                                </div>
+                            </div>
+                        </section>
+                        <section style="background-color: #25262F;">
+                            <ul class="card-list">
+                                // {for cards.clone()}
+                                <h1>{"..."}</h1>
+                            </ul>
+                        </section>
+                <div class="position-absolute top-90 start-50 translate-middle">
                     <div class="d-flex justify-content-center">
                         <div class="spinner-border is-white" role="status">
                             <span class="visually-hidden">{"Loading..."}</span>
@@ -140,7 +190,8 @@ impl Component for Eps {
             name: props.id,
             fetch_task: None,
             json: None,
-            error: None
+            error: None,
+            number: 0
         }
     }
 
@@ -148,8 +199,12 @@ impl Component for Eps {
         use Msg::*;
 
         match msg {
+            GetOption(value) => {
+                self.number = value;
+                true
+            }
             GetInfo => {
-                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/6e15cea494cf0c0e263f7c1e91740b643e679913/tester.json")
+                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/e9cfd1793edea5de32fd3cfdb499e58107f4ed85/tester.json")
                     .body(Nothing)
                     .expect("Não foi possível efetuar o request.");
                 let callback =
@@ -191,3 +246,39 @@ impl Component for Eps {
         }
     }
 }
+
+// pub struct Playlist
+// {
+//     links: Vec<String>,
+//     names: Vec<String>
+// }
+
+// impl Component for Playlist
+// {
+//     type Message = Msg;
+//     type Properties = Props;
+
+//     fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
+//         Self
+//         {
+//             links: Eps.json.clone(),
+//             names: Vec::new()
+//         }
+//     }
+
+//     fn update(&mut self, msg: Self::Message) -> ShouldRender {
+//         true
+//     }
+
+//     fn change(&mut self, _props: Self::Properties) -> ShouldRender {
+//         true
+//     }
+
+//     fn view(&self) -> Html {
+//         html! {
+//             <>
+                
+//             </>
+//         }
+//     }
+// }
