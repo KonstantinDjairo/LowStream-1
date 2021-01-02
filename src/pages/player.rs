@@ -73,6 +73,9 @@ impl Component for Player {
                                         .replace("%C3%81", "á")
                                         .replace("%C3%97", "×")
                                         .replace("%E2%98%86", "☆")
+                                        .replace(".mkv", " ")
+                                        .replace(".mp4", " ")
+                                        .replace(".avi", " ")
                                     }
                                 </h1>
                                 {self.notification()}

@@ -67,6 +67,7 @@ impl Eps {
                 for j in 0..content.animes[self.name as usize].dados.len()
                 {
                     options.push(html!{
+                        // <hr class="navbar-divider"/>
                         <a class="navbar-item" onclick=self.link.callback(move |_| Msg::GetOption(j)) style="color: white">
                             {format!("nº {}", j + 1)}
                         </a>
@@ -104,20 +105,19 @@ impl Eps {
                                     <h1 class="title" style="padding-top: 40px;">
                                         {content.animes[self.name as usize].anime.clone()}
                                     </h1>
-                                    <nav>
-                            <div class="navbar-item has-dropdown is-hoverable" style="background-color: rgba(0, 0, 0, 0%); backdrop-filter: blur(10px); border-radius: 8px;">
-                               <a class="navbar-link" style="background-color: rgba(0, 0, 0, 0%); backdrop-filter: blur(10px); border-radius: 18px; color: white">
-                               {"Opções"}
-                               </a>
-                               <div class="navbar-dropdown is-boxed" style="background-color: rgba(0, 0, 0);">
-                               {for options.clone()}
-                            //    <hr class="navbar-divider"/>
-                            //    <a class="navbar-item" href="https://github.com/lowstream-community/LowStream" style="color: white">
-                            //        {"GitHub"}
-                            //    </a>
-                               </div>
-                           </div>
-                           </nav>
+                                    <nav style="z-index: 1000">
+                                        <div class="navbar-item has-dropdown is-hoverable" style="background-color: rgba(0, 0, 0, 0%); backdrop-filter: blur(10px); border-radius: 8px;">
+                                            <a class="navbar-link" style="background-color: rgba(0, 0, 0, 0%); backdrop-filter: blur(10px); border-radius: 18px; color: white;">
+                                                {"Opções"}
+                                            </a>
+                                            <div class="navbar-dropdown is-up is-boxed" style="background-color: rgba(0, 0, 0);">
+                                            {for options.clone()}
+                                            //    <a class="navbar-item" href="https://github.com/lowstream-community/LowStream" style="color: white">
+                                            //        {"GitHub"}
+                                            //    </a>
+                                            </div>
+                                        </div>
+                                    </nav>
                                 </div>
                             </div>
                         </section>
@@ -204,7 +204,7 @@ impl Component for Eps {
                 true
             }
             GetInfo => {
-                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/e9cfd1793edea5de32fd3cfdb499e58107f4ed85/tester.json")
+                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/ad61e34f2e1fb847349600307ed6f4aa06cdd006/tester.json")
                     .body(Nothing)
                     .expect("Não foi possível efetuar o request.");
                 let callback =
