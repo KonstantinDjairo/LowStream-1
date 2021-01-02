@@ -1,4 +1,4 @@
-#![recursion_limit = "1024"]
+#![recursion_limit="2048"]
 use yew::prelude::*;
 use yew_router::{route::Route, switch::Permissive};
 
@@ -7,7 +7,7 @@ macro_rules! classes {
         format!("{} {}", $classe, $classe_condition)
     };
 }
-
+use rand::prelude::*;
 mod pages;
 use pages::{
     home::Home, login::Login, page_not_found::PageNotFound, player::Player, register::Register, post::Eps, posts::LoadPosts,
@@ -82,6 +82,8 @@ impl Model {
         } = *self;
 
         let active_class = if navbar { "is-active" } else { "" };
+        let mut rng = rand::thread_rng();
+        let number = rng.gen_range(0, 420);
 
         html! {
                 <>
@@ -106,33 +108,33 @@ impl Model {
                         <span></span>
                     </a>
                     <AppAnchor classes="navbar-item" route=AppRoute::Home>
-                            <a onclick=link.callback(|_| Msg::ToggleNav) style="color: white">{ "Home" }</a>
+                            <a onclick=link.callback(|_| Msg::ToggleNav) style="background-color: rgba(0, 0, 0, 0%); color: white">{ "Home" }</a>
                     </AppAnchor>
                     <AppAnchor classes="navbar-item" route=AppRoute::Animes>
-                            <a onclick=link.callback(|_| Msg::ToggleNav) style="color: white">{ "Animes" }</a>
+                            <a onclick=link.callback(|_| Msg::ToggleNav) style="background-color: rgba(0, 0, 0, 0%); color: white">{ "Animes" }</a>
                     </AppAnchor>
                     <AppAnchor classes="navbar-item" route=AppRoute::Home>
-                            <a onclick=link.callback(|_| Msg::ToggleNav) style="color: white">{ "Filmes" }</a>
+                            <a onclick=link.callback(|_| Msg::ToggleNav) style="background-color: rgba(0, 0, 0, 0%); color: gray">{ "Filmes" }</a>
                     </AppAnchor>
                     <AppAnchor classes="navbar-item" route=AppRoute::Home>
-                            <a onclick=link.callback(|_| Msg::ToggleNav) style="color: white">{ "Series" }</a>
+                            <a onclick=link.callback(|_| Msg::ToggleNav) style="background-color: rgba(0, 0, 0, 0%); color: gray">{ "NSFW" }</a>
                     </AppAnchor>
                     <div class="navbar-item has-dropdown is-hoverable" style="background-color: rgba(0, 0, 0, 0%); backdrop-filter: blur(10px);">
                         <a class="navbar-link" style="color: white">
                         {"Mais"}
                         </a>
                         <div class="navbar-dropdown is-boxed" style="background-color: rgba(0, 0, 0);">
-                        <AppAnchor classes="navbar-item" route=AppRoute::Data>
-                            <a onclick=link.callback(|_| Msg::ToggleNav) style="color: white">{ "Data" }</a>
-                        </AppAnchor>
-                        <a class="navbar-item" onclick=link.callback(|_| Msg::ToggleNav) style="color: white">
+                        // <AppAnchor classes="navbar-item" route=AppRoute::Data>
+                        //     <a onclick=link.callback(|_| Msg::ToggleNav) style="background-color: rgba(0, 0, 0, 0%); color: white">{ "Data" }</a>
+                        // </AppAnchor>
+                        <a class="navbar-item" onclick=link.callback(|_| Msg::ToggleNav) style="background-color: rgba(0, 0, 0, 0%); color: white">
                             {"Contact us"}
                         </a>
-                        <a class="navbar-item" href="https://github.com/LowStream-Community/LowStream/issues/new/choose" onclick=link.callback(|_| Msg::ToggleNav) style="color: white">
+                        <a class="navbar-item" href="https://github.com/LowStream-Community/LowStream/issues/new/choose" onclick=link.callback(|_| Msg::ToggleNav) style=" background-color: rgba(0, 0, 0, 0%);color: white" target="_blank">
                             {"Issues"}
                         </a>
                         <hr class="navbar-divider"/>
-                        <a class="navbar-item" href="https://github.com/lowstream-community/LowStream" onclick=link.callback(|_| Msg::ToggleNav) style="color: white">
+                        <a class="navbar-item" href="https://github.com/lowstream-community/LowStream" onclick=link.callback(|_| Msg::ToggleNav) style="background-color: rgba(0, 0, 0, 0%); color: white" target="_blank">
                             {"GitHub"}
                         </a>
                         </div>
@@ -145,7 +147,7 @@ impl Model {
                             <AppAnchor classes="button is-light is-rounded" route=AppRoute::Search>
                                 { "Pesquisar" }
                             </AppAnchor>
-                            <AppAnchor classes="button is-dark is-rounded" route=AppRoute::Player>
+                            <AppAnchor classes="button is-dark is-rounded" route=AppRoute::Eps(number)>
                                 { "Random" }
                             </AppAnchor>
                         </div>
@@ -159,14 +161,11 @@ impl Model {
 
     fn switch(switch: PublicUrlSwitch) -> Html {
         match switch.route() {
-            // AppRoute::Ep => {
-            //     html! { <FetchServiceExample /> }
-            // }
             AppRoute::Animes => {
                 html! { <LoadPosts  /> }
             }
             AppRoute::Eps(id) => {
-                html! { <Eps animeName=id /> }
+                html! { <Eps id=id.max(0) /> }
             }
             AppRoute::Data => {
                 html! { <FetchServiceExample /> }
@@ -174,8 +173,8 @@ impl Model {
             AppRoute::Search => {
                 html! { <Search /> }
             }
-            AppRoute::Player => {
-                html! { <Player /> }
+            AppRoute::Player(ep, background, name, type_video) => {
+                html! { <Player ep=ep background=background name=name type_video=type_video/> }
             }
             AppRoute::Login => {
                 html! { <Login /> }
