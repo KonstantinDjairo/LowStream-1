@@ -16,10 +16,6 @@ pub enum AppRoute {
     Search,
     #[to = "/80hsxtYfcO1imjekUUqIjaMQ2YsDj50cjiCo4bKqjMly97RgdjLn3UtcpEcMVbiUORN8UHRfxM5nIakYCYrFFDZVxNmwkayrMflt0qy2cNvznc4p1sLScorkTGLIf2Jt80hsxtYfcO1imjekUUqIjaMQ2YsDj50cjiCo4bKqjMly97RgdjLn3UtcpEcMVbiUORN8UHRfxM5nIakYCYrFFDZVxNmwkayrMflt0qy2cNvznc4p1sLScorkTGLIf2Jt{video}80hsxtYfcO1imjekUUqIjaMQ2YsDj50cjiCo4bKqjMly97RgdjLn3UtcpEcMVbiUORN8UHRfxM5nIakYCYrFFDZVxNmwkayrMflt0qy2cNvznc4p1sLScorkTGLIf2Jt80hsxtYfcO1imjekUUqIjaMQ2YsDj50cjiCo4bKqjMly97RgdjLn3UtcpEcMVbiUORN8UHRfxM5nIakYCYrFFDZVxNmwkayrMflt0qy2cNvznc4p1sLScorkTGLIf2Jt80hsxtYfcO1imjekUUqIjaMQ2YsDj50cjiCo4bKqjMly97RgdjLn3UtcpEcMVbiUORN8UHRfxM5nIakYCYrFFDZVxNmwkayrMflt0qy2cNvznc4p1sLScorkTGLIf2Jt{background}name{name}type{type_video}/"]
     Player(String, String, String, String),
-    #[to = "/login/"]
-    Login,
-    #[to = "/register/"]
-    Register,
     #[to = "/page-not-found"]
     PageNotFound(Permissive<String>),
     #[to = "/!"]

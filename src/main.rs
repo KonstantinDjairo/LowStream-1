@@ -10,7 +10,7 @@ macro_rules! classes {
 use rand::prelude::*;
 mod pages;
 use pages::{
-    home::Home, login::Login, page_not_found::PageNotFound, player::Player, register::Register, post::Eps, posts::LoadPosts,
+    home::Home, page_not_found::PageNotFound, player::Player, post::Eps, posts::LoadPosts,
     search::Search,
 };
 
@@ -175,12 +175,6 @@ impl Model {
             }
             AppRoute::Player(ep, background, name, type_video) => {
                 html! { <Player ep=ep background=background name=name type_video=type_video/> }
-            }
-            AppRoute::Login => {
-                html! { <Login /> }
-            }
-            AppRoute::Register => {
-                html! { <Register /> }
             }
             AppRoute::Home => {
                 html! { <Home /> }
