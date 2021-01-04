@@ -49,11 +49,11 @@ impl Component for Model {
 
                 self.conteudo = html! {
                     <section class="hero is-medium is-dark is-bold has-background">
-                        <img src=format!("{}", self.image[self.value].clone()) class="hero-background img-fluid is-transparent" style="filter: blur(8px);"/>
+                        <img src=format!("{}", self.image[self.value].clone()) class="hero-background img-fluid is-transparent" />
                         <div class="hero-body">
                             <div class="container" style="padding-top: 60px">
                                 <h1 class="title">
-                                    {"Animes"}
+                                    {""}
                                 </h1>
                             </div>
                         </div>

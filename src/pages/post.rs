@@ -6,9 +6,11 @@ use yew::{
     services::fetch::{FetchService, FetchTask, Request, Response},
 };
 
+// mod components;
 use crate::{
     switch::{AppAnchor, AppRoute},
-    pages::carousel
+    pages::{carousel}
+    // components::video
 };
 
 #[derive(Deserialize, Debug, Clone)]
@@ -81,15 +83,17 @@ impl Eps {
                         cards.push(html!{
                             <li class="card" style="background: black">
                             <AppAnchor route=AppRoute::Player(content.animes[self.name as usize].dados[self.number].eps[i].player.clone(), 
-                                                                content.animes[self.name as usize].background.clone(), 
-                                                                content.animes[self.name as usize].dados[self.number].eps[i].name.clone(), 
-                                                                content.animes[self.name as usize].dados[self.number].eps[i].type_video.clone())>
+                                                              content.animes[self.name as usize].background.clone(), 
+                                                              content.animes[self.name as usize].dados[self.number].eps[i].name.clone(), 
+                                                              content.animes[self.name as usize].dados[self.number].eps[i].type_video.clone(),
+                                                              )>
                                 // <a class="card-image" style=format!("background-image: url({});", content.animes[self.name as usize].background.clone()) loading="lazy">
                                 // </a>
                                 <a class="card-description">
-                                    <strong><h2>{content.animes[self.name as usize].dados[self.number].eps[i].name.clone()}</h2></strong>
+                                    <strong><h2>{content.animes[self.name as usize].dados[self.number].eps[i].name.clone().replace(".mkv", " ").replace(".mp4", " ").replace(".avi", " ")}</h2></strong>
                                 </a>
                             </AppAnchor>
+
                             </li>
                         });
                 }
@@ -105,6 +109,9 @@ impl Eps {
                                     <h1 class="title" style="padding-top: 40px;">
                                         {content.animes[self.name as usize].anime.clone()}
                                     </h1>
+                                    // <video::Video video=content.animes[self.name as usize].dados[self.number].eps[0].player.clone(), 
+                                    //   type_video=content.animes[self.name as usize].dados[self.number].eps[0].type_video.clone() />
+                                    
                                     <nav style="z-index: 1000">
                                         <div class="navbar-item has-dropdown is-hoverable" style="background-color: rgba(0, 0, 0, 0%); backdrop-filter: blur(10px); border-radius: 8px;">
                                             <a class="navbar-link" style="background-color: rgba(0, 0, 0, 0%); backdrop-filter: blur(10px); border-radius: 18px; color: white;">
@@ -125,6 +132,7 @@ impl Eps {
                             <ul class="card-list">
                                 {for cards.clone()}
                             </ul>
+                            // <h2 style="padding-bottom: 400px">{"uwu"}</h2>
                         </section>
                     </>
                 }
@@ -204,7 +212,7 @@ impl Component for Eps {
                 true
             }
             GetInfo => {
-                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/ad61e34f2e1fb847349600307ed6f4aa06cdd006/tester.json")
+                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/605110cd84788c1ac0e74af7ef94ec5a16c197ec/tester.json")
                     .body(Nothing)
                     .expect("Não foi possível efetuar o request.");
                 let callback =
