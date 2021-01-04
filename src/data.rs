@@ -74,7 +74,7 @@ impl FetchServiceExample {
                         background.push(String::from(format!("{}", content.animes[i].background)));
                         cards.push(html!{
                             <li class="card" style="background: black">
-                            <AppAnchor route=AppRoute::Player>
+                            <AppAnchor route=AppRoute::Player(background[i].clone(), background[i].clone(), background[i].clone(), background[i].clone())>
                                 <a class="card-image" style=format!("background-image: url({});", background[i].clone()) loading="lazy">
                                 </a>
                                 <a class="card-description">
@@ -157,7 +157,7 @@ impl Component for FetchServiceExample {
 
         match msg {
             GetInfo => {
-                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/6e15cea494cf0c0e263f7c1e91740b643e679913/tester.json")
+                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/605110cd84788c1ac0e74af7ef94ec5a16c197ec/tester.json")
                     .body(Nothing)
                     .expect("Não foi possível efetuar o request.");
                 let callback =
