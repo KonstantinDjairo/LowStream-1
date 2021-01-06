@@ -1,19 +1,16 @@
 .hero {
-  &.has-background {
-    position: relative;
-    overflow: hidden;
-  }
-
-  &-background {
-    position: absolute;
-    object-fit: cover;
-    object-position: bottom;
-    background-color: hsl(216, 8%, 24%);
-    width: 100%;
-    height: 100%;
-
-    &.is-transparent {
-      opacity: 0.3;
+    &.has-background {
+        position: relative;
+        // overflow: hidden;
     }
-  }
+    &-background {
+        position: absolute;
+        object-fit: cover;
+        object-position: bottom;
+        width: 128%;
+        height: 128%;
+        &.is-transparent {
+            opacity: 1;
+        }
+    }
 }
