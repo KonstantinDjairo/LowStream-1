@@ -9,7 +9,7 @@ use yew::{
 // mod components;
 use crate::{
     switch::{AppAnchor, AppRoute},
-    pages::{carousel}
+    pages::{carousel, video}
     // components::video
 };
 
@@ -41,7 +41,8 @@ pub struct Struture {
 pub enum Msg {
     GetInfo,
     ReceiveResponse(Result<Struture, anyhow::Error>),
-    GetOption(usize)
+    GetOption(usize),
+    TogglePlay(String, String, String)
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, Properties)]
@@ -57,12 +58,17 @@ pub struct Eps
     link: ComponentLink<Self>,
     error: Option<String>,
     number: usize,
+    current_video: String,
+    link_video: String,
+    type_video: String
 }
 
 impl Eps {
     fn view_json(&self) -> Html {
         let mut cards: Vec<Html> = Vec::new();
         let mut options: Vec<Html> = Vec::new();
+        // let mut video = &self.current_video;
+        // let mut type_video
         match self.json {
             Some(ref content) => {
                 
@@ -76,6 +82,11 @@ impl Eps {
                     });
                 }
                 
+                // for i in 0..content.animes[self.name as usize].dados.len()
+                // {
+
+                // }
+
                 // for j in 0..content.animes[self.name as usize].dados.len()
                 // {
                 for i in 0..content.animes[self.name as usize].dados[self.number].eps.len()
@@ -87,11 +98,15 @@ impl Eps {
                                                               content.animes[self.name as usize].dados[self.number].eps[i].name.clone(), 
                                                               content.animes[self.name as usize].dados[self.number].eps[i].type_video.clone(),
                                                               )>
+                            // <a onclick=self.link.callback(move |_| Msg::TogglePlay(content.animes[self.name as usize].dados[self.number].eps[i].name.clone(),
+                            //                                                        content.animes[self.name as usize].dados[self.number].eps[i].player.clone(),
+                            //                                                        content.animes[self.name as usize].dados[self.number].eps[i].type_video.clone()))>
                                 // <a class="card-image" style=format!("background-image: url({});", content.animes[self.name as usize].background.clone()) loading="lazy">
                                 // </a>
-                                <a class="card-description">
+                                <a class="list">
                                     <strong><h2>{content.animes[self.name as usize].dados[self.number].eps[i].name.clone().replace(".mkv", " ").replace(".mp4", " ").replace(".avi", " ")}</h2></strong>
                                 </a>
+                                // </a>
                             </AppAnchor>
 
                             </li>
@@ -102,16 +117,15 @@ impl Eps {
 
                 html! {
                     <>
-                        <section class="hero is-medium is-dark is-bold has-background">
+                        <section class="hero is-small is-dark is-bold has-background">
                             <img src=content.animes[self.name as usize].background.clone() class="hero-background is-transparent" style=" filter: blur(6px)"/>
                             <div class="hero-body">
                                 <div class="container">
-                                    <h1 class="title" style="padding-top: 40px;">
+                                    <h2 class="title" style="padding-top: 80px;">
                                         {content.animes[self.name as usize].anime.clone()}
-                                    </h1>
-                                    // <video::Video video=content.animes[self.name as usize].dados[self.number].eps[0].player.clone(), 
-                                    //   type_video=content.animes[self.name as usize].dados[self.number].eps[0].type_video.clone() />
-                                    
+                                    </h2>
+                                    // <video::Video video=&self.current_video, 
+                                    //             type_video=&self.type_video />
                                     <nav style="z-index: 1000">
                                         <div class="navbar-item has-dropdown is-hoverable" style="background-color: rgba(0, 0, 0, 0%); backdrop-filter: blur(10px); border-radius: 8px;">
                                             <a class="navbar-link" style="background-color: rgba(0, 0, 0, 0%); backdrop-filter: blur(10px); border-radius: 18px; color: white;">
@@ -128,7 +142,7 @@ impl Eps {
                                 </div>
                             </div>
                         </section>
-                        <section style="background-color: #25262F;">
+                        <section style="background-color: #25262F; margin-top: 12pc">
                             <ul class="card-list">
                                 {for cards.clone()}
                             </ul>
@@ -199,7 +213,10 @@ impl Component for Eps {
             fetch_task: None,
             json: None,
             error: None,
-            number: 0
+            number: 0,
+            current_video: String::from("none"),
+            link_video: String::from("none"),
+            type_video: String::from("none")
         }
     }
 
@@ -207,6 +224,12 @@ impl Component for Eps {
         use Msg::*;
 
         match msg {
+            TogglePlay(name, link_video, type_video) => {
+                self.current_video = name;
+                self.link_video = link_video;
+                self.type_video = type_video;
+                true
+            }
             GetOption(value) => {
                 self.number = value;
                 true

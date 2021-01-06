@@ -65,7 +65,7 @@ impl LoadPosts {
                             </div>
                                 <div class="content">
                                     <div class="con-cards">
-                                        <a href="http://lowstream.tk/?id=102" target="_blank">
+                                        <a href="http://lowstream.tk/?id=102" class="padding-40px" target="_blank">
                                             <div class="card">
                                                 <h3>{"4.6"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -80,7 +80,7 @@ impl LoadPosts {
                                                 </div>
                                             </div>
                                         </a>
-                                        <a href="http://lowstream.tk/?id=445" target="_blank">
+                                        <a href="http://lowstream.tk/?id=445" class="padding-40px" target="_blank">
                                             <div class="card">
                                             <h3>{"4.1"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -95,7 +95,7 @@ impl LoadPosts {
                                                 </div>
                                             </div>
                                         </a>
-                                        <a href="http://lowstream.tk/?id=77" target="_blank">
+                                        <a href="http://lowstream.tk/?id=77" class="padding-40px" target="_blank">
                                             <div class="card">
                                                 <h3>{"4.8"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -110,7 +110,7 @@ impl LoadPosts {
                                                 </div>
                                             </div>
                                         </a>
-                                        <a href="http://lowstream.tk/?id=321" target="_blank">
+                                        <a href="http://lowstream.tk/?id=321" class="padding-40px" target="_blank">
                                             <div class="card">
                                                 <h3>{"4.9"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -125,7 +125,7 @@ impl LoadPosts {
                                                 </div>
                                             </div>
                                         </a>
-                                        <a href="http://lowstream.tk/?id=146" target="_blank">
+                                        <a href="http://lowstream.tk/?id=146" class="padding-40px" target="_blank">
                                             <div class="card">
                                                 <h3>{"4.2"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -140,7 +140,7 @@ impl LoadPosts {
                                                 </div>
                                             </div>
                                         </a>
-                                        <a href="http://lowstream.tk/?id=390" target="_blank">
+                                        <a href="http://lowstream.tk/?id=390" class="padding-40px" target="_blank">
                                             <div class="card">
                                                 <h3>{"4.9"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -155,7 +155,7 @@ impl LoadPosts {
                                                 </div>
                                             </div>
                                         </a>
-                                        <a href="http://lowstream.tk/?id=345" target="_blank">
+                                        <a href="http://lowstream.tk/?id=345" class="padding-40px" target="_blank">
                                             <div class="card">
                                                 <h3>{"4.6"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -170,7 +170,7 @@ impl LoadPosts {
                                                 </div>
                                             </div>
                                         </a>
-                                        <a  href="http://lowstream.tk/?id=109" target="_blank">
+                                        <a  href="http://lowstream.tk/?id=109" class="padding-40px" target="_blank">
                                             <div class="card">
                                                 <h3>{"4.9"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -185,7 +185,7 @@ impl LoadPosts {
                                                 </div>
                                             </div>
                                         </a>
-                                        <a href="http://lowstream.tk/?id=211" target="_blank">
+                                        <a href="http://lowstream.tk/?id=211" class="padding-40px" target="_blank">
                                             <div class="card">
                                                 <h3>{"4.7"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -209,16 +209,16 @@ impl LoadPosts {
     {
         html!{
             <>
-            <div class="hero-body">
+            // <div class="hero-body">
                                 <div class="container">
                                     <h2 style="color: white; font-size: 200%; font-weight: bold; position: flex; padding-left: 30px; top: 38pc; line-height: 80%;">
                                         {"Ecchi"}
                                     </h2>
                                 </div>
-                            </div>
+                            // </div>
                                 <div class="content">
                                     <div class="con-cards">
-                                        <a href="http://lowstream.tk/?id=197" target="_blank">
+                                        <a href="http://lowstream.tk/?id=197" class="padding-40px" target="_blank">
                                             <div class="card">
                                                 <h3>{"4.6"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -233,7 +233,7 @@ impl LoadPosts {
                                                 </div>
                                             </div>
                                         </a>
-                                        <a href="http://lowstream.tk/?id=399" target="_blank">
+                                        <a href="http://lowstream.tk/?id=399" class="padding-40px" target="_blank">
                                             <div class="card">
                                             <h3>{"4.1"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -248,7 +248,7 @@ impl LoadPosts {
                                                 </div>
                                             </div>
                                         </a>
-                                        <a href="http://lowstream.tk/?id=389" target="_blank">
+                                        <a href="http://lowstream.tk/?id=389" class="padding-40px" target="_blank">
                                             <div class="card">
                                                 <h3>{"4.8"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -263,7 +263,7 @@ impl LoadPosts {
                                                 </div>
                                             </div>
                                         </a>
-                                        <a href="http://lowstream.tk/?id=332" target="_blank">
+                                        <a href="http://lowstream.tk/?id=332" class="padding-40px" target="_blank">
                                             <div class="card">
                                                 <h3>{"4.9"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -278,7 +278,7 @@ impl LoadPosts {
                                                 </div>
                                             </div>
                                         </a>
-                                        <a href="http://lowstream.tk/?id=331" target="_blank">
+                                        <a href="http://lowstream.tk/?id=331" class="padding-40px" target="_blank">
                                             <div class="card">
                                                 <h3>{"4.2"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -293,7 +293,7 @@ impl LoadPosts {
                                                 </div>
                                             </div>
                                         </a>
-                                        <a href="http://lowstream.tk/?id=325" target="_blank">
+                                        <a href="http://lowstream.tk/?id=325" class="padding-40px" target="_blank">
                                             <div class="card">
                                                 <h3>{"4.9"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -326,7 +326,7 @@ impl LoadPosts {
                             </div>
                                 <div class="content">
                                     <div class="con-cards">
-                                        <a href="http://lowstream.tk/?id=109" target="_blank">
+                                        <a href="http://lowstream.tk/?id=109" class="padding-40px" target="_blank">
                                             <div class="card">
                                                 <h3>{"4.6"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -341,7 +341,7 @@ impl LoadPosts {
                                                 </div>
                                             </div>
                                         </a>
-                                        <a href="http://lowstream.tk/?id=390" target="_blank">
+                                        <a href="http://lowstream.tk/?id=390" class="padding-40px" target="_blank">
                                             <div class="card">
                                             <h3>{"4.1"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -356,7 +356,7 @@ impl LoadPosts {
                                                 </div>
                                             </div>
                                         </a>
-                                        <a href="http://lowstream.tk/?id=146" target="_blank">
+                                        <a href="http://lowstream.tk/?id=146" class="padding-40px" target="_blank">
                                             <div class="card">
                                                 <h3>{"4.2"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -371,7 +371,7 @@ impl LoadPosts {
                                                 </div>
                                             </div>
                                         </a>
-                                        <a href="http://lowstream.tk/?id=77" target="_blank">
+                                        <a href="http://lowstream.tk/?id=77" class="padding-40px" target="_blank">
                                             <div class="card">
                                                 <h3>{"4.8"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -386,7 +386,7 @@ impl LoadPosts {
                                                 </div>
                                             </div>
                                         </a>
-                                        <a href="http://lowstream.tk/?id=321" target="_blank">
+                                        <a href="http://lowstream.tk/?id=321" class="padding-40px" target="_blank">
                                             <div class="card">
                                                 <h3>{"4.9"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -401,7 +401,7 @@ impl LoadPosts {
                                                 </div>
                                             </div>
                                         </a>
-                                        <a href="http://lowstream.tk/?id=135" target="_blank">
+                                        <a href="http://lowstream.tk/?id=135" class="padding-40px" target="_blank">
                                             <div class="card">
                                                 <h3>{"4.9"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -416,7 +416,7 @@ impl LoadPosts {
                                                 </div>
                                             </div>
                                         </a>
-                                        <a href="http://lowstream.tk/?id=302" target="_blank">
+                                        <a href="http://lowstream.tk/?id=302" class="padding-40px" target="_blank">
                                             <div class="card">
                                                 <h3>{"4.2"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -431,7 +431,7 @@ impl LoadPosts {
                                                 </div>
                                             </div>
                                         </a>
-                                        <a href="http://lowstream.tk/?id=339" target="_blank">
+                                        <a href="http://lowstream.tk/?id=339" class="padding-40px" target="_blank">
                                             <div class="card">
                                                 <h3>{"4.9"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -446,7 +446,7 @@ impl LoadPosts {
                                                 </div>
                                             </div>
                                         </a>
-                                        <a href="http://lowstream.tk/?id=44" target="_blank">
+                                        <a href="http://lowstream.tk/?id=44" class="padding-40px" target="_blank">
                                             <div class="card">
                                                 <h3>{"4.9"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -461,7 +461,7 @@ impl LoadPosts {
                                                 </div>
                                             </div>
                                         </a>
-                                        <a href="http://lowstream.tk/?id=30" target="_blank">
+                                        <a href="http://lowstream.tk/?id=30" class="padding-40px" target="_blank">
                                             <div class="card">
                                                 <h3>{"4.9"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -476,7 +476,7 @@ impl LoadPosts {
                                                 </div>
                                             </div>
                                         </a>
-                                        <a href="http://lowstream.tk/?id=318" target="_blank">
+                                        <a href="http://lowstream.tk/?id=318" class="padding-40px" target="_blank">
                                             <div class="card">
                                                 <h3>{"4.9"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -530,10 +530,10 @@ impl LoadPosts {
                             <li class="card" style="background: black">
                             <AppAnchor route=AppRoute::Eps(i as u64)>
                                 <a class="card-image" style=format!("background-image: url({});", content.animes[i].background.clone()) loading="lazy">
-                                </a>
-                                <a class="card-description">
-                                    <strong><h2>{content.animes[i].anime.clone()}</h2></strong>
-                                    <p>{"Assistir agora"}</p>
+                                    <a class="card-description">
+                                        <strong><h2>{content.animes[i].anime.clone()}</h2></strong>
+                                        <p>{"Assistir agora"}</p>
+                                    </a>
                                 </a>
                             </AppAnchor>
                             </li>
@@ -544,13 +544,13 @@ impl LoadPosts {
                 html! {
                     <>
                         <carousel::Model background=self.export_background()  />
-                        <section style="background-color: #25262F; height: 100%">
+                        <section style="background-color: #25262F;">
                         <div class="mx-auto" style="width: 250px;">
                                 <div class="field has-addons" style="padding-top: 80px;">
                                     <input class="input is-rounded" type="text" oninput=self.link.callback(|input: InputData| Msg::Payload(input.value)) value=&self.payload placeholder="Encontre seu anime"/>
                                 </div>
                             </div>
-                            <ul class="card-list" >
+                            <ul class="card-list con-cards" >
                                 {for cards.clone()}
                             </ul>
                             {self.content()}
@@ -570,8 +570,8 @@ impl LoadPosts {
         if self.fetch_task.is_some() {
             html! { 
                 <>
-                <carousel::Model background=self.export_background()  />
-                        <section style="background-color: #25262F; height: 100%">
+                <carousel::Model background=vec!["#25262F".to_string()]  />
+                        <section style="background-color: #25262F;">
                         <div class="mx-auto" style="width: 250px;">
                             <div class="control is-loading field has-addons" style="padding-top: 80px;">
                                 <input class="input is-rounded" type="text" oninput=self.link.callback(|input: InputData| Msg::Payload(input.value)) value=&self.payload placeholder="Carregando"/>
