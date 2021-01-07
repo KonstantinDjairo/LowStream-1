@@ -91,9 +91,7 @@ Rust, é necessária a instalção.
   cargo build --target wasm32-unknown-unknown
 
   ```
-  Muita atencao aqui,fique atento ao nome do arquivo em wasm que ele vai 
-  gerar pra poder passar como parametro pro proximo comando (appname.wasm substitua por LowStream.wasm).
-  
+   
   Esse comando irá gerar um conjunto de arquivos
 contendo o WebAssembly compilado do seu aplicativo e um
 wrapper JavaScript que carregará o binário Wasm e o
@@ -101,7 +99,7 @@ executará.
 
 
   ```
-  wasm-bindgen --target web --out-dir static --out-name wasm target/wasm32-unknown-unknown/debug/appname.wasm --no-typescript
+  wasm-bindgen --target web --out-dir static --out-name wasm target/wasm32-unknown-unknown/debug/LowStream.wasm --no-typescript
   ```
   O comando abaixo vai tornar o servidor ativo, para 
 que seu acesso possa ser possibilitado.
