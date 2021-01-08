@@ -6,3 +6,4 @@ pub mod page_not_found;
 pub mod search;
 pub mod player;
 pub mod video;
+pub mod nsfw;

@@ -1,5 +1,5 @@
 use yew::prelude::*;
-
+// use ybc::{Section};
 #[derive(Clone, Debug, Eq, PartialEq, Properties)]
 pub struct Props {
     pub ep: String,
@@ -41,7 +41,7 @@ impl Component for Player {
 
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
         match msg
-        {
+        { 
             Msg::ActionBottom => 
             {
                 self.notification = !self.notification;
@@ -57,11 +57,11 @@ impl Component for Player {
     fn view(&self) -> Html {
         html! {
             <>
-                <section class="hero is-medium is-dark has-background" style="padding-top: 30px;">
+                <section class="hero is-medium is-dark has-background">
                     <img src=self.background.clone() class="hero-background is-transparent" style="filter: blur(8px)"/>
                         <div class="hero-body">
                             <div class="container">
-                                <h1 class="title">
+                                <h1 class="title" style="padding-top: 30px;">
                                     {self.name.clone()
                                         .replace("%20", " ")
                                         .replace("%5B", " ")
@@ -78,7 +78,7 @@ impl Component for Player {
                                         .replace(".avi", " ")
                                     }
                                 </h1>
-                                {self.notification()}
+                                // {self.notification()}
                                 // <h2 class="subtitle">{"Final Season"} <a href="/router/authors/1443460666139885527" class="has-text-weight-semibold">
                                 //     {": Ep. 1"}
                                 //     </a>
@@ -87,7 +87,7 @@ impl Component for Player {
                                 //     {"Ação"}
                                 // </span>
                             <div class="context has-text-centered" style="padding-top: 40px; padding-bottom: 40px;">
-                                <video controls=true autoplay="" width="800" height="550" style="border-radius: 18px; box-shadow: 0px 0px 18px rgba(0, 0, 0, 70%)">
+                                <video id="player" preload="metadata" controls=true autoplay="" width="800" height="550" style="border-radius: 18px; box-shadow: 0px 0px 18px rgba(0, 0, 0, 70%)">
                                     <source src=self.ep.clone() type=self.type_video.clone()/>
                                 </video>
                                 <div class="notransition" style="background-color: rgba(0, 0, 0, 50%); backdrop-filter: blur(10px); color: white; display: inline-block;
