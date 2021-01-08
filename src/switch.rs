@@ -6,6 +6,8 @@ use yew_router::{components::RouterAnchor, prelude::*, switch::Permissive};
 
 #[derive(Clone, Debug, Switch)]
 pub enum AppRoute {
+    #[to = "/nsfw/"]
+    Nsfw,
     #[to = "/animes/"]
     Animes,
     #[to = "/?id={id}"]

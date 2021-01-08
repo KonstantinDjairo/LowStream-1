@@ -1,4 +1,5 @@
 #![recursion_limit="2048"]
+
 use yew::prelude::*;
 use yew_router::{route::Route, switch::Permissive};
 
@@ -11,7 +12,7 @@ use rand::prelude::*;
 mod pages;
 use pages::{
     home::Home, page_not_found::PageNotFound, player::Player, post::Eps, posts::LoadPosts,
-    search::Search,
+    search::Search, nsfw::Nsfw
 };
 
 mod data;
@@ -83,7 +84,7 @@ impl Model {
 
         let active_class = if navbar { "is-active" } else { "" };
         let mut rng = rand::thread_rng();
-        let number = rng.gen_range(0, 420);
+        let number = rng.gen_range(0, 487);
 
         html! {
                 <>
@@ -93,20 +94,20 @@ impl Model {
                     <img src="https://www.pngkey.com/png/full/308-3085243_logo-rust-programming-language-logo.png" width="28" height="28" alt="LowStream" style="position: absolute; top: 8px;"/>
                     <h3 style="position: absolute; top: 8px; right: -120px"><strong>{"LowStream"}</strong></h3>
                     </AppAnchor>
-                    <div class="navbar-burger" data-target="navbarExampleTransparentExample" onclick=link.callback(|_| Msg::ToggleNav) style="position: absolute; top: 8px; right: 16px; background-color: black; border-radius: 100%">
+                    <div class=classes!("navbar-burger", active_class) data-target="navbarExampleTransparentExample" onclick=link.callback(|_| Msg::ToggleNav) style="position: absolute; top: 8px; right: 16px; background-color: black; border-radius: 100%">
                     <span></span>
                     <span></span>
                     <span></span>
                     </div>
                 </div>
 
-                <div id="navbarExampleTransparentExample" class=classes!("navbar-menu", active_class) style="position: absolute; top: 5px; right: 16px; background-color: rgb(0, 0, 0, 100%); border-radius: 28px;">
+                <div id="navbarExampleTransparentExample" class=classes!("navbar-menu small_screen", active_class)>
                     <div class="navbar-start">
-                    <a class=classes!("navbar-burger", active_class) onclick=link.callback(|_| Msg::ToggleNav)>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </a>
+                    // <a class=classes!("navbar-burger", active_class) onclick=link.callback(|_| Msg::ToggleNav)>
+                    //     <span></span>
+                    //     <span></span>
+                    //     <span></span>
+                    // </a>
                     <AppAnchor classes="navbar-item" route=AppRoute::Home>
                             <a onclick=link.callback(|_| Msg::ToggleNav) style="background-color: rgba(0, 0, 0, 0%); color: white">{ "Home" }</a>
                     </AppAnchor>
@@ -116,8 +117,8 @@ impl Model {
                     <AppAnchor classes="navbar-item" route=AppRoute::Home>
                             <a onclick=link.callback(|_| Msg::ToggleNav) style="background-color: rgba(0, 0, 0, 0%); color: gray">{ "Filmes" }</a>
                     </AppAnchor>
-                    <AppAnchor classes="navbar-item" route=AppRoute::Home>
-                            <a onclick=link.callback(|_| Msg::ToggleNav) style="background-color: rgba(0, 0, 0, 0%); color: gray">{ "NSFW" }</a>
+                    <AppAnchor classes="navbar-item" route=AppRoute::Nsfw>
+                            <a onclick=link.callback(|_| Msg::ToggleNav) style="background-color: rgba(0, 0, 0, 0%); color: white">{ "NSFW" }</a>
                     </AppAnchor>
                     <div class="navbar-item has-dropdown is-hoverable" style="background-color: rgba(0, 0, 0, 0%); backdrop-filter: blur(10px);">
                         <a class="navbar-link" style="color: white">
@@ -161,6 +162,9 @@ impl Model {
 
     fn switch(switch: PublicUrlSwitch) -> Html {
         match switch.route() {
+            AppRoute::Nsfw => {
+                html! { <Nsfw  /> }
+            }
             AppRoute::Animes => {
                 html! { <LoadPosts  /> }
             }
