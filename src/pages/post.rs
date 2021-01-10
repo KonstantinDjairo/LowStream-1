@@ -235,7 +235,7 @@ impl Component for Eps {
                 true
             }
             GetInfo => {
-                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/fae1d7c130ae8ecf1110f1df809963a9a9639bdd/tester.json")
+                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/23a1999bed331316c4f19709f523fe589f9baae0/tester.json")
                     .body(Nothing)
                     .expect("Não foi possível efetuar o request.");
                 let callback =

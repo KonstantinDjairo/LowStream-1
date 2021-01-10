@@ -84,7 +84,7 @@ impl LoadPosts {
                                         </AppAnchor>
                                         </div>
                                         <div class="padding-40px">
-                                    <AppAnchor route=AppRoute::Eps(449)>
+                                    <AppAnchor route=AppRoute::Eps(450)>
                                             <div class="card">
                                             <h3>{"4.1"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -100,7 +100,7 @@ impl LoadPosts {
                                         </AppAnchor>
                                         </div>
                                         <div class="padding-40px">
-                                    <AppAnchor route=AppRoute::Eps(77)>
+                                    <AppAnchor route=AppRoute::Eps(78)>
                                             <div class="card">
                                                 <h3>{"4.8"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -116,7 +116,7 @@ impl LoadPosts {
                                         </AppAnchor>
                                         </div>
                                         <div class="padding-40px">
-                                    <AppAnchor route=AppRoute::Eps(323)>
+                                    <AppAnchor route=AppRoute::Eps(324)>
                                             <div class="card">
                                                 <h3>{"4.9"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -148,7 +148,7 @@ impl LoadPosts {
                                         </AppAnchor>
                                         </div>
                                         <div class="padding-40px">
-                                    <AppAnchor route=AppRoute::Eps(392)>
+                                    <AppAnchor route=AppRoute::Eps(393)>
                                             <div class="card">
                                                 <h3>{"4.9"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -247,7 +247,7 @@ impl LoadPosts {
                                         </AppAnchor>
                                         </div>
                                         <div class="padding-40px">
-                                    <AppAnchor route=AppRoute::Eps(401)>
+                                    <AppAnchor route=AppRoute::Eps(402)>
                                             <div class="card">
                                             <h3>{"4.1"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -263,7 +263,7 @@ impl LoadPosts {
                                         </AppAnchor>
                                         </div>
                                         <div class="padding-40px">
-                                    <AppAnchor route=AppRoute::Eps(391)>
+                                    <AppAnchor route=AppRoute::Eps(392)>
                                             <div class="card">
                                                 <h3>{"4.8"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -279,7 +279,7 @@ impl LoadPosts {
                                         </AppAnchor>
                                         </div>
                                         <div class="padding-40px">
-                                    <AppAnchor route=AppRoute::Eps(334)>
+                                    <AppAnchor route=AppRoute::Eps(335)>
                                             <div class="card">
                                                 <h3>{"4.9"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -295,7 +295,7 @@ impl LoadPosts {
                                         </AppAnchor>
                                         </div>
                                         <div class="padding-40px">
-                                    <AppAnchor route=AppRoute::Eps(333)>
+                                    <AppAnchor route=AppRoute::Eps(334)>
                                             <div class="card">
                                                 <h3>{"4.2"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -311,7 +311,7 @@ impl LoadPosts {
                                         </AppAnchor>
                                         </div>
                                         <div class="padding-40px">
-                                    <AppAnchor route=AppRoute::Eps(327)>
+                                    <AppAnchor route=AppRoute::Eps(328)>
                                             <div class="card">
                                                 <h3>{"4.9"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -361,7 +361,7 @@ impl LoadPosts {
                                         </AppAnchor>
                                         </div>
                                         <div class="padding-40px">
-                                    <AppAnchor route=AppRoute::Eps(392)>
+                                    <AppAnchor route=AppRoute::Eps(393)>
                                             <div class="card">
                                             <h3>{"4.1"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -409,7 +409,7 @@ impl LoadPosts {
                                         </AppAnchor>
                                         </div>
                                         <div class="padding-40px">
-                                    <AppAnchor route=AppRoute::Eps(323)>
+                                    <AppAnchor route=AppRoute::Eps(324)>
                                             <div class="card">
                                                 <h3>{"4.9"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -441,7 +441,7 @@ impl LoadPosts {
                                         </AppAnchor>
                                         </div>
                                         <div class="padding-40px">
-                                    <AppAnchor route=AppRoute::Eps(304)>
+                                    <AppAnchor route=AppRoute::Eps(305)>
                                             <div class="card">
                                                 <h3>{"4.2"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -457,7 +457,7 @@ impl LoadPosts {
                                         </AppAnchor>
                                         </div>
                                         <div class="padding-40px">
-                                    <AppAnchor route=AppRoute::Eps(341)>
+                                    <AppAnchor route=AppRoute::Eps(342)>
                                             <div class="card">
                                                 <h3>{"4.9"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -505,7 +505,7 @@ impl LoadPosts {
                                         </AppAnchor>
                                         </div>
                                         <div class="padding-40px">
-                                    <AppAnchor route=AppRoute::Eps(320)>
+                                    <AppAnchor route=AppRoute::Eps(321)>
                                             <div class="card">
                                                 <h3>{"4.9"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -555,7 +555,7 @@ impl LoadPosts {
                                         </AppAnchor>
                                         </div>
                                         <div class="padding-40px">
-                                    <AppAnchor route=AppRoute::Eps(350)>
+                                    <AppAnchor route=AppRoute::Eps(351)>
                                             <div class="card">
                                             <h3>{"4.1"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -587,7 +587,7 @@ impl LoadPosts {
                                         </AppAnchor>
                                         </div>
                                         <div class="padding-40px">
-                                    <AppAnchor route=AppRoute::Eps(439)>
+                                    <AppAnchor route=AppRoute::Eps(440)>
                                             <div class="card">
                                                 <h3>{"4.8"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -603,7 +603,7 @@ impl LoadPosts {
                                         </AppAnchor>
                                         </div>
                                         <div class="padding-40px">
-                                    <AppAnchor route=AppRoute::Eps(252)>
+                                    <AppAnchor route=AppRoute::Eps(253)>
                                             <div class="card">
                                                 <h3>{"4.9"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -619,7 +619,7 @@ impl LoadPosts {
                                         </AppAnchor>
                                         </div>
                                         <div class="padding-40px">
-                                    <AppAnchor route=AppRoute::Eps(375)>
+                                    <AppAnchor route=AppRoute::Eps(376)>
                                             <div class="card">
                                                 <h3>{"4.9"}</h3>
                                                 <i class="bx bx-heart"></i>
@@ -814,7 +814,7 @@ impl Component for LoadPosts {
                 }
             }
             GetInfo => {
-                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/d8912a0733e758fbc89324b16b9cea44/raw/83763c6dcf830e56fa6c2371ff744615399053de/cards.json")
+                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/d8912a0733e758fbc89324b16b9cea44/raw/a0ee97ea423b96049ddb58126fece4a03effc703/cards.json")
                     .body(Nothing)
                     .expect("Não foi possível efetuar o request.");
                 let callback =
