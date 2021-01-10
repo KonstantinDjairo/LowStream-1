@@ -324,20 +324,11 @@
         }
     }
     
-    @media screen and (max-width: 1023px) {
-        .navbar.is-fixed-top .navbar-menu,
-        .navbar.is-fixed-top-touch .navbar-menu .navbar-burger .navbar .is-fixed-top .navbar-menu,
-        .navbar.is-fixed-top-touch .navbar-menu .navbar-burger .close_animation {
-            -webkit-overflow-scrolling: touch;
-            max-height: calc(65.2vh - 3.25rem);
-            animation: marquee_close .80s cubic-bezier(0.42, 0, 0.25, 0.96);
-            /* width: 100px; */
-            /* overflow: auto; */
-            /* width: 0px; */
-            overflow: hidden;
-            scroll-behavior: smooth;
-            /* overflow: scroll; */
-        }
+    .buttons {
+        align-items: center;
+        display: flex;
+        flex-wrap: inherit;
+        justify-content: flex-start;
     }
     
     @media screen and (max-width: 1023px) {
@@ -346,11 +337,11 @@
         .navbar.is-fixed-top-touch .navbar-menu .is_active .navbar-burger .open_animation {
             -webkit-overflow-scrolling: touch;
             max-height: calc(65.2vh - 3.25rem);
-            animation: marquee_open .80s cubic-bezier(0.42, 0, 0.25, 0.96);
+            animation: marquee_open .50s cubic-bezier(0.42, 0, 0.25, 0.96);
             /* width: 100px; */
             /* overflow: auto; */
             /* width: 0px; */
-            overflow: hidden;
+            overflow-y: scroll;
             scroll-behavior: smooth;
             /* overflow: scroll; */
         }
@@ -518,4 +509,34 @@
     a.navbar-item:hover {
         background-color: #404040;
         color: #ffffff;
+    }
+    
+    .notification {
+        background-color: #f5f5f5;
+        border-radius: 8px;
+        position: relative;
+        padding: 1.25rem 2.5rem 1.25rem 1.5rem;
+    }
+    
+    .notification.is-dark {
+        background-color: #36363626;
+        backdrop-filter: blur(10px);
+        color: #fff;
+    }
+    
+    .cover-image-header__animes {
+        position: absolute;
+        TOP: 100px;
+        bottom: 0;
+        /* bottom: -2rem; */
+        left: 0;
+        width: 100%;
+        height: 140%;
+        background-image: linear-gradient(180deg, #25262f00, #25262fd2 70%, #25262f calc(100% - 2rem));
+        opacity: 1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex-direction: column;
+        padding: 0 5rem 5rem;
     }
