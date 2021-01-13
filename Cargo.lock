@@ -6,6 +6,8 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "console_error_panic_hook",
+ "enclose",
+ "futures",
  "log",
  "rand",
  "serde",
@@ -108,6 +110,12 @@ dependencies = [
  "cfg-if 0.1.10",
  "wasm-bindgen",
 ]
+
+[[package]]
+name = "enclose"
+version = "1.1.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1056f553da426e9c025a662efa48b52e62e0a3a7648aa2d15aeaaf7f0d329357"
 
 [[package]]
 name = "fnv"

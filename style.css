@@ -288,8 +288,8 @@
         }
         100% {
             right: 16px;
-            width: 241.64px;
-            height: 453px;
+            width: 247.64px;
+            height: 389.39px;
         }
     }
     
@@ -301,7 +301,7 @@
         }
         0% {
             right: 16px;
-            width: 241.64px;
+            width: 264.64px;
             height: 453px;
         }
     }
@@ -337,11 +337,12 @@
         .navbar.is-fixed-top-touch .navbar-menu .is_active .navbar-burger .open_animation {
             -webkit-overflow-scrolling: touch;
             max-height: calc(65.2vh - 3.25rem);
-            animation: marquee_open .50s cubic-bezier(0.42, 0, 0.25, 0.96);
+            animation: marquee_open .30s cubic-bezier(0.42, 0, 0.25, 0.96);
             /* width: 100px; */
             /* overflow: auto; */
             /* width: 0px; */
             overflow-y: scroll;
+            overflow-x: hidden;
             scroll-behavior: smooth;
             /* overflow: scroll; */
         }
@@ -539,4 +540,14 @@
         align-items: center;
         flex-direction: column;
         padding: 0 5rem 5rem;
+    }
+    
+    .text-in-square {
+        position: relative;
+        right: 57px;
+        z-index: 10;
+        bottom: 12px;
+        font-size: x-large;
+        color: black;
+        font-weight: bolder;
     }

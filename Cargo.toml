@@ -8,6 +8,7 @@ edition = "2018"
 # instant = { version = "0.1", features = ["wasm-bindgen"] }
 # lipsum = "0.7"
 log = "0.4"
+futures = "0.3"
 rand = { version = "0.7", features = ["small_rng", "wasm-bindgen"] }
 serde = "1.0.118"
 serde_json="1.0.60"
@@ -15,6 +16,7 @@ wasm-logger = "0.2"
 yew = "0.17.4"
 yew-router = "0.14.0"
 yewtil = "0.3.2"
+enclose = "*"
 wasm-bindgen = "0.2.63"
 anyhow = "1.0.35"
 console_error_panic_hook = { version = "0.1.6", optional = true }
