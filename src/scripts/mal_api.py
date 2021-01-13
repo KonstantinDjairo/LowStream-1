@@ -4,11 +4,13 @@ import os, sys
 from time import sleep
 import traceback
 from mal import AnimeSearch
+from mal import Anime
+
 
 # função faz tudo 
 def AnimesSynopsis():
     lista_animes = []
-    id = 0
+    id = 1
     erros = 0
     # tenta entrar no json pra pegar os animes - nomes 
     try:
@@ -21,37 +23,55 @@ def AnimesSynopsis():
         print("verifica o arquivo ou nome e saia daqui")
         # sair
         sys.exit()
+    print(">>>>>>>>>>>>>> aguarde <<<<<<<<<<<<<")
+    print("primeira request demora mesmo")
     # for na lista  de animes do json
     for  nomes_animes in dados_json.keys():
         # tente pegar os dados
         try:
             # faz a requests com o paramentro nome do animes que veio do json
             search = AnimeSearch(nomes_animes)
-            # printa o resultado, pra ver so
-            print(search.results[0].title)
-            # printa a descrição
-            print(search.results[0].synopsis) # Get title of first result
-            lista_animes.append({"id": id, "title": search.results[0].title, "synopsis": search.results[0].synopsis})
+            # usa o paramentro pra fazer outra request
+            anime = Anime(search.results[0].mal_id)
+            # hmmmmmmmmmmmm
+            print("-____________________________________________________________________________________-")
+            print(id)
+            print(f"IDs: {anime.mal_id} == {search.results[0].mal_id}")
+            print("nome: ", anime.title)
+            print("sinopse: ", anime.synopsis)
+            print("rank: ", anime.rank)
+            print("popularidade: ", anime.popularity)
+            print("genero: ", anime.genres)
+            print("studio: ", anime.studios)
+            print("premiações: ", anime.premiered)
+            print("score: ", anime.scored_by)
+            # adiciona na lista
+            lista_animes.append({"id": id, "title": anime.title, "synopsis": anime.synopsis,
+                "rank": anime.rank, "popularity": anime.popularity, "genres": anime.genres,
+                "studios": anime.studios, "premiered": anime.premiered, "scored_by": anime.scored_by })
             # coloca os id
             id += 1
-        # tornça pra nao da erros
+        # torça pra nao da erros
         except:
             # hmm
             erros += 1
             print(traceback.format_exc())
             print(f" erros: {erros}")
+            print("puta merda, ou é minha net de traquinagem ou alguma outra merda deu, le o erro ai lkjkhj")
+            print("espera 10 segundos, se nao vai que")
+            sleep(5)
     # retorna os dados prontos
     return lista_animes
 
 
-# pai é chato
+# praks bro
 if __name__ == "__main__":
     # pega os dados da função que faz os trabalho todo
     dados = AnimesSynopsis()
-    print("hmmmmmmmmmmm")
+    print("tudo pronto, agora vai salvar")
     # salvo no json
     with open("AnimesDesc.json", "w") as json_file:
         # faz virar objeto do python
-        json.dump(dados, json_file, indent=4)
+        json.dump(dados, json_file, indent = 4)
 
 # feito por Mateus Rodrigues         
