@@ -10,6 +10,7 @@ macro_rules! classes {
 }
 use rand::prelude::*;
 mod pages;
+mod components;
 use pages::{
     home::Home, page_not_found::PageNotFound, player::Player, post::Eps, posts::LoadPosts,
     search::Search, nsfw::Nsfw
@@ -88,7 +89,7 @@ impl Model {
 
         html! {
                 <>
-            <nav class="navbar is-black is-transparent is-fixed-top" style="background-color: rgba(0, 0, 0, 50%); backdrop-filter: blur(10px);">
+            <nav class="navbar is-black is-transparent is-fixed-top parent" style="background-color: rgba(0, 0, 0, 50%); backdrop-filter: blur(10px);">
                 <div class="navbar-brand is-rounded is-dark">
                     <AppAnchor classes="navbar-item" route=AppRoute::Home>
                     <img src="https://www.pngkey.com/png/full/308-3085243_logo-rust-programming-language-logo.png" width="28" height="28" alt="LowStream" style="position: absolute; top: 8px;"/>
