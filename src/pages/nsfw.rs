@@ -7,7 +7,7 @@ use yew::{
     services::fetch::{FetchService, FetchTask, Request, Response},
 };
 
-use crate::pages::carousel;
+use crate::components::carousel;
 
 // const CAROUSEL_DELAY_MS: u64 = 15000;
 
@@ -161,7 +161,7 @@ impl Component for Nsfw {
 
         match msg {
             GetInfo => {
-                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/716b7a3f3315c607ca26fda8fdfd6005/raw/ab9baad3cbfd74a65b9717add0bf07f885843211/nsfw.json")
+                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/716b7a3f3315c607ca26fda8fdfd6005/raw/55c4fa6d609778c57d8c0ac2b669053c18a30a1f/nsfw.json")
                     .body(Nothing)
                     .expect("Não foi possível efetuar o request.");
                 let callback =

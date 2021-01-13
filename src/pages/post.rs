@@ -6,11 +6,9 @@ use yew::{
     services::fetch::{FetchService, FetchTask, Request, Response},
 };
 
-// mod components;
 use crate::{
     switch::{AppAnchor, AppRoute},
-    pages::{carousel, video}
-    // components::video
+    components::{carousel, video, box_players},
 };
 
 #[derive(Deserialize, Debug, Clone)]
@@ -43,7 +41,8 @@ pub enum Msg {
     ReceiveResponse(Result<Struture, anyhow::Error>),
     GetOption(usize),
     TogglePlay(String, String, String),
-    Close
+    Close,
+    ViewElements(usize)
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, Properties)]
@@ -63,7 +62,8 @@ pub struct Eps
     link_video: String,
     type_video: String,
     play: Html,
-    close: bool
+    close: bool,
+    change: usize
 }
 
 impl Eps {
@@ -91,6 +91,8 @@ impl Eps {
     fn view_json(&self) -> Html {
         let mut cards: Vec<Html> = Vec::new();
         let mut options: Vec<Html> = Vec::new();
+        let mut buttons: Vec<Html> = Vec::new();
+        let mut count: u64 = 0;
         // let mut type_video
         match self.json {
             Some(ref content) => {
@@ -103,21 +105,42 @@ impl Eps {
                         </a>
                     });
                 }
-                
-                // for i in 0..content.animes[self.name as usize].dados.len()
-                // {
 
-                // }
+                for i in 1..content.animes[self.name as usize].dados[self.number].eps.len()
+                {
+                    if content.animes[self.name as usize].dados[self.number].eps.len().rem_euclid(i) == 0
+                    {
+                        for j in 0..content.animes[self.name as usize].dados[self.number].eps.len().div_euclid(25)
+                        {
+                            buttons.push(html!{
+                                <button class="button is-black" onclick=self.link.callback(move |_| Msg::ViewElements(j))>
+                                    {format!("{}", j + 1)}
+                                </button>
+                            });
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        for j in 0..content.animes[self.name as usize].dados[self.number].eps.len().div_euclid(25) + i.rem_euclid(25)
+                        {
+                            buttons.push(html!{
+                                <button class="button is-black" onclick=self.link.callback(move |_| Msg::ViewElements(j))>
+                                    {format!("{}", j + 1)}
+                                </button>
+                            });
+                        }
+                        break;
+                    }
+                }
 
-                // for j in 0..content.animes[self.name as usize].dados.len()
-                // {
-                for i in 0..content.animes[self.name as usize].dados[self.number].eps.len()
+                for i in self.change * 25..content.animes[self.name as usize].dados[self.number].eps.len()
                 {
                         let video = content.animes[self.name as usize].dados[self.number].eps[i].name.clone();
                         let player = content.animes[self.name as usize].dados[self.number].eps[i].player.clone();
                         let type_video = content.animes[self.name as usize].dados[self.number].eps[i].type_video.clone();
                         cards.push(html!{
-                            <li class="card" style="background: black; min-width: auto">
+                            <li style="background: black; min-width: auto">
                             // <AppAnchor route=AppRoute::Player(content.animes[self.name as usize].dados[self.number].eps[i].player.clone(), 
                             //                                   content.animes[self.name as usize].background.clone(), 
                             //                                   content.animes[self.name as usize].dados[self.number].eps[i].name.clone(), 
@@ -126,7 +149,8 @@ impl Eps {
                             <a onclick=self.link.callback(move |_| Msg::TogglePlay(video.clone(), player.clone(), type_video.clone()))>
                                 // <a class="card-image" style=format!("background-image: url({});", content.animes[self.name as usize].background.clone()) loading="lazy">
                                 // </a>
-                                <a class="list">
+                                <a>
+                                    <h1 class="text-in-square">{format!("{}", i + 1)}</h1>
                                     <strong><h2>{content.animes[self.name as usize].dados[self.number].eps[i].name.clone().replace(".mkv", " ").replace(".mp4", " ").replace(".avi", " ")}</h2></strong>
                                 </a>
                                 </a>
@@ -134,6 +158,11 @@ impl Eps {
 
                             </li>
                         });
+                        count += 1;
+                        if count >= 25
+                        {
+                            break;
+                        }
                 }
                 // }
 
@@ -148,13 +177,13 @@ impl Eps {
                         </div>
                             <div class="hero-body">
                                 <div class="container">
-                                    <h2 class="title" style="padding-top: 80px;">
+                                    <h2 class="title" style="padding-top: 80px; text-shadow: 1px 1px #363636;">
                                         {content.animes[self.name as usize].anime.clone()}
                                     </h2>
                                     {self.notification()}
                                     <nav style="z-index: 1000">
-                                        <div class="navbar-item has-dropdown is-hoverable" style="background-color: rgba(0, 0, 0, 0%); backdrop-filter: blur(10px); border-radius: 8px;">
-                                            <a class="navbar-link" style="background-color: #36363626; backdrop-filter: blur(10px); border-radius: 18px; color: white;">
+                                        <div class="navbar-item has-dropdown is-hoverable" style="background-color: rgba(0, 0, 0, 10%); backdrop-filter: blur(10px); border-radius: 8px;">
+                                            <a class="navbar-link" style="background-color: #36363600;color: white;">
                                                 {"Opções"}
                                             </a>
                                             <div class="navbar-dropdown is-up is-boxed" style="background-color: rgba(0, 0, 0);">
@@ -166,9 +195,12 @@ impl Eps {
                             </div>
                         </section>
                         <section style="background-color: #25262F; margin-top: 12pc">
-                            <ul class="card-list">
+                            <div class="con-cards">
+                                {for buttons.clone()}
+                            </div>
+                            <ol class="gradient-list" style="margin-left: 30px; margin-right: 30px;">
                                 {for cards.clone()}
-                            </ul>
+                            </ol>
                             // <h2 style="padding-bottom: 400px">{"uwu"}</h2>
                         </section>
                     </>
@@ -241,7 +273,8 @@ impl Component for Eps {
             link_video: String::new(),
             type_video: String::new(),
             play: html!{},
-            close: false
+            close: false,
+            change: 0
         }
     }
 
@@ -249,6 +282,10 @@ impl Component for Eps {
         use Msg::*;
 
         match msg {
+            ViewElements(number) => {
+                self.change = number;
+                true
+            }
             Close => {
                 self.close = false;
                 self.play = html!{};
@@ -274,76 +311,7 @@ impl Component for Eps {
                                         <header class="card-header">
                                             <p class="card-header-title" style="color: white"><span class="icon"><i aria-hidden="true" class="fa fa-play-circle"></i></span>{" Play in android "}<span class="icon"></span></p>
                                         </header>
-                                        <div class="card-content">
-                                            <div >
-                                                <div class="columns is-mobile is-multiline has-text-centered">
-                                                    <div class="column">
-                                                        <p class="heading">
-                                                            <a href=format!("iina://weblink?url={}",self.link_video.clone())>
-                                                                <figure class="image" style="max-width: 40px; height: auto; margin: 0px auto;"><img src="https://cdn.jsdelivr.net/gh/Aicirou/goindex-theme-acrou@v2.0.8/dist/images/player/iina.png" class="icon"/></figure>
-                                                            </a>
-                                                        </p>
-                                                        <p>{"IINA"}</p>
-                                                    </div>
-                                                    <div class="column">
-                                                        <p class="heading">
-                                                            <a href=format!("potplayer://{}",self.link_video.clone())>
-                                                                <figure class="image" style="max-width: 40px; height: auto; margin: 0px auto;"><img src="https://cdn.jsdelivr.net/gh/Aicirou/goindex-theme-acrou@v2.0.8/dist/images/player/potplayer.png" class="icon"/></figure>
-                                                            </a>
-                                                        </p>
-                                                        <p>{"PotPlayer"}</p>
-                                                    </div>
-                                                    <div class="column">
-                                                        <p class="heading">
-                                                            <a href=format!("vlc://{}",self.link_video.clone())>
-                                                                <figure class="image" style="max-width: 40px; height: auto; margin: 0px auto;"><img src="https://cdn.jsdelivr.net/gh/Aicirou/goindex-theme-acrou@v2.0.8/dist/images/player/vlc.png" class="icon"/></figure>
-                                                            </a>
-                                                        </p>
-                                                        <p>{"VLC"}</p>
-                                                    </div>
-                                                    <div class="column">
-                                                        <p class="heading">
-                                                            <a href=format!("thunder://{}",self.link_video.clone())>
-                                                                <figure class="image" style="max-width: 40px; height: auto; margin: 0px auto;"><img src="https://cdn.jsdelivr.net/gh/Aicirou/goindex-theme-acrou@v2.0.8/dist/images/player/thunder.png" class="icon"/></figure>
-                                                            </a>
-                                                        </p>
-                                                        <p>{"Thunder"}</p>
-                                                    </div>
-                                                    <div class="column">
-                                                        <p class="heading">
-                                                            <a href="javascript:alert(&quot;暂未实现&quot;)">
-                                                                <figure class="image" style="max-width: 40px; height: auto; margin: 0px auto;"><img src="https://cdn.jsdelivr.net/gh/Aicirou/goindex-theme-acrou@v2.0.8/dist/images/player/aria2.png" class="icon"/></figure>
-                                                            </a>
-                                                        </p>
-                                                        <p>{"Aria2"}</p>
-                                                    </div>
-                                                    <div class="column">
-                                                        <p class="heading">
-                                                            <a href=format!("nplayer-{}",self.link_video.clone())>
-                                                                <figure class="image" style="max-width: 40px; height: auto; margin: 0px auto;"><img src="https://cdn.jsdelivr.net/gh/Aicirou/goindex-theme-acrou@v2.0.8/dist/images/player/nplayer.png" class="icon"/></figure>
-                                                            </a>
-                                                        </p>
-                                                        <p>{"nPlayer"}</p>
-                                                    </div>
-                                                    <div class="column">
-                                                        <p class="heading">
-                                                            <a href=format!("intent:{}#Intent;package=com.mxtech.videoplayer.ad;S.title=undefined;end",self.link_video.clone())>
-                                                                <figure class="image" style=" max-width: 40px; height: auto; margin: 0px auto;"><img src="https://cdn.jsdelivr.net/gh/Aicirou/goindex-theme-acrou@v2.0.8/dist/images/player/mxplayer.png" class="icon"/></figure>
-                                                            </a>
-                                                        </p>
-                                                        <p>{"MXPlayer(Free)"}</p>
-                                                    </div>
-                                                    <div class="column">
-                                                        <p class="heading">
-                                                            <a href=format!("intent:{}#Intent;package=com.mxtech.videoplayer.pro;S.title=undefined;end",self.link_video.clone())>
-                                                                <figure class="image" style=" max-width: 40px; height: auto; margin: 0px auto;"><img src="https://cdn.jsdelivr.net/gh/Aicirou/goindex-theme-acrou@v2.0.8/dist/images/player/mxplayer.png" class="icon" /></figure>
-                                                            </a>
-                                                        </p>
-                                                        <p>{"MXPlayer(Pro)"}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <box_players::BoxPlayers link_video=self.link_video.clone()/>
                                     </div>
                     </div>
                 };
@@ -354,7 +322,7 @@ impl Component for Eps {
                 true
             }
             GetInfo => {
-                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/23a1999bed331316c4f19709f523fe589f9baae0/tester.json")
+                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/8c326da70bccea06f488663e460a590ed47d1568/tester.json")
                     .body(Nothing)
                     .expect("Não foi possível efetuar o request.");
                 let callback =
@@ -396,39 +364,3 @@ impl Component for Eps {
         }
     }
 }
-
-// pub struct Playlist
-// {
-//     links: Vec<String>,
-//     names: Vec<String>
-// }
-
-// impl Component for Playlist
-// {
-//     type Message = Msg;
-//     type Properties = Props;
-
-//     fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
-//         Self
-//         {
-//             links: Eps.json.clone(),
-//             names: Vec::new()
-//         }
-//     }
-
-//     fn update(&mut self, msg: Self::Message) -> ShouldRender {
-//         true
-//     }
-
-//     fn change(&mut self, _props: Self::Properties) -> ShouldRender {
-//         true
-//     }
-
-//     fn view(&self) -> Html {
-//         html! {
-//             <>
-                
-//             </>
-//         }
-//     }
-// }
