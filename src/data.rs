@@ -62,19 +62,17 @@ impl FetchServiceExample {
     fn view_json(&self) -> Html {
         let mut names: Vec<String> = Vec::new();
         let mut background: Vec<String> = Vec::new();
-        let eps: Vec<String> = Vec::new();
         let mut cards: Vec<Html> = Vec::new();
         match self.json {
             Some(ref content) => {
                 for i in 0..content.animes.len()
                 {
-                    // for j in 0..content.animes[i].anime.len()
                     {
                         names.push(String::from(format!("{}", content.animes[i].anime)));
                         background.push(String::from(format!("{}", content.animes[i].background)));
                         cards.push(html!{
                             <li class="card" style="background: black">
-                            <AppAnchor route=AppRoute::Player(background[i].clone(), background[i].clone(), background[i].clone(), background[i].clone())>
+                            <AppAnchor route=AppRoute::Eps(i as u64)>
                                 <a class="card-image" style=format!("background-image: url({});", background[i].clone()) loading="lazy">
                                 </a>
                                 <a class="card-description">
@@ -84,8 +82,6 @@ impl FetchServiceExample {
                             </AppAnchor>
                             </li>
                         });
-
-                        // eps.push(String::from(format!("{}", content.animes[i].dados[0].eps[j].name)));
                     }
                 }
 
@@ -139,9 +135,7 @@ impl Component for FetchServiceExample {
     type Properties = ();
 
     fn create(_props: Self::Properties, link: ComponentLink<Self>) -> Self {
-        // link.callback(|_| Msg::GetInfo)
         Self {
-            // props,
             fetch_task: None,
             json: None,
             link,
@@ -149,7 +143,6 @@ impl Component for FetchServiceExample {
         }
     }
     fn change(&mut self, _props: Self::Properties) -> ShouldRender {
-        // self.props.neq_assign(props);
         false
     }
     fn update(&mut self, msg: Self::Message) -> ShouldRender {

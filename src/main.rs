@@ -12,7 +12,7 @@ use rand::prelude::*;
 mod pages;
 mod components;
 use pages::{
-    home::Home, page_not_found::PageNotFound, player::Player, post::Eps, posts::LoadPosts,
+    home::Home, page_not_found::PageNotFound, post::Eps, posts::LoadPosts,
     search::Search, nsfw::Nsfw
 };
 
@@ -96,19 +96,14 @@ impl Model {
                     <h3 style="position: absolute; top: 8px; right: -120px"><strong>{"LowStream"}</strong></h3>
                     </AppAnchor>
                     <div class=classes!("navbar-burger", active_class) data-target="navbarExampleTransparentExample" onclick=link.callback(|_| Msg::ToggleNav) style="position: absolute; top: 8px; right: 16px; background-color: black; border-radius: 100%">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
                     </div>
                 </div>
 
                 <div id="navbarExampleTransparentExample" class=classes!("navbar-menu small_screen", active_class)>
                     <div class="navbar-start">
-                    // <a class=classes!("navbar-burger", active_class) onclick=link.callback(|_| Msg::ToggleNav)>
-                    //     <span></span>
-                    //     <span></span>
-                    //     <span></span>
-                    // </a>
                     <AppAnchor classes="navbar-item" route=AppRoute::Home>
                             <a onclick=link.callback(|_| Msg::ToggleNav) style="background-color: rgba(0, 0, 0, 0%); color: white">{ "Home" }</a>
                     </AppAnchor>
@@ -125,35 +120,32 @@ impl Model {
                         <a class="navbar-link" style="color: white">
                         {"Mais"}
                         </a>
-                        <div class="navbar-dropdown is-boxed" style="background-color: rgba(0, 0, 0);">
-                        // <AppAnchor classes="navbar-item" route=AppRoute::Data>
-                        //     <a onclick=link.callback(|_| Msg::ToggleNav) style="background-color: rgba(0, 0, 0, 0%); color: white">{ "Data" }</a>
-                        // </AppAnchor>
-                        <a class="navbar-item" onclick=link.callback(|_| Msg::ToggleNav) style="background-color: rgba(0, 0, 0, 0%); color: white">
-                            {"Contact us"}
-                        </a>
-                        <a class="navbar-item" href="https://github.com/LowStream-Community/LowStream/issues/new/choose" onclick=link.callback(|_| Msg::ToggleNav) style=" background-color: rgba(0, 0, 0, 0%);color: white" target="_blank">
-                            {"Issues"}
-                        </a>
-                        <hr class="navbar-divider"/>
-                        <a class="navbar-item" href="https://github.com/lowstream-community/LowStream" onclick=link.callback(|_| Msg::ToggleNav) style="background-color: rgba(0, 0, 0, 0%); color: white" target="_blank">
-                            {"GitHub"}
-                        </a>
+                            <div class="navbar-dropdown is-boxed" style="background-color: rgba(0, 0, 0);">
+                                <a class="navbar-item" onclick=link.callback(|_| Msg::ToggleNav) style="background-color: rgba(0, 0, 0, 0%); color: white">
+                                    {"Contact us"}
+                                </a>
+                                <a class="navbar-item" href="https://github.com/LowStream-Community/LowStream/issues/new/choose" onclick=link.callback(|_| Msg::ToggleNav) style=" background-color: rgba(0, 0, 0, 0%);color: white" target="_blank">
+                                    {"Issues"}
+                                </a>
+                                <hr class="navbar-divider"/>
+                                <a class="navbar-item" href="https://github.com/lowstream-community/LowStream" onclick=link.callback(|_| Msg::ToggleNav) style="background-color: rgba(0, 0, 0, 0%); color: white" target="_blank">
+                                    {"GitHub"}
+                                </a>
+                            </div>
                         </div>
-                    </div>
                     </div>
 
                     <div class="navbar-end">
-                    <div class="navbar-item">
-                        <div class="buttons" onclick=link.callback(|_| Msg::ToggleNav)>
-                            <AppAnchor classes="button is-light is-rounded" route=AppRoute::Search>
-                                { "Pesquisar" }
-                            </AppAnchor>
-                            <AppAnchor classes="button is-dark is-rounded" route=AppRoute::Eps(number)>
-                                { "Random" }
-                            </AppAnchor>
+                        <div class="navbar-item">
+                            <div class="buttons" onclick=link.callback(|_| Msg::ToggleNav)>
+                                <AppAnchor classes="button is-light is-rounded" route=AppRoute::Search>
+                                    { "Pesquisar" }
+                                </AppAnchor>
+                                <AppAnchor classes="button is-dark is-rounded" route=AppRoute::Eps(number)>
+                                    { "Random" }
+                                </AppAnchor>
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
                 </nav>
@@ -177,9 +169,6 @@ impl Model {
             }
             AppRoute::Search => {
                 html! { <Search /> }
-            }
-            AppRoute::Player(ep, background, name, type_video) => {
-                html! { <Player ep=ep background=background name=name type_video=type_video/> }
             }
             AppRoute::Home => {
                 html! { <Home /> }
