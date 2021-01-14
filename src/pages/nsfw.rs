@@ -1,6 +1,4 @@
 use serde::Deserialize;
-// use serde_json::{Value, Map};
-// use yewtil::NeqAssign;
 use yew::{
     format::{Json, Nothing},
     prelude::*,
@@ -8,8 +6,6 @@ use yew::{
 };
 
 use crate::components::carousel;
-
-// const CAROUSEL_DELAY_MS: u64 = 15000;
 
 #[derive(Deserialize, Debug, Clone)]
 pub struct Hentai {
@@ -69,13 +65,10 @@ impl Nsfw
                 html!{
                     <>
                         <carousel::Model background=self.export_img()/>
-                        // <h1>{format!("{:?}", content.nsfw[0].background.clone())}</h1>
-                        // <h2>{ for self.export_img() }</h2>
                         <div class="cover-image-header__overlay">
                             <div class="cover-image-header__rows">
                                 <h2>
                                     {"🚧Em desenvolvimento🚧"}
-                                    // {format!("{:#?}", self.export_img())}
                                 </h2>
                             </div>
                         </div>
@@ -100,7 +93,6 @@ impl Nsfw
             html! { 
                 <>
                 <section class="hero is-medium is-dark is-bold ">
-                            // <img src="" class="hero-background is-transparent" style=""/>
                             <div class="hero-body">
                                 <div class="container">
                                     <h1 class="title" style="padding-top: 40px;">
@@ -111,7 +103,6 @@ impl Nsfw
                         </section>
                         <section style="background-color: #25262F;">
                             <ul class="card-list">
-                                // {for cards.clone()}
                                 <h1>{"..."}</h1>
                             </ul>
                         </section>

@@ -1,20 +1,14 @@
-// use futures::{prelude::*};
-// use std::future::Future;
 use serde::Deserialize;
-// use yewtil::NeqAssign;
 use yew::{
     format::{Json, Nothing},
     prelude::*,
     services::fetch::{FetchService, FetchTask, Request, Response},
 };
-// use yew_router::agent::{RouteAgentDispatcher, RouteRequest};
 
 use crate::{
     switch::{AppAnchor, AppRoute},
     components::{carousel, view_content, view_ecchi, view_romance, view_shounen},
 };
-
-// const CAROUSEL_DELAY_MS: u64 = 15000;
 
 #[derive(Deserialize, Debug, Clone)]
 pub struct Ep {
@@ -30,7 +24,6 @@ pub struct Content {
 pub struct Anime {
     anime: String,
     background: String,
-    // dados: Vec<Content>
 }
 
 #[derive(Deserialize, Debug, Clone)]
@@ -59,14 +52,15 @@ impl LoadPosts {
     fn view_json(&self) -> Html {
         fn search(card_name: String, writing: String) -> bool
         {
-                // let words_in_names: Vec<&str> = card_name.split_whitespace().collect::<Vec<&str>>();
                 let chars_name: Vec<char> = card_name.chars().collect();
                 let writing_chars: Vec<char> = writing.chars().collect();
-                for (j, c) in writing_chars.iter().enumerate()
                 {
-                    if c != &chars_name[j]
+                    for (j, c) in writing_chars.iter().enumerate()
                     {
-                        return false;
+                        if c != &chars_name[j]
+                        {
+                            return false;
+                        }
                     }
                 }
                 true
@@ -84,14 +78,14 @@ impl LoadPosts {
                         background.push(content.animes[i].background.clone());
                         cards.push(html!{
                             <li class="card" style="background: black">
-                            <AppAnchor route=AppRoute::Eps(i as u64)>
-                                <a class="card-image" style=format!("background-image: url({});", content.animes[i].background.clone()) loading="lazy">
-                                    <a class="card-description">
-                                        <strong><h2>{content.animes[i].anime.clone()}</h2></strong>
-                                        <p>{"Assistir agora"}</p>
+                                <AppAnchor route=AppRoute::Eps(i as u64)>
+                                    <a class="card-image" style=format!("background-image: url({});", content.animes[i].background.clone()) loading="lazy">
+                                        <a class="card-description">
+                                            <strong><h2>{content.animes[i].anime.clone()}</h2></strong>
+                                            <p>{"Assistir agora"}</p>
+                                        </a>
                                     </a>
-                                </a>
-                            </AppAnchor>
+                                </AppAnchor>
                             </li>
                         })
                     }
@@ -106,7 +100,6 @@ impl LoadPosts {
                                     <input class="input is-rounded" type="text" oninput=self.link.callback(|input: InputData| Msg::Payload(input.value)) value=&self.payload placeholder="Encontre seu anime"/>
                                 </div>
                             </div>
-                            // <h3>{"Resultados:"}</h3>
                             <ul class="card-list con-cards" >
                                 {for cards.clone()}
                             </ul>
@@ -124,27 +117,19 @@ impl LoadPosts {
         if self.fetch_task.is_some() {
             html! { 
                 <>
-                <carousel::Model background=vec!["https://jaqorbelize.com/wp-content/uploads/blur-1.png".to_string()]/>
-                        <section style="background-color: #25262F;">
+                <carousel::Model background=self.export_background()/>
+                    <section style="background-color: #25262F;">
                         <div class="mx-auto" style="width: 250px;">
                             <div class="control is-loading field has-addons">
                                 <input class="input is-rounded" type="text" oninput=self.link.callback(|input: InputData| Msg::Payload(input.value)) value=&self.payload placeholder="Carregando"/>
                             </div>
-                            // <div class="field has-addons" style="padding-top: 80px;">
-                            //     <input class="input is-rounded" type="text" oninput=self.link.callback(|input: InputData| Msg::Payload(input.value)) value=&self.payload placeholder="Encontre seu anime"/>
-                            // </div>
                         </div>
-                            <ul class="card-list" >
-                                // {for cards.clone()}
-                            </ul>
-                            <view_content::Content/>
-                            <view_ecchi::Ecchi/>
-                            <view_shounen::Shounen/>
-                        </section>
+                        <view_content::Content/>
+                    </section>
                 </> 
             }
         } else {
-            html! { <p></p> }
+            html! {}
         }
     }
     fn view_error(&self) -> Html {
@@ -168,7 +153,7 @@ impl LoadPosts {
                 }
             },
             None => {
-                background.push("none".to_string())
+                background.push("https://3.bp.blogspot.com/-bNbqH1Ll5BY/XD97Ife_ioI/AAAAAAAA9Mk/ipwUBBWtGgoEUNu7m7AaYGyvw1DxBR97QCLcBGAs/s1600/Fundo%2Btransparente%2B1900x1900.png".to_string())
             }
         }
         background
@@ -182,12 +167,12 @@ impl Component for LoadPosts {
         let callback = link.callback(|_msg: Msg| Msg::GetInfo);
         callback.emit(Msg::GetInfo);
         Self {
-            payload: String::default(),
+            payload:          String::default(),
             debugged_payload: format!("{}", "none"),
-            fetch_task: None,
-            json: None,
+            fetch_task:       None,
+            json:             None,
             link,
-            error: None,
+            error:            None,
         }
     }
     fn change(&mut self, _props: Self::Properties) -> ShouldRender {

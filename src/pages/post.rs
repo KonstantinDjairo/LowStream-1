@@ -1,14 +1,14 @@
-use serde::Deserialize;
-// use yewtil::NeqAssign;
+use serde::{Deserialize};
 use yew::{
     format::{Json, Nothing},
     prelude::*,
     services::fetch::{FetchService, FetchTask, Request, Response},
 };
 
+
 use crate::{
-    switch::{AppAnchor, AppRoute},
-    components::{carousel, video, box_players},
+    // switch::{AppAnchor, AppRoute},
+    components::{video, box_players},
 };
 
 #[derive(Deserialize, Debug, Clone)]
@@ -40,7 +40,7 @@ pub enum Msg {
     GetInfo,
     ReceiveResponse(Result<Struture, anyhow::Error>),
     GetOption(usize),
-    TogglePlay(String, String, String),
+    TogglePlay(String, String, String, String),
     Close,
     ViewElements(usize)
 }
@@ -61,6 +61,7 @@ pub struct Eps
     current_video: String,
     link_video: String,
     type_video: String,
+    poster_video: String,
     play: Html,
     close: bool,
     change: usize
@@ -73,16 +74,14 @@ impl Eps {
         {
             return html!{
                 <>
-                
-                <div class="notification is-danger is-light">
-                    // <button class="delete" onclick=self.link.callback(|_| Msg::Close)></button>
-                        <strong>{"O player ainda é um test, por conta disso a sua lógica ainda está em processo de desenvolvimento. Para reproduzir o próximo episódio, feche o player abaixo primeiramente, e por conseguinte clique no card desejado. Obg por sua visita uwu"}</strong>
-                </div>
-                <div class="notification  is-dark">
-                    <button class="delete" onclick=self.link.callback(|_| Msg::Close)></button>
+                    <div class="notification is-danger is-light">
+                            <strong>{"O player ainda é um test, por conta disso a sua lógica ainda está em processo de desenvolvimento. Para reproduzir o próximo episódio, feche o player abaixo primeiramente, e por conseguinte clique no card desejado. Obg por sua visita uwu"}</strong>
+                    </div>
+                    <div class="notification  is-dark">
+                        <button class="delete" onclick=self.link.callback(|_| Msg::Close)></button>
                         <strong>{self.current_video.clone()}</strong>
-                </div>
-                        {self.play.clone()}
+                    </div>
+                    {self.play.clone()}
                 </>
             }
         }
@@ -93,69 +92,59 @@ impl Eps {
         let mut options: Vec<Html> = Vec::new();
         let mut buttons: Vec<Html> = Vec::new();
         let mut count: u64 = 0;
-        // let mut type_video
         match self.json {
             Some(ref content) => {
+                let quantidade_de_eps = content.animes[self.name as usize].dados[self.number].eps.len();
                 for j in 0..content.animes[self.name as usize].dados.len()
                 {
                     options.push(html!{
-                        // <hr class="navbar-divider"/>
                         <a class="navbar-item" onclick=self.link.callback(move |_| Msg::GetOption(j)) style="color: white">
                             {format!("nº {}", j + 1)}
                         </a>
                     });
                 }
 
-                for i in 1..content.animes[self.name as usize].dados[self.number].eps.len()
+                if quantidade_de_eps.rem_euclid(25) == 0
                 {
-                    if content.animes[self.name as usize].dados[self.number].eps.len().rem_euclid(i) == 0
+                    for j in 0..quantidade_de_eps.div_euclid(25)
                     {
-                        for j in 0..content.animes[self.name as usize].dados[self.number].eps.len().div_euclid(25)
-                        {
-                            buttons.push(html!{
-                                <button class="button is-black" onclick=self.link.callback(move |_| Msg::ViewElements(j))>
-                                    {format!("{}", j + 1)}
-                                </button>
-                            });
-                        }
-                        break;
+                        buttons.push(html!{
+                            <button class="button is-black" onclick=self.link.callback(move |_| Msg::ViewElements(j))>
+                                {format!("{}", j + 1)}
+                            </button>
+                        });
                     }
-                    else
+                }
+                else
+                {
+                    for j in 0..quantidade_de_eps.div_euclid(25) + 1
                     {
-                        for j in 0..content.animes[self.name as usize].dados[self.number].eps.len().div_euclid(25) + i.rem_euclid(25)
-                        {
-                            buttons.push(html!{
-                                <button class="button is-black" onclick=self.link.callback(move |_| Msg::ViewElements(j))>
-                                    {format!("{}", j + 1)}
-                                </button>
-                            });
-                        }
-                        break;
+                        buttons.push(html!{
+                            <button class="button is-black" onclick=self.link.callback(move |_| Msg::ViewElements(j))>
+                                {format!("{}", j + 1)}
+                            </button>
+                        });
+                    }
+                    if buttons.len() == 1
+                    {
+                        buttons = vec![html!{}];
                     }
                 }
 
-                for i in self.change * 25..content.animes[self.name as usize].dados[self.number].eps.len()
+                for i in self.change * 25..quantidade_de_eps
                 {
                         let video = content.animes[self.name as usize].dados[self.number].eps[i].name.clone();
                         let player = content.animes[self.name as usize].dados[self.number].eps[i].player.clone();
                         let type_video = content.animes[self.name as usize].dados[self.number].eps[i].type_video.clone();
+                        let poster_video = content.animes[self.name as usize].background.clone();
                         cards.push(html!{
                             <li style="background: black; min-width: auto">
-                            // <AppAnchor route=AppRoute::Player(content.animes[self.name as usize].dados[self.number].eps[i].player.clone(), 
-                            //                                   content.animes[self.name as usize].background.clone(), 
-                            //                                   content.animes[self.name as usize].dados[self.number].eps[i].name.clone(), 
-                            //                                   content.animes[self.name as usize].dados[self.number].eps[i].type_video.clone(),
-                            //                                   )>
-                            <a onclick=self.link.callback(move |_| Msg::TogglePlay(video.clone(), player.clone(), type_video.clone()))>
-                                // <a class="card-image" style=format!("background-image: url({});", content.animes[self.name as usize].background.clone()) loading="lazy">
-                                // </a>
+                            <a onclick=self.link.callback(move |_| Msg::TogglePlay(video.clone(), player.clone(), type_video.clone(), poster_video.clone()))>
                                 <a>
                                     <h1 class="text-in-square">{format!("{}", i + 1)}</h1>
                                     <strong><h2>{content.animes[self.name as usize].dados[self.number].eps[i].name.clone().replace(".mkv", " ").replace(".mp4", " ").replace(".avi", " ")}</h2></strong>
                                 </a>
                                 </a>
-                            // </AppAnchor>
-
                             </li>
                         });
                         count += 1;
@@ -164,7 +153,6 @@ impl Eps {
                             break;
                         }
                 }
-                // }
 
 
                 html! {
@@ -201,7 +189,6 @@ impl Eps {
                             <ol class="gradient-list" style="margin-left: 30px; margin-right: 30px;">
                                 {for cards.clone()}
                             </ol>
-                            // <h2 style="padding-bottom: 400px">{"uwu"}</h2>
                         </section>
                     </>
                 }
@@ -216,11 +203,14 @@ impl Eps {
         if self.fetch_task.is_some() {
             html! { 
                 <>
-                <section class="hero is-medium is-dark is-bold ">
-                            // <img src="" class="hero-background is-transparent" style=""/>
+                <section class="hero is-small is-dark is-bold has-background">
+                            <div class="cover-image-header__animes">
+                            <div class="cover-image-header__rows">
+                            </div>
+                            </div>
                             <div class="hero-body">
                                 <div class="container">
-                                    <h1 class="title" style="padding-top: 40px;">
+                                    <h1 class="title" style="padding-top: 15pc;">
                                         {"Loading..."}
                                     </h1>
                                 </div>
@@ -228,7 +218,6 @@ impl Eps {
                         </section>
                         <section style="background-color: #25262F;">
                             <ul class="card-list">
-                                // {for cards.clone()}
                                 <h1>{"..."}</h1>
                             </ul>
                         </section>
@@ -242,7 +231,7 @@ impl Eps {
                 </> 
             }
         } else {
-            html! { <p></p> }
+            html! {}
         }
     }
     fn view_error(&self) -> Html {
@@ -272,6 +261,7 @@ impl Component for Eps {
             current_video: String::new(),
             link_video: String::new(),
             type_video: String::new(),
+            poster_video: String::new(),
             play: html!{},
             close: false,
             change: 0
@@ -291,30 +281,19 @@ impl Component for Eps {
                 self.play = html!{};
                 true
             }
-            TogglePlay(name, link_video, type_video) => {
+            TogglePlay(name, link_video, type_video, poster_video) => {
                 self.close = true;
                 self.current_video = name;
                 self.link_video = link_video;
                 self.type_video = type_video;
+                self.poster_video = poster_video;
                 self.play = html!{
                     <div class="context has-text-centered" style="padding-top: 40px; padding-bottom: 140px;">
-                        <video controls=true autoplay="" width="100%" height="550" style="border-radius: 18px; box-shadow: 0px 0px 18px rgba(0, 0, 0, 70%)">
-                            <source src=self.link_video.clone() type=self.type_video.clone()/>
-                        </video>
-                        <div class="notransition" style="background-color: rgba(0, 0, 0, 50%); color: white; display: inline-block;
-                                    width: 90%;
-                                    font-size: 1rem;
-                                    text-decoration: none;
-                                    overflow: hidden;
-                                    box-shadow: 0 0 4rem -1rem rgba(0, 0, 0, 1);
-                                    border-radius: 18px;">
-                                        <header class="card-header">
-                                            <p class="card-header-title" style="color: white"><span class="icon"><i aria-hidden="true" class="fa fa-play-circle"></i></span>{" Play in android "}<span class="icon"></span></p>
-                                        </header>
-                                        <box_players::BoxPlayers link_video=self.link_video.clone()/>
-                                    </div>
+                        <video::Video video=self.link_video.clone() type_video=self.type_video.clone() poster=self.poster_video.clone()/>
+                        <box_players::BoxPlayers link_video=self.link_video.clone()/>
                     </div>
                 };
+                
                 true
             }
             GetOption(value) => {
@@ -322,7 +301,7 @@ impl Component for Eps {
                 true
             }
             GetInfo => {
-                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/8c326da70bccea06f488663e460a590ed47d1568/tester.json")
+                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/e8505b942766876cd4e3229841532e84556b95dc/tester.json")
                     .body(Nothing)
                     .expect("Não foi possível efetuar o request.");
                 let callback =
