@@ -1,13 +1,26 @@
 #![recursion_limit="2048"]
 
-use yew::prelude::*;
-use yew_router::{route::Route, switch::Permissive};
-
+//MACROS
 macro_rules! classes {
     ($classe:expr, $classe_condition:expr) => {
         format!("{} {}", $classe, $classe_condition)
     };
 }
+
+use wasm_bindgen::prelude::*;
+
+#[wasm_bindgen]
+extern "C" {
+    #[wasm_bindgen(js_namespace = console)]
+    pub fn log(s: &str);
+}
+
+macro_rules! console_log {
+    ($($t:tt)*) => (log(&format_args!($($t)*).to_string()))
+}
+
+use yew::prelude::*;
+use yew_router::{route::Route, switch::Permissive};
 use rand::prelude::*;
 mod pages;
 mod components;
@@ -183,4 +196,5 @@ impl Model {
 fn main() {
     wasm_logger::init(wasm_logger::Config::new(log::Level::Trace));
     App::<Model>::new().mount_to_body();
+    console_log!("Main() - {}", "Loading done ✔️");
 }
