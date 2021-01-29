@@ -5,10 +5,8 @@ use yew::{
     services::fetch::{FetchService, FetchTask, Request, Response},
 };
 
-
 use crate::{
-    // switch::{AppAnchor, AppRoute},
-    components::{video, box_players},
+    components::{carousel, video, box_players},
 };
 
 #[derive(Deserialize, Debug, Clone)]
@@ -24,15 +22,10 @@ pub struct Content {
 }
 
 #[derive(Deserialize, Debug, Clone)]
-pub struct Anime {
+pub struct Struture {
     anime: String,
     background: String,
     dados: Vec<Content>
-}
-
-#[derive(Deserialize, Debug, Clone)]
-pub struct Struture {
-    animes: Vec<Anime>
 }
 
 #[derive(Debug)]
@@ -94,8 +87,8 @@ impl Eps {
         let mut count: u64 = 0;
         match self.json {
             Some(ref content) => {
-                let quantidade_de_eps = content.animes[self.name as usize].dados[self.number].eps.len();
-                for j in 0..content.animes[self.name as usize].dados.len()
+                let quantidade_de_eps = content.dados[self.number].eps.len();
+                for j in 0..content.dados.len()
                 {
                     options.push(html!{
                         <a class="navbar-item" onclick=self.link.callback(move |_| Msg::GetOption(j)) style="color: white">
@@ -133,16 +126,16 @@ impl Eps {
 
                 for i in self.change * 25..quantidade_de_eps
                 {
-                        let video = content.animes[self.name as usize].dados[self.number].eps[i].name.clone();
-                        let player = content.animes[self.name as usize].dados[self.number].eps[i].player.clone();
-                        let type_video = content.animes[self.name as usize].dados[self.number].eps[i].type_video.clone();
-                        let poster_video = content.animes[self.name as usize].background.clone();
+                        let video = content.dados[self.number].eps[i].name.clone();
+                        let player = content.dados[self.number].eps[i].player.clone();
+                        let type_video = content.dados[self.number].eps[i].type_video.clone();
+                        let poster_video = content.background.clone();
                         cards.push(html!{
                             <li style="background: black; min-width: auto">
                             <a onclick=self.link.callback(move |_| Msg::TogglePlay(video.clone(), player.clone(), type_video.clone(), poster_video.clone()))>
                                 <a>
                                     <h1 class="text-in-square">{format!("{}", i + 1)}</h1>
-                                    <strong><h2>{content.animes[self.name as usize].dados[self.number].eps[i].name.clone().replace(".mkv", " ").replace(".mp4", " ").replace(".avi", " ")}</h2></strong>
+                                    <strong><h2>{content.dados[self.number].eps[i].name.clone().replace(".mkv", " ").replace(".mp4", " ").replace(".avi", " ")}</h2></strong>
                                 </a>
                                 </a>
                             </li>
@@ -158,7 +151,7 @@ impl Eps {
                 html! {
                     <>
                         <section class="hero is-small is-dark is-bold has-background">
-                            <img src=content.animes[self.name as usize].background.clone() class="hero-background is-transparent" style=" filter: blur(6px)"/>
+                            <img src=content.background.clone() class="hero-background is-transparent" style=" filter: blur(6px)"/>
                             <div class="cover-image-header__animes">
                             <div class="cover-image-header__rows">
                             </div>
@@ -166,7 +159,7 @@ impl Eps {
                             <div class="hero-body">
                                 <div class="container">
                                     <h2 class="title" style="padding-top: 80px; text-shadow: 1px 1px #363636;">
-                                        {content.animes[self.name as usize].anime.clone()}
+                                        {content.anime.clone()}
                                     </h2>
                                     {self.notification()}
                                     <nav style="z-index: 1000">
@@ -203,31 +196,19 @@ impl Eps {
         if self.fetch_task.is_some() {
             html! { 
                 <>
-                <section class="hero is-small is-dark is-bold has-background">
-                            <div class="cover-image-header__animes">
-                            <div class="cover-image-header__rows">
+                    <carousel::Model background=vec!["https://3.bp.blogspot.com/-bNbqH1Ll5BY/XD97Ife_ioI/AAAAAAAA9Mk/ipwUBBWtGgoEUNu7m7AaYGyvw1DxBR97QCLcBGAs/s1600/Fundo%2Btransparente%2B1900x1900.png".to_string()]/>
+                    <section style="background-color: #25262F;">
+                        <ul class="card-list">
+                            <h1>{"..."}</h1>
+                        </ul>
+                    </section>
+                    <div class="position-absolute top-90 start-50 translate-middle">
+                        <div class="d-flex justify-content-center">
+                            <div class="spinner-border is-white" role="status">
+                                <span class="visually-hidden">{"Loading..."}</span>
                             </div>
-                            </div>
-                            <div class="hero-body">
-                                <div class="container">
-                                    <h1 class="title" style="padding-top: 15pc;">
-                                        {"Loading..."}
-                                    </h1>
-                                </div>
-                            </div>
-                        </section>
-                        <section style="background-color: #25262F;">
-                            <ul class="card-list">
-                                <h1>{"..."}</h1>
-                            </ul>
-                        </section>
-                <div class="position-absolute top-90 start-50 translate-middle">
-                    <div class="d-flex justify-content-center">
-                        <div class="spinner-border is-white" role="status">
-                            <span class="visually-hidden">{"Loading..."}</span>
                         </div>
                     </div>
-                </div>
                 </> 
             }
         } else {
@@ -301,7 +282,7 @@ impl Component for Eps {
                 true
             }
             GetInfo => {
-                let request = Request::get("https://gist.githubusercontent.com/GozoDeAvestruz/1f829fb9436bfe24268411b97afa5f96/raw/e8505b942766876cd4e3229841532e84556b95dc/tester.json")
+                let request = Request::get(format!("https://lowstreamcast-default-rtdb.firebaseio.com/animes/{}.json", self.name.clone()))
                     .body(Nothing)
                     .expect("Não foi possível efetuar o request.");
                 let callback =
